@@ -25,3 +25,9 @@ Route::middleware([
     })->name('dashboard');
 });
 Route::get('/redirect',[HomeController::class,'redirect']);
+
+Route::prefix('/link')->group (function(){
+    Route::get('/product',[HomeController::class,'Product_view'])->name('link.product'); 
+   
+
+});

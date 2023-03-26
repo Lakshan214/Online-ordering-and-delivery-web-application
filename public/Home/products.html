@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <title>Hexashop - Product Listing Page</title>
 
 
@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="assets/css/owl-carousel.css">
 
     <link rel="stylesheet" href="assets/css/lightbox.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
 <!--
 
 TemplateMo 571 Hexashop
@@ -52,15 +53,15 @@ https://templatemo.com/tm-571-hexashop
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
                         <a href="index.html" class="logo">
-                            <img src="assets/images/logo.png">
+                            <img  style="height: 70px; width:200px;" src="assets/images/logo.png">
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="index.html" class="active">Home</a></li>
-                            <li class="scroll-to-section"><a href="index.html">Men's</a></li>
-                            <li class="scroll-to-section"><a href="index.html">Women's</a></li>
-                            <li class="scroll-to-section"><a href="index.html">Kid's</a></li>
+                            <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                            <li class="scroll-to-section"><a href="about.html">About Us</a></li>
+                            <li class="scroll-to-section"><a href="products.html">Products</a></li>
+                            <li class="scroll-to-section"><a href="contact.html">Contact Us</a></li>
                             <li class="submenu">
                                 <a href="javascript:;">Pages</a>
                                 <ul>
@@ -79,7 +80,7 @@ https://templatemo.com/tm-571-hexashop
                                     <li><a rel="nofollow" href="https://templatemo.com/page/4" target="_blank">Template Page 4</a></li>
                                 </ul>
                             </li>
-                            <li class="scroll-to-section"><a href="index.html">Explore</a></li>
+                            <li class="scroll-to-section"><a href="#explore">Explore</a></li>
                         </ul>        
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -93,18 +94,27 @@ https://templatemo.com/tm-571-hexashop
     <!-- ***** Header Area End ***** -->
 
     <!-- ***** Main Banner Area Start ***** -->
-    <div class="page-heading" id="top">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="inner-content">
-                        <h2>Check Our Products</h2>
-                        <span>Awesome &amp; Creative HTML CSS layout by TemplateMo</span>
-                    </div>
-                </div>
-            </div>
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <img src="assets/images/b3.jpg" class="d-block w-80" alt="...">
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img style="width: 1350px; height:500px ;" src="assets/images/b5.jpg" class="d-block w-80" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img style="width: 1350px; height:500px ;" src="assets/images/b11.jpg" class="d-block w-80" alt="...">
+          </div>
         </div>
-    </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
     <!-- ***** Main Banner Area End ***** -->
 
 
@@ -132,11 +142,11 @@ https://templatemo.com/tm-571-hexashop
                                     <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
-                            <img src="assets/images/men-01.jpg" alt="">
+                            <img src="assets/images/k1.jpg" alt="">
                         </div>
                         <div class="down-content">
                             <h4>Classic Spring</h4>
-                            <span>$120.00</span>
+                            <span>RS.120.00</span>
                             <ul class="stars">
                                 <li><i class="fa fa-star"></i></li>
                                 <li><i class="fa fa-star"></i></li>
@@ -157,7 +167,7 @@ https://templatemo.com/tm-571-hexashop
                                     <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
-                            <img src="assets/images/men-02.jpg" alt="">
+                            <img src="assets/images/k2.jpg" alt="">
                         </div>
                         <div class="down-content">
                             <h4>Air Force 1 X</h4>
@@ -182,7 +192,7 @@ https://templatemo.com/tm-571-hexashop
                                     <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
-                            <img src="assets/images/men-03.jpg" alt="">
+                            <img src="assets/images/k4.jpeg" alt="">
                         </div>
                         <div class="down-content">
                             <h4>Love Nana ‘20</h4>
@@ -207,7 +217,7 @@ https://templatemo.com/tm-571-hexashop
                                     <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
-                            <img src="assets/images/women-01.jpg" alt="">
+                            <img src="assets/images/2.jpg" alt="">
                         </div>
                         <div class="down-content">
                             <h4>New Green Jacket</h4>
@@ -232,7 +242,7 @@ https://templatemo.com/tm-571-hexashop
                                     <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
-                            <img src="assets/images/women-02.jpg" alt="">
+                            <img src="assets/images/g1.png" alt="">
                         </div>
                         <div class="down-content">
                             <h4>Classic Dress</h4>
@@ -257,7 +267,7 @@ https://templatemo.com/tm-571-hexashop
                                     <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
-                            <img src="assets/images/women-03.jpg" alt="">
+                            <img src="assets/images/g2.jpg" alt="">
                         </div>
                         <div class="down-content">
                             <h4>Spring Collection</h4>
@@ -282,7 +292,7 @@ https://templatemo.com/tm-571-hexashop
                                     <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
-                            <img src="assets/images/kid-01.jpg" alt="">
+                            <img src="assets/images/g3.jpg" alt="">
                         </div>
                         <div class="down-content">
                             <h4>School Collection</h4>
@@ -307,7 +317,7 @@ https://templatemo.com/tm-571-hexashop
                                     <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
-                            <img src="assets/images/kid-02.jpg" alt="">
+                            <img src="assets/images/g4.jpg" alt="">
                         </div>
                         <div class="down-content">
                             <h4>Summer Cap</h4>
@@ -332,7 +342,7 @@ https://templatemo.com/tm-571-hexashop
                                     <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
-                            <img src="assets/images/kid-03.jpg" alt="">
+                            <img src="assets/images/1.jpg" alt="">
                         </div>
                         <div class="down-content">
                             <h4>Classic Kid</h4>

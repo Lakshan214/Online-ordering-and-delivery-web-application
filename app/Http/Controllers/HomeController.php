@@ -12,22 +12,30 @@ class HomeController extends Controller
       $userType=Auth::user()->userType;
 
       if($userType=='1')
-       {
+        {
              return view('admin.home');
-       }
+        }
        elseif ($userType=='2') 
         {
              return view('deliver.home');
-       }
+        }
        else
-      {
+        {
              return view('dashboard');
-      }
+        }
     } 
 
+
     public function index()
-    {  
-      
-      return view('Home.index');
-    }
+     {  
+       return view('Home.index');
+     }
+  
+     
+   public function Product_view()
+     {
+       return view('Home.allproduct');
+     }
+
+   
 }
