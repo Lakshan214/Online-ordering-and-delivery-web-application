@@ -18,9 +18,9 @@
                             <div class="thumb">
                                 <div class="hover-content">
                                     <ul>
-                                        <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-eye"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 <img src="Home/assets/images/1.jpg" alt="">
@@ -41,9 +41,9 @@
                             <div class="thumb">
                                 <div class="hover-content">
                                     <ul>
-                                        <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-eye"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 <img src="Home/assets/images/2.jpg" alt="">
@@ -64,9 +64,9 @@
                             <div class="thumb">
                                 <div class="hover-content">
                                     <ul>
-                                        <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-eye"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 <img src="Home/assets/images/3.jpg" alt="">
@@ -87,9 +87,9 @@
                             <div class="thumb">
                                 <div class="hover-content">
                                     <ul>
-                                        <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-eye"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 <img src="Home/assets/images/4.jpg" alt="">
@@ -135,9 +135,9 @@
                             <div class="thumb">
                                 <div class="hover-content">
                                     <ul>
-                                        <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-eye"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 <img src="Home/assets/images/g4.jpg" alt="">
@@ -158,9 +158,9 @@
                             <div class="thumb">
                                 <div class="hover-content">
                                     <ul>
-                                        <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-eye"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 <img src="Home/assets/images/g1.png" alt="">
@@ -181,9 +181,9 @@
                             <div class="thumb">
                                 <div class="hover-content">
                                     <ul>
-                                        <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-eye"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 <img src="Home/assets/images/g2.jpg" alt="">
@@ -204,9 +204,9 @@
                             <div class="thumb">
                                 <div class="hover-content">
                                     <ul>
-                                        <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-eye"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 <img src="Home/assets/images/g3.jpg" alt="">
@@ -252,9 +252,9 @@
                             <div class="thumb">
                                 <div class="hover-content">
                                     <ul>
-                                        <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-eye"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 <img src="Home/assets/images/k4.jpeg" alt="">
@@ -275,9 +275,9 @@
                             <div class="thumb">
                                 <div class="hover-content">
                                     <ul>
-                                        <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-eye"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 <img src="Home/assets/images/k1.jpg" alt="">
@@ -298,9 +298,9 @@
                             <div class="thumb">
                                 <div class="hover-content">
                                     <ul>
-                                        <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-eye"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 <img src="Home/assets/images/k2.jpg" alt="">
@@ -321,9 +321,9 @@
                             <div class="thumb">
                                 <div class="hover-content">
                                     <ul>
-                                        <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-eye"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="{{ route('link.singlepage') }}"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 <img src="Home/assets/images/k1.jpg" alt="">

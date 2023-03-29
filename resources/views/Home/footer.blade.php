@@ -4,7 +4,7 @@
             <div class="col-lg-3">
                 <div class="first-item">
                     <div class="logo">
-                        <img style="height: 80px; width:200px;" src="Home/assets/images/logo.png" alt="hexashop ecommerce templatemo">
+                        <img style="height: 80px; width:200px;" src="/Home/assets/images/logo.png" alt="hexashop ecommerce templatemo">
                     </div>
                     <ul>
                         <li><a href="#">Thabuththegama,Srilanka</a></li>

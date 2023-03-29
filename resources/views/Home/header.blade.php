@@ -5,7 +5,7 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="index.html" class="logo">
-                        <img  style="height: 70px; width:200px;" src="Home/assets/images/logo.png">
+                        <img  style="height: 70px; width:200px;" src="/Home/assets/images/logo.png">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->

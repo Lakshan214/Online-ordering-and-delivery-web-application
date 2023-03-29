@@ -11,7 +11,7 @@
                                 <a href="#">Start shopping!</a>
                             </div>
                         </div>
-                        <img  style="height:550px;" src="Home/assets/images/left-banner-image.jpg" alt="">
+                        <img  style="height:550px;" src="/Home/assets/images/left-banner-image.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <img src="Home/assets/images/baner-right-image-01.jpg">
+                                    <img src="/Home/assets/images/baner-right-image-01.jpg">
                                 </div>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <img style="height:255px;"  src="Home/assets/images/baner-right-image-02.jpg">
+                                    <img style="height:255px;"  src="/Home/assets/images/baner-right-image-02.jpg">
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <img style="height:264px;" src="Home/assets/images/baner-right-image-03.jpg">
+                                    <img style="height:264px;" src="/Home/assets/images/baner-right-image-03.jpg">
                                 </div>
                             </div>
                         </div>

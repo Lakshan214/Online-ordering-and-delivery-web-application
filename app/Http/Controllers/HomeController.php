@@ -34,8 +34,12 @@ class HomeController extends Controller
      
    public function Product_view()
      {
-       return view('Home.allproduct');
+       return view('product.product');
      }
-
    
+     public function singlepage_view()
+     {
+       return view('Home.singlepage');
+     }
+    
 }
