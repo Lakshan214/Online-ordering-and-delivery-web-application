@@ -15,7 +15,15 @@
                         <li class="scroll-to-section"><a href="{{ route('link.product') }}" >Products</a></li>
                         <li class="scroll-to-section"><a href="contact.html">Contact Us</a></li>
                         
-                       
+                        @if (Route::has('login'))
+                           
+
+                        @auth
+                          <x-app-layout>
+                         </x-app-layout>
+
+                        @else
+
                         <li class="submenu">
                             <a href="{{ route('login') }}">Login</a>
                             <ul>
@@ -23,6 +31,9 @@
                                 
                             </ul>
                         </li>
+
+                        @endauth
+                        @endif
                       
                     </ul>        
                     <a class='menu-trigger'>
