@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -12,8 +13,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {    $product=Product::all();
+        return view('admin.product',compact('product'));
+       
     }
 
     /**
@@ -34,7 +36,22 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product=new Product();
+        $product->Name=$request->pname;
+        $product->Catagory=$request->Pcatagory;
+        $product->quantity=$request->PQuntty;
+        $product->Price=$request->Pprice;
+        $product->Descrtiptton=$request->Pdescripton;
+
+        $imagename=$request->image;
+        $imagename=time().'.'.$request->image->extension();
+        $request->image->move('product',$imagename);  
+        $product->image=$imagename;
+    
+  
+  
+        $product->save();
+        return redirect()->back()->with ('message',' Added Sucessfully!!');
     }
 
     /**
@@ -45,7 +62,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+       
     }
 
     /**
@@ -79,6 +96,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data=Product::find($id);
+
+        $data->delete();
+       return redirect()->back();
     }
 }

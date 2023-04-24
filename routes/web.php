@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,3 +32,5 @@ Route::prefix('/link')->group (function(){
     Route::get('/singlepage',[HomeController::class,'singlepage_view'])->name('link.singlepage'); 
 
 });
+
+Route::resource('Products',ProductController ::class);
