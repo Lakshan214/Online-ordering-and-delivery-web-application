@@ -1,12 +1,14 @@
 <div  style="margin-top: 50px" class="col-lg-12 grid-margin stretch-card">
 
+
+
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Prodouct Table</h4>
         <p class="card-description"> <code>products</code>
         </p>
         <div class="table-responsive">
-          <table class="table table-striped">
+          <table class="table table-striped" >
             <thead>
               <tr>
                 <th> ID </th>
@@ -15,7 +17,7 @@
                 <th> Catagory </th>
                 <th> Quantity</th>
                 <th> Price</th>
-                <th> Descrtiptton</th>
+                <th style="width:100px;"> Descrtiptton</th>
                 <th> Action</th>
               </tr>
             </thead>
@@ -32,10 +34,22 @@
                 <td> {{$product->Catagory}}</td>
                 <td>{{$product->quantity}} </td>
                 <td>{{$product->Price}} </td>
-                <td>{{$product->Descrtiptton}}</td>
+                <td >{{$product->Descrtiptton}}</td>
                 <td>
-                    {{-- <a href="" class="btn btn-success "><i class="las la-edit"></i></a> --}}
-                    <a href="{{route('Products.destroy',$product->id)}}" class="btn btn-danger">delete</a>
+                  
+                    <form action="{{ route('Products.destroy',$product->id) }}" method="post">
+
+                    <a href="{{ route('Products.edit',$product->id) }}" class="btn btn-success " ><i class="mdi mdi-checkbox-marked-outline" style=""></i></a><td>
+                      
+
+                      @csrf
+                      @method('DELETE')
+                   <button type="submit" class="btn btn-danger" style="background-color:red"  class="col-sm-6 col-md-4 col-lg-3">
+                    <i  class="mdi mdi-delete"></i> 
+                   </button>
+             
+                  </form>
+                  
                 </td>
 
               </tr>

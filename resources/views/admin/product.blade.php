@@ -16,8 +16,11 @@
      
        @include('admin.productModal ')  
             
+       
        @include('admin.table')   
-            
+           
+    
+      
           </footer>
          
         </div>

@@ -71,9 +71,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( $id)
     {
-        //
+        $product=product::find($id);
+        return view('admin.editeProduct',compact('product'));
     }
 
     /**
@@ -85,7 +86,24 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product=product::find($id);
+        $product->Name=$request->pname;
+        $product->Catagory=$request->Pcatagory;
+        $product->quantity=$request->PQuntty;
+        $product->Price=$request->Pprice;
+        $product->Descrtiptton=$request->Pdescripton;
+      
+        $image=$request->image;
+      
+        if($image)
+        {
+        $image=time().'.'.$request->image->extension();
+        $request->image->move('product',$image);  
+        $product->image=$image;
+       
+        }
+        $product->save();
+        return redirect()->back();
     }
 
     /**
@@ -99,6 +117,6 @@ class ProductController extends Controller
         $data=Product::find($id);
 
         $data->delete();
-       return redirect()->back();
+       return redirect()->back()->with ('message',' Added Sucessfully!!');
     }
 }
