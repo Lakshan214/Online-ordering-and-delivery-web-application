@@ -17,7 +17,7 @@
                 <th> Catagory </th>
                 <th> Quantity</th>
                 <th> Price</th>
-                <th style="width:100px;"> Descrtiptton</th>
+                <th style="width:80%;"> Descrtiptton</th>
                 <th> Action</th>
               </tr>
             </thead>
@@ -34,12 +34,13 @@
                 <td> {{$product->Catagory}}</td>
                 <td>{{$product->quantity}} </td>
                 <td>{{$product->Price}} </td>
-                <td >{{$product->Descrtiptton}}</td>
+                <td ><textarea style="height: 70px;"  class="form-control" placeholder="{{$product->Descrtiptton}}"></textarea>
+                  </td>
                 <td>
                   
                     <form action="{{ route('Products.destroy',$product->id) }}" method="post">
 
-                    <a href="{{ route('Products.edit',$product->id) }}" class="btn btn-success " ><i class="mdi mdi-checkbox-marked-outline" style=""></i></a><td>
+                    <a href="{{ route('Products.edit',$product->id) }}"  class="btn btn-success " ><i class="mdi mdi-checkbox-marked-outline" style=""></i></a><td>
                       
 
                       @csrf

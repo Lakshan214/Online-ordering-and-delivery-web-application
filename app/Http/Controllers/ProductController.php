@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Catagory;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,11 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {    $product=Product::all();
-        return view('admin.product',compact('product'));
+         
+    {   
+        $catagory=Catagory::all();
+         $product=Product::all();
+        return view('admin.product',compact('product'),compact('catagory'));
        
     }
 
@@ -72,9 +76,10 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit( $id)
-    {
+    {   
+        $catagory=Catagory::all();
         $product=product::find($id);
-        return view('admin.editeProduct',compact('product'));
+        return view('admin.editeProduct',compact('product'),compact('catagory'));
     }
 
     /**

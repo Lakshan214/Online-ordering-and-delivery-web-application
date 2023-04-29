@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,11 @@ class HomeController extends Controller
 
     public function index()
      {  
-       return view('Home.index');
+      $man=Product::all();
+      $product=Product::all();
+      
+      $women=Product::all();
+       return view('Home.index',compact('product'),compact('women'),['man' => $man]);
      }
   
      

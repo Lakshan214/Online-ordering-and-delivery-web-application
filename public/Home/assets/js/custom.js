@@ -21,7 +21,7 @@
 	})
 
 	$('.owl-women-item').owlCarousel({
-		items:5,
+		items:2,
 		loop:true,
 		dots: true,
 		nav: true,

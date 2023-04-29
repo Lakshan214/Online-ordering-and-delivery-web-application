@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\CatagoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -34,3 +36,4 @@ Route::prefix('/link')->group (function(){
 });
 
 Route::resource('Products',ProductController ::class);
+Route::resource('Catagory',CatagoryController ::class);

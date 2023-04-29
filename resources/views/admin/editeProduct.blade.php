@@ -31,7 +31,14 @@
                       <img style="width: 50px; height: 50px;" style="background-color: #2A3038" src="/product/{{$product->image}}"><br>
                       <div class="form-group">
                         <label for="exampleInputPassword4">Product Catagory:</label>
-                        <input type="text" class="form-control"style="background-color: #2A3038"  name="Pcatagory" value="{{$product->Catagory}}"  >
+                        {{-- <input type="text" class="form-control"style="background-color: #2A3038"  name="Pcatagory" value="{{$product->Catagory}}"  > --}}
+                        <select class="form-control" required="" style="background-color: #2A3038" name="Pcatagory">
+                          @foreach ($catagory as $catagory )
+                            <option value=" {{$product->Catagory}}">
+                                 {{$catagory->CatagoryName}}
+                            </option>  
+                          @endforeach  
+                        </select> <br>
                       </div>
                      
                       
@@ -49,8 +56,8 @@
                         <label for="exampleTextarea1">description:</label>
                         <textarea class="form-control" name="Pdescripton" style="background-color: #2A3038"  rows="4">{{$product->Descrtiptton}}</textarea>
                       </div>
-                      <button type="submit" class="btn btn-primary mr-2" style="background-color: green">Edite Product</button>
-                      <button class="btn btn-dark" style="background-color: red">Cancel</button>
+                      <button type="submit" class="btn btn-primary mr-2" style="background-color: green;border-color:white;height: 40px; ">Edite Product</button>
+                      <a class="btn btn-dark" href="{{ url('/Products') }}" style="background-color: red; border-color:white;height: 40px;">Cancel</a>
                     </form>
                   </div>
                 </div>

@@ -40,7 +40,14 @@
 
               <div class="form-group">
                 <label  class="col-form-label">Product Catagory::</label>
-                <input type="text"name="Pcatagory"style="background-color: #2A3038" required="" class="form-control" >
+                {{-- <input type="text"name="Pcatagory"style="background-color: #2A3038" required="" class="form-control" > --}}
+                <select class="form-control" required="" style="background-color: #2A3038" name="Pcatagory">
+                  @foreach ($catagory as $catagory )
+                    <option value=" ">
+                         {{$catagory->CatagoryName}}
+                    </option>  
+                  @endforeach  
+                </select> <br>
               </div>
 
               <div class="form-group">
@@ -59,8 +66,8 @@
            
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-success" style="background-color: green"> Add Product</button>
-            <button type="button" class="btn btn-danger" style="background-color: red" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success" style="background-color: green; border-color:white;height: 40px;"> Add Product</button>
+            <button type="button" class="btn btn-danger" style="background-color: red; border-color:white;height: 40px;" data-dismiss="modal">Close</button>
          
           </div>
         </form>
