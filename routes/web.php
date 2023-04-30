@@ -31,9 +31,9 @@ Route::get('/redirect',[HomeController::class,'redirect']);
 
 Route::prefix('/link')->group (function(){
     Route::get('/product',[HomeController::class,'Product_view'])->name('link.product'); 
-    Route::get('/singlepage',[HomeController::class,'singlepage_view'])->name('link.singlepage'); 
+    Route::get('/{id}/singlepage',[HomeController::class,'singlepage_view'])->name('link.singlepage'); 
 
 });
-
+Route::get('/show/{id}',[HomeController::class,'show']);
 Route::resource('Products',ProductController ::class);
 Route::resource('Catagory',CatagoryController ::class);

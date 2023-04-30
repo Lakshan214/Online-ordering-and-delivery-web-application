@@ -10,7 +10,7 @@
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                        <li class="scroll-to-section"><a href="{{ url('/') }}" class="active">Home</a></li>
                         <li class="scroll-to-section"><a href="about.html">About Us</a></li>
                         <li class="scroll-to-section"><a href="{{ route('link.product') }}" >Products</a></li>
                         <li class="scroll-to-section"><a href="contact.html">Contact Us</a></li>

@@ -16,14 +16,31 @@
             <div class="row">
                 <div class="col-lg-8">
                 <div class="left-images">
-                    <img style="height: 600px;" src="/Home/assets/images/g1.png" alt="">
-                    <img src="/Home/assets/images/p2.jpg" alt="">
+                    <img style="height: 600px;" src="/product/{{$product->image}}" alt="">
+                    {{-- <img  style="height: 600px; width:800px;"  src="/product/{{$product->image1}}" alt="">
+                    <img  style="height: 600px; width:800px;"  src="/product/{{$product->image2}}" alt=""> --}}
+                    
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner"  >
+                          <div class="carousel-item active">
+                            <img style="height: 300px;width: 400px;"src="/product/{{$product->image2}}" class="d-block w-10" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img style="height: 300px;width: 400px;" src="/product/{{$product->image}}" class="d-block w-10" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img style="height: 300px;width: 400px;"src="/product/{{$product->image1}}" class="d-block w-10" alt="...">
+                          </div>
+                        </div>
+                      </div>
+     
+
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="right-content">
-                    <h4>Face Wash</h4>
-                    <span>RS.375.00</span>
+                    <h4>{{$product->Name}}</h4>
+                    <span>RS.{{$product->Price}}.00</span>
                     <ul class="stars">
                         <li><i class="fa fa-star"></i></li>
                         <li><i class="fa fa-star"></i></li>
@@ -31,8 +48,7 @@
                         <li><i class="fa fa-star"></i></li>
                         <li><i class="fa fa-star"></i></li>
                     </ul>
-                    <span>The skin around the eyes is delicate and susceptible to damage. Our wrinkle-fighting eye cream is engineered to fortify this skin, making it stronger, visibly smoother, and more resilient.
-                        Helps visibly smooth lines and wrinkles and strengthen skin from multiple angles: boosts skin’s natural collagen, helps support skin’s natural structure, strengthens skin’s moisture barrier.</span>
+                    <span>{{$product->Descrtiptton}}</span>
                     <div class="quote">
                         <i class="fa fa-quote-left"></i><p>Helps strengthen your dermal support structure for smoother, younger-looking skin.</p>
                     </div>

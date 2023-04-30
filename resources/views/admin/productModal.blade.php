@@ -39,11 +39,21 @@
               </div>
 
               <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Image 1:</label>
+                <input type="file" name="image1" style="background-color: #2A3038" required=""  class="form-control" >
+              </div>
+
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Image 2:</label>
+                <input type="file" name="image2" style="background-color: #2A3038" required="" class="form-control" >
+              </div>
+
+              <div class="form-group">
                 <label  class="col-form-label">Product Catagory::</label>
                 {{-- <input type="text"name="Pcatagory"style="background-color: #2A3038" required="" class="form-control" > --}}
                 <select class="form-control" required="" style="background-color: #2A3038" name="Pcatagory">
                   @foreach ($catagory as $catagory )
-                    <option value=" ">
+                    <option value=" {{$catagory->CatagoryName}}">
                          {{$catagory->CatagoryName}}
                     </option>  
                   @endforeach  

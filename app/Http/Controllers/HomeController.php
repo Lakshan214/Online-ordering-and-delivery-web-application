@@ -29,22 +29,26 @@ class HomeController extends Controller
 
     public function index()
      {  
-      $man=Product::all();
       $product=Product::all();
+      $product1=Product::all();
+      $product3=Product::all();
+      $product4=Product::all();
       
-      $women=Product::all();
-       return view('Home.index',compact('product'),compact('women'),['man' => $man]);
+       return view('Home.index',compact('product','product1','product3','product4'));
      }
   
      
    public function Product_view()
      {
-       return view('product.product');
+      $product=Product::all();
+       return view('product.product',compact('product'));
      }
    
-     public function singlepage_view()
+     public function singlepage_view($id)
      {
-       return view('Home.singlepage');
+      $product=product::find($id);
+      
+       return view('Home.singlepage',compact('product'));
      }
     
 }

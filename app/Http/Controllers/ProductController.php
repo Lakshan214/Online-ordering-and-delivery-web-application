@@ -51,7 +51,16 @@ class ProductController extends Controller
         $imagename=time().'.'.$request->image->extension();
         $request->image->move('product',$imagename);  
         $product->image=$imagename;
-    
+       
+        $imagename1=$request->image1;
+        $imagename1=time().'.'.$request->image1->extension();
+        $request->image1->move('product',$imagename1);  
+        $product->image1=$imagename1;
+        
+        $imagename2=$request->image2;
+        $imagename2=time().'.'.$request->image2->extension();
+        $request->image2->move('product',$imagename2);  
+        $product->image2=$imagename;
   
   
         $product->save();
@@ -99,14 +108,28 @@ class ProductController extends Controller
         $product->Descrtiptton=$request->Pdescripton;
       
         $image=$request->image;
+        $image1=$request->image1;
+        $image2=$request->image2;
       
         if($image)
         {
         $image=time().'.'.$request->image->extension();
         $request->image->move('product',$image);  
         $product->image=$image;
-       
-        }
+       }
+       if($image1)
+        {
+        $image1=time().'.'.$request->image1->extension();
+        $request->image1->move('product',$image1);  
+        $product->image1=$image1;
+       }
+
+       if($image2)
+        {
+        $image2=time().'.'.$request->image2->extension();
+        $request->image2->move('product',$image2);  
+        $product->image2=$image2;
+       }
         $product->save();
         return redirect()->back();
     }
