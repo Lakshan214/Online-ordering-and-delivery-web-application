@@ -10,6 +10,15 @@ class Catagory extends Model
     use HasFactory;
 
     protected $fillable = [
-        'CatagoryName'
+        'CatagoryName',
+        'image',
+        'slug',
+        'populer',
+        'status',
+        'meta titel',
     ];
+
+    public function product(){
+        return $this->hasmany(Product::class,'Catagory_id','id');
+  }
 }

@@ -53,7 +53,7 @@
                 {{-- <input type="text"name="Pcatagory"style="background-color: #2A3038" required="" class="form-control" > --}}
                 <select class="form-control" required="" style="background-color: #2A3038" name="Pcatagory">
                   @foreach ($catagory as $catagory )
-                    <option value=" {{$catagory->CatagoryName}}">
+                    <option value=" {{$catagory->id}}">
                          {{$catagory->CatagoryName}}
                     </option>  
                   @endforeach  
@@ -68,10 +68,28 @@
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Price:</label>
                 <input type="number"  required=""   style="background-color: #2A3038"  name="Pprice"required="" class="form-control" >
+
+              </div>
+
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">status:</label>
+                <input type="checkbox" name="status"style="background-color: #2A3038" value="1"  class="form-control" >
+                <label for="recipient-name" class="col-form-label">trending:</label>
+                <input type="checkbox" name="trending"style="background-color: #2A3038" value="1"   class="form-control" >
+              </div>
+             
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">meta titel:</label>
+                <input type="text" name="meta titel"style="background-color: #2A3038" required=""  class="form-control" >
               </div>
               <div class="form-group">
+                <label for="message-text" class="col-form-label">meta_keyword:</label>
+                <textarea rows="2"  class="form-control" name="meta_keyword"></textarea>
+              </div>
+              
+              <div class="form-group">
                 <label for="message-text" class="col-form-label">description:</label>
-                <textarea style="height: 70px;"  class="form-control"required=""  name="Pdescripton"></textarea>
+                <textarea rows="4" class="form-control" name="Pdescripton"></textarea>
               </div>
            
           </div>

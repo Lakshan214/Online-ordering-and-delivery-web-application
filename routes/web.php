@@ -30,10 +30,10 @@ Route::middleware([
 Route::get('/redirect',[HomeController::class,'redirect']);
 
 Route::prefix('/link')->group (function(){
-    Route::get('/product',[HomeController::class,'Product_view'])->name('link.product'); 
+    Route::get('/product',[HomeController::class,'ProductView'])->name('link.product'); 
     Route::get('/{id}/singlepage',[HomeController::class,'singlepage_view'])->name('link.singlepage'); 
 
 });
-Route::get('/show/{id}',[HomeController::class,'show']);
+Route::get('/{id}/show',[HomeController::class,'show']);
 Route::resource('Products',ProductController ::class);
 Route::resource('Catagory',CatagoryController ::class);

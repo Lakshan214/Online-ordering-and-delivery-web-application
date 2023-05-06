@@ -26,10 +26,10 @@
                 <x-label for="address" value="{{ __('Address') }}" />
                 <x-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required autocomplete="address" />
             </div>
-            {{-- <div class="mt-4">
+            <div class="mt-4">
                 <x-label for="userType" value="{{ __('User Type') }}" />
                 <x-input id="userType" class="block mt-1 w-full" type="number" min="1" Max="3" name="userType" :value="old('userType')" autocomplete="userType" />
-            </div> --}}
+            </div>
             
 
             <div class="mt-4">

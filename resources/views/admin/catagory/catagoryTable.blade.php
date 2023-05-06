@@ -13,7 +13,7 @@
               <tr>
                 <th> ID </th>
                 <th> Name </th>
-              
+                <th> Image </th>
                 <th> Action</th>
               </tr>
             </thead>
@@ -21,10 +21,10 @@
             @foreach($Catagory as $key=> $Catagory)
               <tr>
                 <td class="py-1">
-                    {{++$key}}
+                  {{$Catagory->id}}
                 </td>
                 <td> {{$Catagory->CatagoryName}}</td>
-               
+                <td>   <img style="width: 50px; height: 50px;" src="/product/{{$Catagory->image}}"></td>
                  <td>
                <form action="{{ route('Catagory.destroy',$Catagory->id) }}" method="post">
 

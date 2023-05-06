@@ -21,8 +21,8 @@
                     <div class="owl-men-item owl-carousel">
                         @foreach($product as  $product)
 
-                        @if ($product->Catagory=='men')
-                            
+                         @if ($product->Catagory_id==9)
+
                         
                         <div class="item">
                             
@@ -53,6 +53,9 @@
                             </div>
                             
                         </div>
+                            
+                        
+                        
                         @endif
                         @endforeach
                     </div>
@@ -94,7 +97,7 @@
                         <div class="owl-men-item owl-carousel">
                              
                             @foreach($product3 as  $phto)
-                            @if ($phto->Catagory=='Women')
+                            @if ($phto->Catagory_id==8)
                             <div class="item">
                                 
                                 <div class="thumb">
@@ -124,7 +127,7 @@
                                 </div>
                                 
                             </div>
-                            @endif
+                             @endif 
                             @endforeach
                             
                         </div>
@@ -166,7 +169,7 @@
                       
                         <div class="owl-men-item owl-carousel">
                             @foreach($product1 as  $product1)
-                            @if ($product1->Catagory=='Kids')
+                            @if ($product1->Catagory_id==2)
                             <div class="item">
                                 
                                 <div class="thumb">
@@ -233,7 +236,7 @@
                       
                         <div class="owl-men-item owl-carousel">
                             @foreach($product4 as  $ase)
-                            @if ($ase->Catagory=='Accesoris')
+                            @if ($ase->Catagory_id==10)
                             <div class="item">
                                 
                                 <div class="thumb">

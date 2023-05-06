@@ -20,7 +20,12 @@ return new class extends Migration
             $table->string('image1')->nullable();
             $table->string('image2')->nullable();
             $table->string('Catagory')->nullable();
+            $table->string('Catagory_id')->nullable();
             $table->string('strar')->nullable();
+            $table->string('trending')->nullable();
+            $table->string('status')->nullable();
+            $table->string('meta_Taitle')->nullable();
+            $table->string('meta_keyword')->nullable();
             $table->string('quantity')->nullable();
             $table->string('Price')->nullable();
             $table->string('Descrtiptton')->nullable();

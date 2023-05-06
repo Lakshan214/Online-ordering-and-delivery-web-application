@@ -47,7 +47,7 @@
                         {{-- <input type="text" class="form-control"style="background-color: #2A3038"  name="Pcatagory" value="{{$product->Catagory}}"  > --}}
                         <select class="form-control" required="" style="background-color: #2A3038" name="Pcatagory">
                           @foreach ($catagory as $catagory )
-                            <option value=" {{$product->Catagory}}">
+                            <option value=" {{$catagory->id}}">
                                  {{$catagory->CatagoryName}}
                             </option>  
                           @endforeach  
@@ -65,11 +65,19 @@
                         <label for="exampleInputCity1">Price:</label>
                         <input type="number"  value="{{$product->Price}}" name="Pprice" style="background-color: #2A3038"  class="form-control" >
                       </div>
+
+                      <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">status:</label>
+                          <input type="checkbox" name="status"style="background-color: #2A3038" value=""  class="form-control" >
+                          <label for="recipient-name" class="col-form-label">trending:</label>
+                            <input type="checkbox" name="trending"style="background-color: #2A3038" value=""   class="form-control" >
+                      </div>
+
                       <div class="form-group">
                         <label for="exampleTextarea1">description:</label>
                         <textarea class="form-control" name="Pdescripton" style="background-color: #2A3038"  rows="4">{{$product->Descrtiptton}}</textarea>
                       </div>
-                      <button type="submit" class="btn btn-primary mr-2" style="background-color: green;border-color:white;height: 40px; ">Edite Product</button>
+                      <button type="submit" class="btn btn-primary mr-2" style="background-color: green;border-color:white;height: 40px; ">Save Edite Product</button>
                       <a class="btn btn-dark" href="{{ url('/Products') }}" style="background-color: red; border-color:white;height: 40px;">Cancel</a>
                     </form>
                   </div>

@@ -32,6 +32,25 @@
                 <label for="recipient-name" class="col-form-label">Name:</label>
                 <input type="text" name="CatagoryName"style="background-color: #2A3038" value="" required=""  class="form-control" >
               </div>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">image:</label>
+                <input type="file" name="image"style="background-color: #2A3038" value="" required=""  class="form-control" >
+              </div>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">slug:</label>
+                <input type="text" name="slug"style="background-color: #2A3038" value="" required=""  class="form-control" >
+              </div>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">status:</label>
+                <input type="checkbox" name="status"style="background-color: #2A3038" value="1"  class="form-control" >
+                <label for="recipient-name" class="col-form-label">populer:</label>
+                <input type="checkbox" name="populer"style="background-color: #2A3038" value="1"  class="form-control" >
+              </div>
+             
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">meta titel:</label>
+                <input type="text" name="meta titel"style="background-color: #2A3038" value="" class="form-control" >
+              </div>
 
               
 

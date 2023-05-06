@@ -31,7 +31,8 @@
                 <td>
                     <img style="width: 50px; height: 50px;" src="/product/{{$product->image}}">
                 </td>
-                <td> {{$product->Catagory}}</td>
+            
+                <td> {{$product['catagory']['CatagoryName']}}</td>
                 <td>{{$product->quantity}} </td>
                 <td>{{$product->Price}} </td>
                 <td ><textarea style="height: 70px;"  class="form-control" placeholder="{{$product->Descrtiptton}}"></textarea>

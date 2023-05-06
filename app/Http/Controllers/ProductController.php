@@ -16,9 +16,10 @@ class ProductController extends Controller
     public function index()
          
     {   
-        $catagory=Catagory::all();
-         $product=Product::all();
-        return view('admin.product',compact('product'),compact('catagory'));
+
+        $catagory= Catagory::orderBy('CatagoryName' , 'ASC')->get();
+         $product=Product::latest()->get();
+        return view('admin.product',compact('product','catagory'));
        
     }
 
@@ -42,10 +43,14 @@ class ProductController extends Controller
     {
         $product=new Product();
         $product->Name=$request->pname;
-        $product->Catagory=$request->Pcatagory;
+        $product->Catagory_id=$request->Pcatagory;
         $product->quantity=$request->PQuntty;
         $product->Price=$request->Pprice;
         $product->Descrtiptton=$request->Pdescripton;
+        $product->trending=$request->trending;
+        $product->status=$request->status;
+        $product->meta_Taitle=$request->meta_Taitle;
+        $product->meta_keyword=$request->meta_keyword;
 
         $imagename=$request->image;
         $imagename=time().'.'.$request->image->extension();

@@ -36,8 +36,20 @@ class CatagoryController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        Catagory::create($input);
+        $product=new Catagory();
+        $product->CatagoryName=$request->CatagoryName;
+        $product->slug=$request->slug;
+        $product->populer=$request->populer;
+        $product->status=$request->status;
+        $product->meta_titel=$request->meta_titel;
+
+        $imagename=$request->image;
+        $imagename=time().'.'.$request->image->extension();
+        $request->image->move('product',$imagename);  
+        $product->image=$imagename;
+        
+        $product->save(); 
+       
         return redirect()->route('Catagory.index');
     }
 
