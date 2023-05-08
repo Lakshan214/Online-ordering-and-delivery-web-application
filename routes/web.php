@@ -28,12 +28,13 @@ Route::middleware([
     })->name('dashboard');
 });
 Route::get('/redirect',[HomeController::class,'redirect']);
+// Route::get('/{slug}/show',[HomeController::class,'show']);
 
 Route::prefix('/link')->group (function(){
-    Route::get('/product',[HomeController::class,'ProductView'])->name('link.product'); 
+    Route::get('/product/{slug}',[HomeController::class,'show'])->name('link.product'); 
     Route::get('/{id}/singlepage',[HomeController::class,'singlepage_view'])->name('link.singlepage'); 
 
 });
-Route::get('/{id}/show',[HomeController::class,'show']);
+
 Route::resource('Products',ProductController ::class);
 Route::resource('Catagory',CatagoryController ::class);

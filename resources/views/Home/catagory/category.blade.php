@@ -10,7 +10,7 @@
                     
                     <div class="categories__item set-bg" data-setbg="/product/{{$catagory1->image}}" >
                         
-                        <h5><a href="#">{{$catagory1->CatagoryName}} </a></h5>
+                        <h5><a href="{{route('link.product',$catagory1->slug)}} ">{{$catagory1->CatagoryName}} </a></h5>
                        
                     </div>
                    

@@ -51,21 +51,7 @@ class HomeController extends Controller
      }
   
      
-  //  public function ProductView()
-    //  {
-    //   if(Catagory::where('slug',$slug)->exists()){
-
-    //     $catagory=Catagory::where('slug',$slug)->first();
-    //     $product=Product::where('Catagory_id' ,$catagory->id)->get();
-    //     dd( $product);
-    //    return view('Home.product.product');
-    //   }
-     
-    //  else
-    //  {
-    //     return redirect()->back();
-    //  }
-    // }
+   
      public function singlepage_view($id)
      {
       $product=product::find($id);
@@ -73,22 +59,32 @@ class HomeController extends Controller
        return view('Home.singlepage',compact('product'));
      }
 
-     public function show($id)
-     {
 
-      // $catagory=Catagory::find($id);
-      $product=Catagory::find($id);
-      dd($product);
-  
-          // $catagory=Catagory::where('slug',$slug)->first();
-          // $product=Product::where('Catagory_id' ,$catagory->id)->get();
-         
-         
-      // return view('Home.product.product',compact('product'));
-     }
-    
-    
 
+
+    
+     public function show($slug)
+     {  
+
+        
+          $catagory=Catagory::where('slug',$slug)->first();
+          if($catagory)
+         {
+          $product=$catagory->product()->get();
+
+         
+
+         return view('Home.product.product',compact('product','catagory'));
+         }
+
+         else
+         {
+          return redirect()->back();
+         }
+
+       }
+       
+      
 
     
     

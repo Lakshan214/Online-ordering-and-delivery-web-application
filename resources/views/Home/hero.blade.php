@@ -11,7 +11,7 @@
                         
                          
                     @foreach ( $catagory as  $catagory1)
-                    <li><a href="{{url('show',$catagory1->id)}} ">{{$catagory1->CatagoryName}}</a></li>
+                    <li><a href="{{route('link.product',$catagory1->slug)}} ">{{$catagory1->CatagoryName}}</a></li>
                        
                     @endforeach
                     </ul>
@@ -34,8 +34,8 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>+65 11.188.888</h5>
-                            <span>support 24/7 time</span>
+                            <h5>0772738668</h5>
+                            <span>support 8.00am-10.00pm time</span>
                         </div>
                     </div>
                 </div>
