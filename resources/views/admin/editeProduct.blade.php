@@ -29,25 +29,25 @@
                         <input type="file" name="image"style="background-color: #2A3038"  class="form-control"  >
                       </div>
                       <img style="width: 50px; height: 50px;" style="background-color: #2A3038" src="/product/{{$product->image}}"><br>
-                      <div class="form-group">
-                        <label for="exampleInputEmail3">imges:</label>
-                        <input type="file" name="image1"style="background-color: #2A3038"  class="form-control"  >
-                      </div>
+                       @if ($product->productImages)
+                       @foreach ($product->productImages as $image )
 
-                      <img style="width: 50px; height: 50px;" style="background-color: #2A3038" src="/product/{{$product->image1}}"><br>
-                       
-                      <div class="form-group">
-                        <label for="exampleInputEmail3">imges:</label>
-                        <input type="file" name="image2"style="background-color: #2A3038"  class="form-control"  >
-                      </div>
+                       <img style="width: 50px; height: 50px;" style="background-color: #2A3038" src="{{asset($image->img)}}"><br>
+ 
+                           
+                       @endforeach
+                           
+                       @else
+                           <h5>No Image ADD</h5>
+                       @endif 
 
-                      <img style="width: 50px; height: 50px;" style="background-color: #2A3038" src="/product/{{$product->image2}}"><br>
+                      {{-- <img style="width: 50px; hei style="background-color: #2A3038" src="/product/{{$product->image2}}"><br> --}}
                       <div class="form-group">
                         <label for="exampleInputPassword4">Product Catagory:</label>
                         {{-- <input type="text" class="form-control"style="background-color: #2A3038"  name="Pcatagory" value="{{$product->Catagory}}"  > --}}
                         <select class="form-control" required="" style="background-color: #2A3038" name="Pcatagory">
                           @foreach ($catagory as $catagory )
-                            <option value=" {{$catagory->id}}">
+                            <option value=" {{$catagory->id}}"{{$catagory->id==$product->Catagory_id ? 'selected':''}}>
                                  {{$catagory->CatagoryName}}
                             </option>  
                           @endforeach  
@@ -68,9 +68,9 @@
 
                       <div class="form-group">
                       <label for="recipient-name" class="col-form-label">status:</label>
-                          <input type="checkbox" name="status"style="background-color: #2A3038" value=""  class="form-control" >
+                          <input type="checkbox" name="status"style="background-color: #2A3038" value="" {{$product->trending==1 ? 'checked':''}} class="form-control" >
                           <label for="recipient-name" class="col-form-label">trending:</label>
-                            <input type="checkbox" name="trending"style="background-color: #2A3038" value=""   class="form-control" >
+                            <input type="checkbox" name="trending"style="background-color: #2A3038" value=""  {{$product->trending==1 ? 'checked':''}} class="form-control" >
                       </div>
 
                       <div class="form-group">

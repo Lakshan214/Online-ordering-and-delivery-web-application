@@ -18,6 +18,7 @@ class Product extends Model
          'Catagory_id',
          'strar',
          'status',
+         'trending',
          'meta_Taitle',
          'meta_keyword',
          'quantity',
@@ -29,5 +30,11 @@ class Product extends Model
 public function catagory()
 {
     return $this->belongsTo(Catagory::class,'Catagory_id','id'); 
+}
+
+
+public function productImages()
+{
+    return $this->belongsTo(ProductImg::class,'product_id','id'); 
 }
 }

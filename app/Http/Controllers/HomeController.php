@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Catagory;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
+use App\Models\ProductImg;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -24,12 +25,13 @@ class HomeController extends Controller
         }
        else
         {
-          // $product=Product::all();
-          // $product1=Product::all();
-          // $product3=Product::all();
-          // $product4=Product::all();
-            //  return view('Home.index',compact('product','product1','product3','product4'));
-            return view('Home.index');
+          $product=Product::all();
+          $catagory=Catagory::all();
+          $catagory1=Catagory::all();
+          $product1=Product::all();
+          $product2=Product::all();
+          $product3=Product::all();
+            return view('Home.index',compact('catagory','catagory1','product','product1','product2','product3'));
         }
     } 
 
@@ -39,15 +41,11 @@ class HomeController extends Controller
       $product=Product::all();
       $catagory=Catagory::all();
       $catagory1=Catagory::all();
-      // $product1=Product::all();
-      // $product3=Product::all();
-      // $product4=Product::all();
+      $product1=Product::all();
+      $product2=Product::all();
+      $product3=Product::latest()->get();
       
-      //  $catagory=Product::all();
-      //  $catagory=Product::all();
-      //  $catagory=Product::all();
-      //  return view('Home.index',compact('product','product1','product3','product4','catagory'));
-      return view('Home.index',compact('catagory','catagory1'));
+      return view('Home.index',compact('catagory','catagory1','product','product1','product2','product3'));
      }
   
      
@@ -55,8 +53,9 @@ class HomeController extends Controller
      public function singlepage_view($id)
      {
       $product=product::find($id);
+      $img=ProductImg::all();
       
-       return view('Home.singlepage',compact('product'));
+       return view('Home.singlepage',compact('product','img'));
      }
 
 

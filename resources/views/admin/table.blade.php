@@ -31,8 +31,11 @@
                 <td>
                     <img style="width: 50px; height: 50px;" src="/product/{{$product->image}}">
                 </td>
-            
-                {{-- <td> {{$product['catagory']['CatagoryName']}}</td> --}}<td></td>
+                @if($product->catagory)
+                <td> {{$product['catagory']['CatagoryName']}}</td>
+                @else
+                   <h5>No Cataory Add </h5>
+                @endif   
                 <td>{{$product->quantity}} </td>
                 <td>{{$product->Price}} </td>
                 <td ><textarea style="height: 70px;"  class="form-control" placeholder="{{$product->Descrtiptton}}"></textarea>

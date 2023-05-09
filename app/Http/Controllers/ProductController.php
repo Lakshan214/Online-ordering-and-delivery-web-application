@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Catagory;
 use App\Models\Product;
+use App\Models\ProductImg;
+
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -47,52 +49,63 @@ class ProductController extends Controller
         $product->quantity=$request->PQuntty;
         $product->Price=$request->Pprice;
         $product->Descrtiptton=$request->Pdescripton;
-        $product->trending=$request->trending;
+        $product->trending=$request->trending==true ? '1':'0';
         $product->status=$request->status;
         $product->meta_Taitle=$request->meta_Taitle;
         $product->meta_keyword=$request->meta_keyword;
         
         $image=$request->image;
-        $image1=$request->image1;
-        $image2=$request->image2;
+        // $image1=$request->image;
+        // $image2=$request->image;
+      
       
         if($image)
         {
-        $image=time().'.'.$request->image->extension();
+        $image=uniqid().'.'.$request->image->extension();
         $request->image->move('product',$image);  
         $product->image=$image;
-       }
-       if($image1)
-        {
-        $image1=time().'.'.$request->image1->extension();
-        $request->image1->move('product',$image1);  
-        $product->image1=$image1;
-       }
-
-       if($image2)
-        {
-        $image2=time().'.'.$request->image2->extension();
-        $request->image2->move('product',$image2);  
-        $product->image2=$image2;
-       }
-       
-        // $imagename=time().'.'.$request->image->extension();
-        // $request->image->move('product',$imagename);  
-        // $product->image=$imagename;
-       
-       
-        // $imagename1=time().'.'.$request->image1->extension();
-        // $request->image1->move('product',$imagename1);  
-        // $product->image1=$imagename1;
-        
-       
-        // $imagename2=time().'.'.$request->image2->extension();
-        // $request->image2->move('product',$imagename2);  
-        // $product->image2=$imagename;
-  
-  
+ 
+        }
+        // if($image1)
+        // {
+        // $image1=uniqid().'.'.$request->image1->extension();
+        // $request->image1->move('product',$image1);  
+        // $product->image1=$image1;
+ 
+        // }
+        // if($image)
+        // {
+        // $image2=uniqid().'.'.$request->image2->extension();
+        // $request->image2->move('product',$image2);  
+        // $product->image2=$image2;
+ 
+        // }
+      
         $product->save();
-        return redirect()->back()->with ('message',' Added Sucessfully!!');
+        
+      if ($request->hasFile('image1')){
+         
+        $filepath='product';
+
+        foreach($request->file('image1')as $imageFile){
+            $extenton=$imageFile->getClientOriginalExtension();
+            $filename=uniqid().'.'.$extenton;
+            $imageFile->move($filepath,$filename);
+            $finalImagePath=$filepath.'/'.$filename;
+
+            $product->productImages()->create(
+                [
+                     'product_id'=>$product->id,
+                     'img'=>$finalImagePath,
+                ]
+                );
+
+
+
+        }}
+
+    
+    return redirect()->back()->with ('message',' Added Sucessfully!!');
     }
 
     /**
@@ -130,7 +143,7 @@ class ProductController extends Controller
     {
         $product=product::find($id);
         $product->Name=$request->pname;
-        $product->Catagory=$request->Pcatagory;
+        $product->Catagory_id=$request->Pcatagory;
         $product->quantity=$request->PQuntty;
         $product->Price=$request->Pprice;
         $product->Descrtiptton=$request->Pdescripton;
@@ -152,12 +165,12 @@ class ProductController extends Controller
         $product->image1=$image1;
        }
 
-    //    if($image2)
-    //     {
-    //     $image2=time().'.'.$request->image2->extension();
-    //     $request->image2->move('product',$image2);  
-    //     $product->image2=$image2;
-    //    }
+       if($image2)
+        {
+        $image2=time().'.'.$request->image2->extension();
+        $request->image2->move('product',$image2);  
+        $product->image2=$image2;
+       }
         $product->save();
         return redirect()->back();
     }
@@ -173,6 +186,6 @@ class ProductController extends Controller
         $data=Product::find($id);
 
         $data->delete();
-       return redirect()->back()->with ('message',' Added Sucessfully!!');
+       return redirect()->back();
     }
 }

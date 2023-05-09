@@ -40,13 +40,13 @@
 
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Image 1:</label>
-                <input type="file" name="image1" style="background-color: #2A3038" required=""  class="form-control" >
+                <input type="file" name="image1[]" multiple   style="background-color: #2A3038"  class="form-control" >
               </div>
 
-              <div class="form-group">
+              {{-- <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Image 2:</label>
-                <input type="file" name="image2" style="background-color: #2A3038" required="" class="form-control" >
-              </div>
+                <input type="file" name="image2" style="background-color: #2A3038" class="form-control" >
+              </div> --}}
 
               <div class="form-group">
                 <label  class="col-form-label">Product Catagory::</label>
@@ -73,14 +73,14 @@
 
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">status:</label>
-                <input type="checkbox" name="status"style="background-color: #2A3038" value="1"  class="form-control" >
+                <input type="checkbox" name="status"style="background-color: #2A3038" value=""  class="form-control" >
                 <label for="recipient-name" class="col-form-label">trending:</label>
-                <input type="checkbox" name="trending"style="background-color: #2A3038" value="1"   class="form-control" >
+                <input type="checkbox" name="trending"style="background-color: #2A3038" value=""   class="form-control" >
               </div>
              
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">meta titel:</label>
-                <input type="text" name="meta titel"style="background-color: #2A3038" required=""  class="form-control" >
+                <input type="text" name="meta titel"style="background-color: #2A3038"   class="form-control" >
               </div>
               <div class="form-group">
                 <label for="message-text" class="col-form-label">meta_keyword:</label>

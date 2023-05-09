@@ -54,7 +54,8 @@
     </div>
 </section>
 
-    <h5 class="featured__item__text" style="color: red;text-align: center;">No Products Available for {{$catagory->CatagoryName}}</h5><br><br><br>
+    <h5 class="featured__item__text" style="color: red;text-align: center;">
+        ALL ITEMS IN THIS CATEGORY ARE SOLD OUT. </h5><br><br><br>
 
 
 
