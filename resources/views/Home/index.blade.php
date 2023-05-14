@@ -30,7 +30,7 @@
     <!-- Hero Section End -->
 
     <!-- Categories Section Begin -->
-    @include('Home.catagory.category')
+    @include('Home.catagory.brand')
     <!-- Categories Section End -->
 
     <!-- Featured Section Begin -->

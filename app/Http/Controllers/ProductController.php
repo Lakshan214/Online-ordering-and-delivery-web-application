@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Catagory;
 use App\Models\Product;
 use App\Models\ProductImg;
@@ -18,10 +19,10 @@ class ProductController extends Controller
     public function index()
          
     {   
-
+        $brand= Brand::latest()->get();
         $catagory= Catagory::orderBy('CatagoryName' , 'ASC')->get();
          $product=Product::latest()->get();
-        return view('admin.product',compact('product','catagory'));
+        return view('admin.product',compact('product','catagory','brand'));
        
     }
 
@@ -46,6 +47,7 @@ class ProductController extends Controller
         $product=new Product();
         $product->Name=$request->pname;
         $product->Catagory_id=$request->Pcatagory;
+        $product->Brand_id=$request->Pbrand;
         $product->quantity=$request->PQuntty;
         $product->Price=$request->Pprice;
         $product->Descrtiptton=$request->Pdescripton;

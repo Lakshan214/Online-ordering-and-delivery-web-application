@@ -16,6 +16,7 @@ class Product extends Model
          'image2',
          'Catagory',
          'Catagory_id',
+         'Brand_id',
          'strar',
          'status',
          'trending',
@@ -36,5 +37,10 @@ public function catagory()
 public function productImages()
 {
     return $this->belongsTo(ProductImg::class,'product_id','id'); 
+}
+
+public function brand()
+{
+    return $this->belongsTo(Brand::class,'Brand_id','id'); 
 }
 }

@@ -61,6 +61,18 @@
               </div>
 
               <div class="form-group">
+                <label  class="col-form-label">Product Catagory::</label>
+                {{-- <input type="text"name="Pcatagory"style="background-color: #2A3038" required="" class="form-control" > --}}
+                <select class="form-control" required="" style="background-color: #2A3038" name="Pbrand">
+                  @foreach ($brand as $brand )
+                    <option value=" {{$brand->id}}">
+                         {{$brand->Name}}
+                    </option>  
+                  @endforeach  
+                </select> <br>
+              </div>
+
+              <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Quantity:</label>
                 <input type="number" required="" name="PQuntty" style="background-color: #2A3038" class="form-control" >
               </div>

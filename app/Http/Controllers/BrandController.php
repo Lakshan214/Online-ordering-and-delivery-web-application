@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Catagory;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
-class CatagoryController extends Controller
+class BrandController extends Controller
 {
-    
 
+    
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +16,8 @@ class CatagoryController extends Controller
      */
     public function index()
     {
-      $Catagory=Catagory::orderBy('id','DESC')->paginate(1);  
-      return view('admin.catagory.catagory',compact('Catagory'));
+        $brand=Brand::all();
+        return view('admin.brand.brand',compact('brand'));
     }
 
     /**
@@ -38,21 +38,18 @@ class CatagoryController extends Controller
      */
     public function store(Request $request)
     {
-        $product=new Catagory();
-        $product->CatagoryName=$request->CatagoryName;
+        $product=new Brand();
+        $product->Name=$request->Name;
         $product->slug=$request->slug;
-        $product->populer=$request->populer;
-        $product->status=$request->status== true ? '1':'0';
-        $product->meta_titel=$request->meta_titel;
+        $product->status=$request->status == true ? '1':'0';
 
-        $imagename=$request->image;
-        $imagename=time().'.'.$request->image->extension();
-        $request->image->move('product',$imagename);  
-        $product->image=$imagename;
+        $imagename=$request->img;
+        $imagename=time().'.'.$request->img->extension();
+        $request->img->move('product',$imagename);  
+        $product->img=$imagename;
         
-        $product->save(); 
-       
-        return redirect()->route('Catagory.index');
+        $product->save();
+        return redirect()->route('Brand.index');
     }
 
     /**
@@ -97,9 +94,9 @@ class CatagoryController extends Controller
      */
     public function destroy($id)
     {
-        $data=Catagory::find($id);
+        $data=Brand::find($id);
 
         $data->delete();
-        return redirect()->route('Catagory.index');
+        return redirect()->route('Brand.index');
     }
 }

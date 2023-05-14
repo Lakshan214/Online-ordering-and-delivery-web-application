@@ -18,15 +18,15 @@
               </tr>
             </thead>
             <tbody>
-            @foreach($Catagory as $key=> $Catagory)
+            @foreach($brand as $key=> $brand)
               <tr>
                 <td class="py-1">
-                  {{$Catagory->id}}
+                  {{$brand->id}}
                 </td>
-                <td> {{$Catagory->CatagoryName}}</td>
-                <td>   <img style="width: 50px; height: 50px;" src="/product/{{$Catagory->image}}"></td>
+                <td> {{$brand->Name}}</td>
+                <td>   <img style="width: 50px; height: 50px;" src="/product/{{$brand->img}}"></td>
                  <td>
-               <form action="{{ route('Catagory.destroy',$Catagory->id) }}" method="post">
+               <form action="{{ route('Brand.destroy',$brand->id) }}" method="post">
 
                       @csrf
                       @method('DELETE')
@@ -42,14 +42,8 @@
               @endforeach 
             
             </tbody>
-            <div>
-              {{-- {{$Catagory ->links()}} --}}
-            </div>
           </table>
-
         </div>
       </div>
     </div>
   </div>
-
-  

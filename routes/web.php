@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CatagoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -31,10 +32,13 @@ Route::get('/redirect',[HomeController::class,'redirect']);
 // Route::get('/{slug}/show',[HomeController::class,'show']);
 
 Route::prefix('/link')->group (function(){
-    Route::get('/product/{slug}',[HomeController::class,'show'])->name('link.product'); 
-    Route::get('/{id}/singlepage',[HomeController::class,'singlepage_view'])->name('link.singlepage'); 
+    Route::get('/brand/{slug}',[HomeController::class,'brandByProduct'])->name('link.brand');
+    Route::get('/product/{slug}',[HomeController::class,'catagoryByProduct'])->name('link.product'); 
+    Route::get('/singlepage/{id}',[HomeController::class,'singlepage_view'])->name('link.singlepage'); 
+    Route::get('/addCart/{id}',[HomeController::class,'AddToCart'])->name('link.addCart');
 
 });
 
 Route::resource('Products',ProductController ::class);
 Route::resource('Catagory',CatagoryController ::class);
+Route::resource('Brand',BrandController ::class);

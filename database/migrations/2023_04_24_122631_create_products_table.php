@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('image2')->nullable();
             $table->string('Catagory')->nullable();
             $table->string('Catagory_id')->nullable();
+            $table->string('Brand_id')->nullable();
             $table->string('strar')->nullable();
             $table->string('trending')->nullable();
             $table->string('status')->nullable();

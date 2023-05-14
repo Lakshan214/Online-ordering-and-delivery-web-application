@@ -79,7 +79,7 @@
 
                         @if ($product->quantity>0)
                         
-                        <a href="#" class="primary-btn ">ADD TO CARD</a>
+                        <a href="{{route('link.addCart',$product->id)}}" class="primary-btn ">ADD TO CARD</a>
                         
                         
                         @endif
@@ -103,24 +103,16 @@
                                 </div>
                             </li>
                         </ul>
+                        <a  target="_blank" href="https://wa.me/0772738668?text=Helo..%20interested%20in%20your%20car%20for%20sale"> <img src="{{asset('img/th.jpeg')}}" style="height: 50px; "></a>
                     </div>
                 </div>
-                <div class="col-lg-12">
-                    <div class="product__details__tab">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
-                                    aria-selected="true">Description</a>
-                            
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <h6>Products Infomation</h6>
-                                    <p></p>
-                                </div>
-                            </div>
-                           
+               
+                
+
+                          
+                           <!--Start of Tawk.to Script-->
+
+<!--End of Tawk.to Script-->
                            
                         </div>
                     </div>
@@ -145,6 +137,20 @@
 
     @include('Home.js')
 
+
+    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/645fca2f74285f0ec46b47fd/1h0b2rjia';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
 
 </body>
 
@@ -205,102 +211,3 @@
 
 
 
-{{-- <!DOCTYPE html>
-<html lang="en">
-
-  <head>
- 
-    
-    @include('Home.links')
-    
-    <!-- ***** Header Area Start ***** -->
-    @include('Home.header')
-    <!-- ***** Header Area End ***** -->
-    @include('Home.socal')
-    <!-- ***** Main Banner Area Start ***** -->
-    <section class="section" id="product">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                <div class="left-images">
-                    <img style="height: 600px;" src="/product/{{$product->image}}" alt="">
-                    {{-- <img  style="height: 600px; width:800px;"  src="/product/{{$product->image1}}" alt="">
-                    <img  style="height: 600px; width:800px;"  src="/product/{{$product->image2}}" alt=""> 
-                    
-                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner"  >
-                          <div class="carousel-item active">
-                            <img style="height: 300px;width: 400px;"src="/product/{{$product->image2}}" class="d-block w-10" alt="...">
-                          </div>
-                          <div class="carousel-item">
-                            <img style="height: 300px;width: 400px;" src="/product/{{$product->image}}" class="d-block w-10" alt="...">
-                          </div>
-                          <div class="carousel-item">
-                            <img style="height: 300px;width: 400px;"src="/product/{{$product->image1}}" class="d-block w-10" alt="...">
-                          </div>
-                        </div>
-                      </div>
-     
-
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="right-content">
-                    <h4>{{$product->Name}}</h4>
-                    <span>RS.{{$product->Price}}.00</span>
-                    <ul class="stars">
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star"></i></li>
-                    </ul>
-                    <span>{{$product->Descrtiptton}}</span>
-                    <div class="quote">
-                        <i class="fa fa-quote-left"></i><p>Helps strengthen your dermal support structure for smoother, younger-looking skin.</p>
-                    </div>
-                    <div class="quantity-content">
-                        <div class="left-content">
-                            <h6>No. of Orders</h6>
-                        </div>
-                        <div class="right-content">
-                            <div class="quantity buttons_added">
-                                <button onclick="decrementCounter()" class="minus">-</button><input  type="text" id="counter" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode=""><button onclick="incrementCounter()" class="minus">+</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="total">
-                        <h4>Total: RS.210.00</h4>
-                        <div class="main-border-button"><a href="#">Add To Cart</a></div>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- ***** Footer Start ***** -->
-    @include('Home.footer')
-    
-
-   @include('Home.js')
-
-	<script>
-		function incrementCounter() {
-			var counter = document.getElementById("counter");
-			var currentValue = parseInt(counter.value);
-			counter.value = currentValue + 1;
-		}
-
-        function decrementCounter()
-        {
-			var counter = document.getElementById("counter");
-			var currentValue = parseInt(counter.value);
-			counter.value = currentValue - 1;
-		}
-	</script>
-<
-
-
-  </body>
-</html> --}}

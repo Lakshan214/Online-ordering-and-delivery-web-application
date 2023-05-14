@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
+use App\Models\Cart;
 use App\Models\Catagory;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
@@ -25,19 +27,21 @@ class HomeController extends Controller
         }
        else
         {
+          $Brand=Brand::all();
           $product=Product::all();
           $catagory=Catagory::all();
           $catagory1=Catagory::all();
           $product1=Product::all();
           $product2=Product::all();
           $product3=Product::all();
-            return view('Home.index',compact('catagory','catagory1','product','product1','product2','product3'));
+            return view('Home.index',compact('catagory','catagory1','product','product1','product2','product3','Brand'));
         }
     } 
 
 
     public function index()
      {  
+      $Brand=Brand::all();
       $product=Product::all();
       $catagory=Catagory::all();
       $catagory1=Catagory::all();
@@ -45,7 +49,7 @@ class HomeController extends Controller
       $product2=Product::all();
       $product3=Product::latest()->get();
       
-      return view('Home.index',compact('catagory','catagory1','product','product1','product2','product3'));
+      return view('Home.index',compact('catagory','catagory1','product','product1','product2','product3','Brand'));
      }
   
      
@@ -62,10 +66,9 @@ class HomeController extends Controller
 
 
     
-     public function show($slug)
+     public function catagoryByProduct($slug)
      {  
 
-        
           $catagory=Catagory::where('slug',$slug)->first();
           if($catagory)
          {
@@ -83,8 +86,40 @@ class HomeController extends Controller
 
        }
        
-      
 
+       public function brandByProduct($slug)
+     {  
+
+          $brand=Brand::where('slug',$slug)->first();
+          if($brand)
+         {
+          $product=$brand->product()->get();
+
+         
+
+         return view('Home.catagory.brandProduct',compact('product','brand'));
+         }
+
+         else
+         {
+          return redirect()->back();
+         }
+
+       }
+      
+ 
+       public function AddToCart($id){
+
+       $userid=Auth::id();
+         
+        Cart::create([
+           
+          'user_id'=> $userid,
+          'product_id'=>$id,
+
+        ]);
+
+       }
     
     
 }

@@ -41,9 +41,7 @@
                         <div class="header__top__right__auth">
                             <a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
                         </div>
-                        <div class="header__top__right__auth">
-                            <a href="{{ route('register') }}"><i class="fa fa-user"></i> Register</a>
-                        </div>
+    
                         @endauth
                         @endif
                     </div>
