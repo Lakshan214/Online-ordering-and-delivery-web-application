@@ -48,7 +48,7 @@
                         <div class="product__details__pic__slider owl-carousel">
                             <img data-imgbigurl="/product/{{$product->image}}"
                                 src="/product/{{$product->image}}" alt="">
-                            <img data-imgbigurl="/product/{{$product->image}}"
+                            <img data-imgbigurl="/product/{{$product->image1}}"
                                 src="/product/{{$product->image1}}" alt="">
                             <img data-imgbigurl="/product/{{$product->image2}}"
                                 src="/product/{{$product->image2}}" alt="">
@@ -70,20 +70,24 @@
                         <div class="product__details__price">RS.{{$product->Price}}.00</div>
                         <p>{{$product->Descrtiptton}}</p>
                         <div class="product__details__quantity">
+                            <form action="{{route('cart.addCart',$product->id)}} "method="POST">
+                            @csrf
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input type="text" value="1">
+                                    <input type="text" value="1" min="1" required name="quntity">
+                                   
                                 </div>
                             </div>
+                       
                         </div>
 
                         @if ($product->quantity>0)
                         
-                        <a href="{{route('link.addCart',$product->id)}}" class="primary-btn ">ADD TO CARD</a>
+                        <button type="submit" class="primary-btn "> ADD TO CARD</button>
                         
-                        
+                    </form>
                         @endif
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        
                         <ul>
                             <li><b>Availability</b> 
                                 @if ($product->quantity>0)

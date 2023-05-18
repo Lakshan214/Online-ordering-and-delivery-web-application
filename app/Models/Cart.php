@@ -16,4 +16,9 @@ class Cart extends Model
         'price',
         
     ];
+    public function product(){
+        return $this->hasmany(Cart::class,'product_id','id');
+    }
 }
+
+

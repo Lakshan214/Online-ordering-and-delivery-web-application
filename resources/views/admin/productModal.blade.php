@@ -40,13 +40,13 @@
 
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Image 1:</label>
-                <input type="file" name="image1[]" multiple   style="background-color: #2A3038"  class="form-control" >
+                <input type="file" name="image1" multiple   style="background-color: #2A3038"  class="form-control" >
               </div>
 
-              {{-- <div class="form-group">
+              <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Image 2:</label>
                 <input type="file" name="image2" style="background-color: #2A3038" class="form-control" >
-              </div> --}}
+              </div>
 
               <div class="form-group">
                 <label  class="col-form-label">Product Catagory::</label>

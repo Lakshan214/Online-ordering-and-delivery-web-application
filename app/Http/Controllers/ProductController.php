@@ -57,8 +57,8 @@ class ProductController extends Controller
         $product->meta_keyword=$request->meta_keyword;
         
         $image=$request->image;
-        // $image1=$request->image;
-        // $image2=$request->image;
+        $image1=$request->image1;
+        $image2=$request->image2;
       
       
         if($image)
@@ -68,43 +68,43 @@ class ProductController extends Controller
         $product->image=$image;
  
         }
-        // if($image1)
-        // {
-        // $image1=uniqid().'.'.$request->image1->extension();
-        // $request->image1->move('product',$image1);  
-        // $product->image1=$image1;
+        if($image1)
+        {
+        $image1=uniqid().'.'.$request->image1->extension();
+        $request->image1->move('product',$image1);  
+        $product->image1=$image1;
  
-        // }
-        // if($image)
-        // {
-        // $image2=uniqid().'.'.$request->image2->extension();
-        // $request->image2->move('product',$image2);  
-        // $product->image2=$image2;
+        }
+        if($image2)
+        {
+        $image2=uniqid().'.'.$request->image2->extension();
+        $request->image2->move('product',$image2);  
+        $product->image2=$image2;
  
-        // }
+        }
       
         $product->save();
         
-      if ($request->hasFile('image1')){
+    //   if ($request->hasFile('image1')){
          
-        $filepath='product';
+    //     $filepath='product';
 
-        foreach($request->file('image1')as $imageFile){
-            $extenton=$imageFile->getClientOriginalExtension();
-            $filename=uniqid().'.'.$extenton;
-            $imageFile->move($filepath,$filename);
-            $finalImagePath=$filepath.'/'.$filename;
+    //     foreach($request->file('image1')as $imageFile){
+    //         $extenton=$imageFile->getClientOriginalExtension();
+    //         $filename=uniqid().'.'.$extenton;
+    //         $imageFile->move($filepath,$filename);
+    //         $finalImagePath=$filepath.'/'.$filename;
 
-            $product->productImages()->create(
-                [
-                     'product_id'=>$product->id,
-                     'img'=>$finalImagePath,
-                ]
-                );
+    //         $product->productImages()->create(
+    //             [
+    //                  'product_id'=>$product->id,
+    //                  'img'=>$finalImagePath,
+    //             ]
+    //             );
 
 
 
-        }}
+        
 
     
     return redirect()->back()->with ('message',' Added Sucessfully!!');

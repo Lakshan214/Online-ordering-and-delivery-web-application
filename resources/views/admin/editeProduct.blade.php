@@ -29,19 +29,26 @@
                         <input type="file" name="image"style="background-color: #2A3038"  class="form-control"  >
                       </div>
                       <img style="width: 50px; height: 50px;" style="background-color: #2A3038" src="/product/{{$product->image}}"><br>
-                       @if ($product->productImages)
-                       @foreach ($product->productImages as $image )
-
-                       <img style="width: 50px; height: 50px;" style="background-color: #2A3038" src="{{asset($image->img)}}"><br>
+                       {{-- @if ($product->productImages)
+                       @foreach ($product->productImages as $image ) --}}
+                       <div class="form-group">
+                        <label for="exampleInputEmail3">imges1:</label>
+                        <input type="file" name="image1"style="background-color: #2A3038"  class="form-control"  >
+                      </div>
+                       <img style="width: 50px; height: 50px;" style="background-color: #2A3038" src="/product/{{$product->image1}}"><br>
  
                            
-                       @endforeach
+                       {{-- @endforeach
                            
                        @else
                            <h5>No Image ADD</h5>
-                       @endif 
+                       @endif  --}}
+                       <div class="form-group">
+                        <label for="exampleInputEmail3">imges2:</label>
+                        <input type="file" name="image2"style="background-color: #2A3038"  class="form-control"  >
+                      </div>
 
-                      {{-- <img style="width: 50px; hei style="background-color: #2A3038" src="/product/{{$product->image2}}"><br> --}}
+                      <img style="width: 50px; height: 50px;" style="background-color: #2A3038" src="/product/{{$product->image2}}"><br>
                       <div class="form-group">
                         <label for="exampleInputPassword4">Product Catagory:</label>
                         {{-- <input type="text" class="form-control"style="background-color: #2A3038"  name="Pcatagory" value="{{$product->Catagory}}"  > --}}

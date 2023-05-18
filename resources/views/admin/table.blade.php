@@ -34,7 +34,7 @@
                 @if($product->catagory)
                 <td> {{$product['catagory']['CatagoryName']}}</td>
                 @else
-                   <h5>No Cataory Add </h5>
+                   <td>No Cataory Add </td>
                 @endif   
                 <td>{{$product->quantity}} </td>
                 <td>{{$product->Price}} </td>

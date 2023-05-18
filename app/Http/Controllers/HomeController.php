@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Models\ProductImg;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class HomeController extends Controller 
+
 {
     public function redirect()
     {
@@ -108,18 +110,6 @@ class HomeController extends Controller
        }
       
  
-       public function AddToCart($id){
-
-       $userid=Auth::id();
-         
-        Cart::create([
-           
-          'user_id'=> $userid,
-          'product_id'=>$id,
-
-        ]);
-
-       }
-    
-    
+      
+      
 }

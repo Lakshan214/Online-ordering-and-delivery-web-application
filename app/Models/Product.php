@@ -43,4 +43,10 @@ public function brand()
 {
     return $this->belongsTo(Brand::class,'Brand_id','id'); 
 }
+
+public function cart()
+{
+    return $this->belongsTo(Cart::class,'product_id','id'); 
 }
+}
+
