@@ -41,7 +41,7 @@
                         </div>
                         <div class="checkout__input">
                             <p>user type<span>*</span></p>
-                            <input  type="number" min="1" Max="3" name="userType" :value="old('userType')" autocomplete="userType">
+                            <input  type="number" min="0" Max="3" name="userType" :value="old('userType')" autocomplete="userType">
                          
                         </div>
                        
@@ -78,13 +78,21 @@
                         <div class="checkout__order">
                             <h4>Your Order</h4>
                             <div class="checkout__order__products">Products <span>Total</span></div>
+                            <?php $total=0; ?>
+                            @forelse ($cart as $item)
+                                
+                          
                             <ul>
-                                <li>Vegetable’s Package <span>$75.99</span></li>
-                                <li>Fresh Vegetable <span>$151.99</span></li>
-                                <li>Organic Bananas <span>$53.99</span></li>
+                                <li>{{$item->Name}} <span> Rs.{{$item->total}}.00</span></li>
+                                
                             </ul>
-                            <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
-                            <div class="checkout__order__total">Total <span>$750.99</span></div>
+                                                       @empty
+                                <h3 style="color: red">Oder is empty</h3>
+                            @endforelse
+                            <?php $total+= $item->total ?>
+                            <div class="checkout__order__subtotal">Subtotal <span>Rs.{{$total}}.00</span></div>
+                            <div class="checkout__order__total">Total <span>Rs.{{$total}}.00</span></div>
+
                             <div class="checkout__input__checkbox">
                                 <label for="acc-or">
                                     Create an account?
@@ -108,7 +116,7 @@
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
-                            <button type="submit" class="site-btn">PLACE ORDER</button>
+                            <a href="{{route('order.orderSave')}}" class="site-btn">PLACE ORDER</a>
                         </div>
                     </div>
                 </div>

@@ -84,7 +84,9 @@
                         @if ($product->quantity>0)
                         
                         <button type="submit" class="primary-btn "> ADD TO CARD</button>
-                        
+                        @else
+                       
+                        <button type="submit" class="primary-btn "   disabled> ADD TO CARD</button>
                     </form>
                         @endif
                         

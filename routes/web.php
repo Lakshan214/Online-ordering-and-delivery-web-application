@@ -4,6 +4,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatagoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OredrtController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[HomeController::class,'index']); 
 Route::get('/redirect',[HomeController::class,'redirect']);
+Route::get('/registerview',[OredrtController::class,'Registerview']);
 
 Route::middleware([
     'auth:sanctum',
@@ -35,7 +37,7 @@ Route::middleware([
 
 Route::prefix('/link')->group (function(){
     Route::get('/brand/{slug}',[HomeController::class,'brandByProduct'])->name('link.brand');
-    Route::get('/product/{slug}',[HomeController::class,'catagoryByProduct'])->name('link.product'); 
+    Route::get('/product/{id}',[HomeController::class,'catagoryByProduct'])->name('link.product'); 
     Route::get('/singlepage/{id}',[HomeController::class,'singlepage_view'])->name('link.singlepage'); 
     Route::get('/showCart',[CartController::class,'showCart'])->name('link.showCart');
     
@@ -46,6 +48,17 @@ Route::prefix('/cart')->group (function(){
 
     Route::post('/addCart/{id}',[CartController::class,'AddToCart'])->name('cart.addCart');
     Route::get('/deleteCart/{id}',[CartController::class,'DeleteCart'])->name('cart.deleteCart');
+    Route::post('/UpdateCart/{id}',[CartController::class,'UpdateCart'])->name('cart.UpdateCart');
+    
+ 
+
+});
+Route::prefix('/order')->group (function(){
+
+    Route::get('/orderSave',[OredrtController::class,'OrderSave'])->name('order.orderSave')->middleware('auth','verified');
+    // Route::get('/deleteCart/{id}',[CartController::class,'DeleteCart'])->name('cart.deleteCart');
+    // Route::post('/UpdateCart/{id}',[CartController::class,'UpdateCart'])->name('cart.UpdateCart');
+    
  
 
 });

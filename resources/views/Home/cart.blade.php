@@ -44,7 +44,7 @@
                             <tr>
                                 <?php $total=0; ?>
                                 @foreach ($cart as $item)
-                                    
+
                                
                                 <td class="shoping__cart__item">
                                     <img style="width: 80px; height: 80px;" src="/product/{{$item->image}}" alt="">
@@ -53,8 +53,16 @@
                                 <td class="shoping__cart__price">
                                     Rs.{{$item->Price}}.00
                                 </td>
+                                <form action="{{Route('cart.UpdateCart',$item->id)}} "method="POST">
+                                    @csrf
                                 <td class="shoping__cart__quantity">
-                                    {{$item->Price}} X {{$item->quntity}}
+                                    <div class="quantity">
+                                      
+                                        <div class="pro-qty">
+                                           <input type="text" value=" {{$item->quntity}} "min="1" name="quntity">
+                                        </div>
+                                    </div>
+                                     
                                 </td>
                                 <td class="shoping__cart__total">
                                     {{$item->total}} 
@@ -66,7 +74,10 @@
                                 
                             </tr>
                             <?php $total+= $item->total ?>
+
                             @endforeach 
+                       
+                       
                         </tbody>
                         
                     </table>
@@ -77,9 +88,11 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="shoping__cart__btns">
-                    {{-- <a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a> --}}
-                    <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                        CONTINUE SHOPPING</a>
+                  
+                    <button class="primary-btn cart-btn cart-btn-right"> <span class="icon_loading"></span>
+                        Update Cart</button>
+                    </form>   
+                 <a href="" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
                 </div>
             </div>
         
@@ -90,7 +103,16 @@
                         <li>Subtotal <span>Rs.{{$total}}.00</span></li>
                         <li>Total <span>Rs.{{$total}}.00</span></li>
                     </ul>
-                    <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                   
+                    @if (0<$total)
+                
+                        <a href="{{url('/registerview')}}" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        
+                    @else
+                    
+                        <button href="" class="primary-btn" disabled>PROCEED TO CHECKOUT</button>
+                      
+                    @endif
                 </div>
             </div>
         </div>
