@@ -10,8 +10,8 @@
                     <ul>
                         
                          
-                    @foreach ( $catagory as  $catagory1)
-                    <li><a href="{{route('link.product',$catagory1->slug)}} ">{{$catagory1->CatagoryName}}</a></li>
+                    @foreach ( $catagory2 as  $catagory2)
+                    <li><a href="{{route('link.product',$catagory2->slug)}} ">{{$catagory2->CatagoryName}}</a></li>
                        
                     @endforeach
                     </ul>

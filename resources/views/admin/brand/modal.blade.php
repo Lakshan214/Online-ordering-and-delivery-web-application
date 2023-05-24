@@ -38,7 +38,7 @@
               </div>
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">slug:</label>
-                <input type="text" name="slug"style="background-color: #2A3038" value="" required=""  class="form-control" >
+                <input type="text" name="slug"style="background-color: #2A3038" value="" required=""   class="form-control" >
               </div>
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">status:</label>

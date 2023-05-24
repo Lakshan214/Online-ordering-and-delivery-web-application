@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+   
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
@@ -21,16 +17,13 @@ return new class extends Migration
             $table->string('Name')->nullable();
             $table->string('image')->nullable();
             $table->string('quntity')->nullable();
+            $table->string('pmode')->nullable();
+            $table->string('status')->nullable();
             $table->string('total')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('orders');

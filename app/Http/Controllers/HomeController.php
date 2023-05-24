@@ -45,13 +45,15 @@ class HomeController extends Controller
      {  
       $Brand=Brand::all();
       $product=Product::all();
-      $catagory=Catagory::all();
+      $catagory2=Catagory::all();
       $catagory1=Catagory::all();
       $product1=Product::all();
       $product2=Product::all();
       $product3=Product::latest()->get();
+      $cart=Cart::all();
       
-      return view('Home.index',compact('catagory','catagory1','product','product1','product2','product3','Brand'));
+      // Cart::truncate();
+      return view('Home.index',compact('catagory2','catagory1','product','product1','product2','product3','Brand','cart'));
      }
   
      

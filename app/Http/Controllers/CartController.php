@@ -43,11 +43,11 @@ class CartController extends Controller
        }
        
     
-      public function showCart(){
+      // public function showCart(){
 
-       $cart=Cart::all();
-        return View('Home.cart',compact('cart'));
-      }
+      //  $cart=Cart::all();
+      //   return View('Home.cart',compact('cart'));
+      // }
       
       public function DeleteCart($id){
 

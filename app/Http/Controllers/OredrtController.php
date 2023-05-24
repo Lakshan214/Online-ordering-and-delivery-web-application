@@ -15,6 +15,7 @@ class OredrtController extends Controller
     
 
     public function OrderSave(){
+
         if (Auth::check()){
       
             $user=Auth::user();
@@ -31,9 +32,10 @@ class OredrtController extends Controller
                   $Order->quntity=$data->quntity;
                   $Order->total=$data->total;
                   $Order->Price=$data->Price;
+                  // $Order->pmode=$request->status == true ? '1':'0';
                  $Order->save();
-                 $product=Product::find($data->ProductId);
 
+                 $product=Product::find($data->ProductId);
                  $quntity=$product->quantity;
                  $product->quantity=$quntity-$data->quntity;
                  $product->save();
@@ -56,5 +58,10 @@ class OredrtController extends Controller
        
         $cart=Cart::all();
        return View('auth.register',compact('cart'));
+    }
+
+    public function view(){
+
+      return View('Home.oder');
     }
 }

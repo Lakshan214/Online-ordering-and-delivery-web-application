@@ -56,7 +56,7 @@ Route::prefix('/cart')->group (function(){
 Route::prefix('/order')->group (function(){
 
     Route::get('/orderSave',[OredrtController::class,'OrderSave'])->name('order.orderSave')->middleware('auth','verified');
-    // Route::get('/deleteCart/{id}',[CartController::class,'DeleteCart'])->name('cart.deleteCart');
+    Route::get('/view',[OredrtController::class,'view'])->name('order.view');
     // Route::post('/UpdateCart/{id}',[CartController::class,'UpdateCart'])->name('cart.UpdateCart');
     
  
