@@ -9,12 +9,13 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
-
+use Session;
+use Stripe;
 class OredrtController extends Controller
 {
     
 
-    public function OrderSave(){
+    public function OrderSave($total){
 
         if (Auth::check()){
       
@@ -40,9 +41,8 @@ class OredrtController extends Controller
                  $product->quantity=$quntity-$data->quntity;
                  $product->save();
                  
-                  Cart::truncate();
-                 
-                  return redirect()->back();
+                 $cart=Cart::all();
+                 return View('auth.register',compact('cart'));
             }
           }
       
@@ -60,8 +60,32 @@ class OredrtController extends Controller
        return View('auth.register',compact('cart'));
     }
 
-    public function view(){
+    public function stripView($total){
+      
+      if (Auth::check()){
+      return View('Home.strip',compact('total'));
+      }
 
-      return View('Home.oder');
+      else
+      {
+  
+        return redirect('login');
+      }
     }
+
+    public function stripePost(Request $request)
+{
+    // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+
+    // Stripe\Charge::create([
+    //     "amount" => 100 * 100,
+    //     "currency" => "usd",
+    //     "source" => $request->stripeToken,
+    //     "description" => "Thanks for payment"
+    // ]);
+
+    // Session::flash('success', 'Payment successful!');
+
+    return back();
+}
 }

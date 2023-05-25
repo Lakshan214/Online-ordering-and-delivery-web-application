@@ -28,7 +28,7 @@
     <!-- Hero Section Begin -->
     @include('Home.hero')
     <!-- Hero Section End -->
-    @include('Home.cart')
+   
     
     <!-- Categories Section Begin -->
     @include('Home.catagory.brand')

@@ -96,7 +96,7 @@
 
                            
                             
-                            <a href="{{route('order.orderSave')}}" class="site-btn">PLACE ORDER</a>
+                            <a href="{{route('order.stripView',$total)}}" class="site-btn">PLACE ORDER</a>
                         </div>
                        
                     </div>

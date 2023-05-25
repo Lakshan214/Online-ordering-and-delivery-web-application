@@ -18,7 +18,7 @@
               </tr>
             </thead>
             <tbody>
-            @foreach($brand as $key=> $brand)
+            @foreach($brands as $key=> $brand)
               <tr>
                 <td class="py-1">
                   {{$brand->id}}
@@ -43,7 +43,11 @@
             
             </tbody>
           </table>
+
+          {{$brands->links()}}
+          
         </div>
       </div>
     </div>
   </div>
+ 

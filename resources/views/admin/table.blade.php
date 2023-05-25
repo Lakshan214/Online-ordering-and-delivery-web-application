@@ -22,7 +22,7 @@
               </tr>
             </thead>
             <tbody>
-            @foreach($product as $key=> $product)
+            @foreach($products as $key=> $product)
               <tr>
                 <td class="py-1">
                     {{++$key}}
@@ -62,6 +62,7 @@
             
             </tbody>
           </table>
+          {{$products->links()}}
         </div>
       </div>
     </div>

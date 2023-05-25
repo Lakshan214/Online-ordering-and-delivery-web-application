@@ -16,8 +16,8 @@ class CatagoryController extends Controller
      */
     public function index()
     {
-      $Catagory=Catagory::orderBy('id','DESC')->paginate(10);  
-      return view('admin.catagory.catagory',compact('Catagory'));
+      $Catagorys=Catagory::orderBy('id','DESC')->paginate(5);  
+      return view('admin.catagory.catagory',compact('Catagorys'));
     }
 
     /**

@@ -1,3 +1,21 @@
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    @include('Home.links')
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    @include('Home.navbar')
+    <!-- Humberger End -->
+  
+    <!-- Header Section Begin -->
+    @include('Home.header')
+
+
+
 <section class="shoping-cart spad">
     <div class="container">
         <div class="row">
@@ -15,7 +33,7 @@
                             
                             <tr>
                                 <?php $total=0; ?>
-                                @foreach ($cart as $item)
+                                @foreach ($carts as $item)
 
                                
                                 <td class="shoping__cart__item">
@@ -53,7 +71,9 @@
                         </tbody>
                         
                     </table>
-                    
+                
+                    {{$carts->links()}}
+                
                 </div>
             </div>
         </div>
@@ -77,7 +97,7 @@
                    
                    
                 
-                        <a href="{{url('/registerview')}}" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <a href="{{route('order.orderSave')}}"  class="primary-btn">PROCEED TO CHECKOUT</a>
                         
                         
                     @else
@@ -94,3 +114,15 @@
         </div>
     </div>
 </section>
+
+@include('Home.footer')
+<!-- Footer Section End -->
+
+<!-- Js Plugins -->
+
+@include('Home.js')
+
+
+</body>
+
+</html>

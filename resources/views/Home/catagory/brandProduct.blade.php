@@ -26,7 +26,7 @@
            <h2 style="text-align: center;color:#7fad39;"><b>{{$brand->Name}}</b></h2><br>
        
          <div class="row featured__filter">
-            @forelse ($product as $product)
+            @forelse ($products as $product)
             <div class="col-lg-3 col-md-4 col-sm-6 mix oranges a">
                 
                 <div class="featured__item">
@@ -44,14 +44,16 @@
                     </div>
                 </div>
             </div>
-                @empty
+          
+                
 
           
-           
+            @empty
             
         </div>
          {{-- @endforeach  --}}
     </div>
+    
 </section>
 
     <h5 class="featured__item__text" style="color: red;text-align: center;">
@@ -60,8 +62,9 @@
 
 
    @endforelse
-    
-
+ <div style="margin-top: 350px;">
+   {{$products->links()}}
+ </div>  
     <!-- Footer Section Begin -->
   
     <!-- Footer Section End -->

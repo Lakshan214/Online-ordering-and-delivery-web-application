@@ -18,7 +18,7 @@
               </tr>
             </thead>
             <tbody>
-            @foreach($Catagory as $key=> $Catagory)
+            @foreach($Catagorys as $key=> $Catagory)
               <tr>
                 <td class="py-1">
                   {{$Catagory->id}}
@@ -43,10 +43,10 @@
             
             </tbody>
             <div>
-              {{-- {{$Catagory ->links()}} --}}
+             
             </div>
           </table>
-
+          {{$Catagorys ->links()}}
         </div>
       </div>
     </div>

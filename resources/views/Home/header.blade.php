@@ -53,13 +53,13 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="{{ url('/') }}"><img style="height: 70px; width:200px;" src="{{asset('img/logo.png')}}" alt=""></a>
+                    <a href="{{ url('/index') }}"><img style="height: 70px; width:200px;" src="{{asset('img/logo.png')}}" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li class="active"><a href="{{ url('/') }}">Home</a></li>
+                        <li class="active"><a href="{{ url('/index') }}">Home</a></li>
                         {{-- <li><a href="./shop-grid.html">Shop</a></li>
                         <li><a href="#">Pages</a>
                             <ul class="header__menu__dropdown">

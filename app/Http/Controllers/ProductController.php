@@ -21,8 +21,8 @@ class ProductController extends Controller
     {   
         $brand= Brand::latest()->get();
         $catagory= Catagory::orderBy('CatagoryName' , 'ASC')->get();
-         $product=Product::latest()->get();
-        return view('admin.product',compact('product','catagory','brand'));
+         $products=Product::paginate(5);
+        return view('admin.product',compact('products','catagory','brand'));
        
     }
 

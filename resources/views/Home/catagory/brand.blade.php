@@ -36,7 +36,7 @@
 
      
         <div class="row featured__filter">
-            @foreach ( $Brand as $product1)
+            @foreach ( $Brands as $product1)
             <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
               
                 <div class="featured__item">
@@ -51,6 +51,6 @@
             </div>
             @endforeach
         </div>
-       
+        {{$Brands->links()}}
     </div>
 </section>

@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[HomeController::class,'index']); 
+Route::get('/index',[HomeController::class,'index2']); 
+
 Route::get('/redirect',[HomeController::class,'redirect']);
 Route::get('/registerview',[OredrtController::class,'Registerview']);
 
@@ -56,8 +58,8 @@ Route::prefix('/cart')->group (function(){
 Route::prefix('/order')->group (function(){
 
     Route::get('/orderSave',[OredrtController::class,'OrderSave'])->name('order.orderSave')->middleware('auth','verified');
-    Route::get('/view',[OredrtController::class,'view'])->name('order.view');
-    // Route::post('/UpdateCart/{id}',[CartController::class,'UpdateCart'])->name('cart.UpdateCart');
+    Route::get('/stripView/{total}',[OredrtController::class,'stripView'])->name('order.stripView')->middleware('auth','verified');
+    Route::post('/striPost',[CartController::class,'stripePost'])->name('order.striPost');
     
  
 
