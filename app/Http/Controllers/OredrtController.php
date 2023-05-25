@@ -15,7 +15,7 @@ class OredrtController extends Controller
 {
     
 
-    public function OrderSave($total){
+    public function OrderSave(){
 
         if (Auth::check()){
       
@@ -33,7 +33,8 @@ class OredrtController extends Controller
                   $Order->quntity=$data->quntity;
                   $Order->total=$data->total;
                   $Order->Price=$data->Price;
-                  // $Order->pmode=$request->status == true ? '1':'0';
+                  $Order->status="processing";
+
                  $Order->save();
 
                  $product=Product::find($data->ProductId);
@@ -61,7 +62,7 @@ class OredrtController extends Controller
     }
 
     public function stripView($total){
-      
+
       if (Auth::check()){
       return View('Home.strip',compact('total'));
       }
@@ -75,17 +76,35 @@ class OredrtController extends Controller
 
     public function stripePost(Request $request)
 {
-    // Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+    Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
-    // Stripe\Charge::create([
-    //     "amount" => 100 * 100,
-    //     "currency" => "usd",
-    //     "source" => $request->stripeToken,
-    //     "description" => "Thanks for payment"
-    // ]);
+    Stripe\Charge::create([
+        "amount" => 100 * 100,
+        "currency" => "usd",
+        "source" => $request->stripeToken,
+        "description" => "Thanks for payment"
+    ]);
 
-    // Session::flash('success', 'Payment successful!');
+    Session::flash('success', 'Payment successful!');
 
     return back();
 }
+
+public function View(){
+   
+  $order= Order::where('userId',Auth::user()->id)->orderBy('created_at','desc')->get();
+   
+   return View('Home.oder',compact('order'));
+
+}
+public function paymentMode($id){
+  
+  $Order=Order::find($id);
+  dd($Order);
+   $Order->pmode="1";
+   
+  $Order->save();
+  return View('Home.oder');
+}
+
 }

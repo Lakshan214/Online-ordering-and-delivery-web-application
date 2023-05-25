@@ -81,22 +81,27 @@
                             <?php $total=0; ?>
                             @forelse ($cart as $item)
                                 
-                          
+                           
                             <ul>
                                 <li>{{$item->Name}} <span> Rs.{{$item->total}}.00</span></li>
                                 
                             </ul>
                             <?php $total+= $item->total ?>
-                            @empty
-                                <h3 style="color: red">Oder is empty</h3>
-                            @endforelse
+                           
                            
                             <div class="checkout__order__subtotal">Subtotal <span>Rs.{{$total}}.00</span></div>
                             <div class="checkout__order__total">Total <span>Rs.{{$total}}.00</span></div>
-
-                           
+                            <a href="{{url('/paymentMode',$item->id)}}" class="site-btn " style="background-color: blue;"> Cash on delivery</a><br><br>
+                            @empty
+                                <h3 style="color: red">Oder is empty</h3>
+                            @endforelse
+                            @if($total>0)
+                            <a href="{{route('order.stripView',$total)}}" class="site-btn">Online Payment</a>
                             
-                            <a href="{{route('order.stripView',$total)}}" class="site-btn">PLACE ORDER</a>
+                            @else
+                             
+                            
+                            @endif
                         </div>
                        
                     </div>

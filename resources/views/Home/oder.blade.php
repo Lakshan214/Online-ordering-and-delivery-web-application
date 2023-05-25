@@ -24,67 +24,32 @@
     <!-- Header Section Begin -->
     @include('Home.header')
     <!-- Header Section End -->
-    <section class="shoping-cart spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="shoping__cart__table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="shoping__product">Products</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Total</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                            <tr>
-                            
-
-                               
-                                <td class="shoping__cart__item">
-                                   
-                                </td>
-                                <td class="shoping__cart__price">
-                                   
-                                </td>
-                               
-                                <td class="shoping__cart__quantity">
-                                    <div class="quantity">
-                                      
-                                       
-                                    </div>
-                                     
-                                </td>
-                                <td class="shoping__cart__total">
-                                   
-                                </td>
-                                <td class="shoping__cart__item__close">
-                                    
-                                </td>
-                                
-                            </tr>
-                         
-                       
-                        </tbody>
-                        
-                    </table>
-                    
-                </div>
-            </div>
-        </div>
-      
-        
-          
-        </div>
-    </div>
-</section>
-    
-
-     
+        <h3 style="text-align: center;"><b>My Order</b></h3> 
+    <br><br>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Status Msg</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach ($order as $item)
+                
+            
+          <tr>
+            <th scope="row">{{$item->id}}</th>
+            <td>{{$item->name}}</td>
+            <td>{{$item->created_at}}</td>
+            <td>{{$item->status}}</td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+     <br><br>
 
     
 

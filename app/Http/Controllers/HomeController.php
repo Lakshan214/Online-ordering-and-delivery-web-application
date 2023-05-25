@@ -30,15 +30,18 @@ class HomeController extends Controller
         }
        else
         {
-          $Brand=Brand::all();
-          $product=Product::all();
-          $catagory=Catagory::all();
-          $catagory1=Catagory::all();
-          $product1=Product::all();
-          $product2=Product::all();
-          $product3=Product::all();
+
+          $cart=Cart::all();
+          return View('auth.register',compact('cart'));
+          // $Brand=Brand::all();
+          // $product=Product::all();
+          // $catagory=Catagory::all();
+          // $catagory1=Catagory::all();
+          // $product1=Product::all();
+          // $product2=Product::all();
+          // $product3=Product::all();
        
-            return view('Home.index',compact('catagory','catagory1','product','product1','product2','product3','Brand'));
+          //   return view('auth.register',compact('catagory','catagory1','product','product1','product2','product3','Brand'));
         }
     } 
 
