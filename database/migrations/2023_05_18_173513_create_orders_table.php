@@ -13,9 +13,12 @@ return new class extends Migration
             $table->id();
             $table->string('userId')->nullable();
             $table->string('ProductId')->nullable();
+            $table->string('userName');
+            $table->string('phone');
             $table->string('Price')->nullable();
-            $table->string('Name')->nullable();
-            $table->string('image')->nullable();
+            $table->string('City')->nullable();
+            $table->string('Ltype')->nullable();
+            $table->string('address')->nullable();
             $table->string('quntity')->nullable();
             $table->string('pmode')->nullable();
             $table->string('status')->nullable();

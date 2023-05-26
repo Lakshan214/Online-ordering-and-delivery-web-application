@@ -37,19 +37,33 @@
           </tr>
         </thead>
         <tbody>
-            @foreach ($order as $item)
-                
-            
-          <tr>
-            <th scope="row">{{$item->id}}</th>
-            <td>{{$item->name}}</td>
-            <td>{{$item->created_at}}</td>
-            <td>{{$item->status}}</td>
-          </tr>
+        @php
+          $previousUserId = null;
+       @endphp
+      
+      @foreach ($order as $item)
+          @php
+              $id = $item->userId;
+          @endphp
+      
+          @if ($id !== $previousUserId)
+              <tr>
+                  <th scope="row">{{ $item->id }}</th>
+                  <td>{{ $item->userName }}</td>
+                  <td>{{ $item->created_at }}</td>
+                  <td>{{ $item->status }}</td>
+                  <td><a class="btn btn-primary " >View</a></td>
+              </tr>
+          @endif
+      
+          @php
+              $previousUserId = $id;
+          @endphp
           @endforeach
+      
         </tbody>
       </table>
-     <br><br>
+      <br><br>
 
     
 

@@ -89,7 +89,7 @@
     
                         <div class="row">
                             <div class="col-xs-12">
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now Rs.{{$total}}</button>
+                                <button class="btn btn-primary btn-lg btn-block" style="color: black;" type="submit">Pay Now Rs.{{$total}}</button>
                             </div>
                         </div>
                             

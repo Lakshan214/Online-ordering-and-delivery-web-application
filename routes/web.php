@@ -24,7 +24,6 @@ Route::get('/index',[HomeController::class,'index2']);
 
 Route::get('/redirect',[HomeController::class,'redirect']);
 Route::get('/registerview',[OredrtController::class,'Registerview']);
-Route::post('/paymentMode/{id}',[OredrtController::class,'paymentMode']);
 
 Route::middleware([
     'auth:sanctum',
@@ -62,7 +61,7 @@ Route::prefix('/order')->group (function(){
     Route::get('/stripView/{total}',[OredrtController::class,'stripView'])->name('order.stripView')->middleware('auth','verified');
     Route::post('/striPost',[OredrtController::class,'stripePost'])->name('order.striPost');
     Route::get('/View',[OredrtController::class,'View'])->name('order.View');
-    // Route::post('/paymentMode/{id}',[OredrtController::class,'paymentMode'])->name('order.paymentMode');
+    Route::get('/payment/{id}',[OredrtController::class,'paymentMode'])->name('order.payment');
     
  
 

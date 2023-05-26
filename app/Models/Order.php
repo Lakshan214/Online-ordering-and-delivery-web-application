@@ -18,4 +18,9 @@ class Order extends Model
         'quntity',
         'total',
     ];
+
+    public function user()
+{
+    return $this->belongsTo(User::class,'userId','id'); 
+}
 }

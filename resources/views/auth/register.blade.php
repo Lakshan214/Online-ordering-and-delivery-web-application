@@ -34,11 +34,7 @@
                            
                         </div>
                        
-                        <div class="checkout__input">
-                            <p>Address<span>*</span></p>
-                            <input type="text" name="address" :value="old('address')" required autocomplete="address">
-                         
-                        </div>
+                        
                         <div class="checkout__input">
                             <p>user type<span>*</span></p>
                             <input  type="number" min="0" Max="3" name="userType" :value="old('userType')" autocomplete="userType">
@@ -59,7 +55,38 @@
                                 </div>
                             </div>
                         </div>
-                       
+                        <div class="checkout__input">
+                            <p>Delivery Address<span>*</span></p>
+                            <input type="text" name="address" :value="old('address')" required autocomplete="address">
+                         
+                        </div>
+                        
+                        <div class="checkout__input" >
+                            <p> Delivery City<span>*</span></p>
+                            {{-- <input type="text" name="City" :value="old('City')" required > --}}
+                            <select  type="text"  name="City"    >
+                                    <option  value="Krunegla">Krunegla</option>
+                                    <option value="Anuradhapura">Anuradhapura</option>
+                                    <option value="Gmpaha">Gmpaha</option>
+                                    <option value="yapanaya">yapanaya</option>
+                                    <option value="Nugegoda<">Nugegoda</option>
+                            </select>
+                         
+                        </div>
+                        <br><br>
+                        <div class="checkout__input">
+                            <p> Location Type<span>*</span></p>
+                            {{-- <input type="text" name="Ltype" :value="old('Ltype')"  > --}}
+                            <select name="Ltype"  >
+                                <option   value="House">House</option>
+                                <option value="Office">Office</option>
+                                <option value="Appatment">Appatment</option>
+                            </select>
+
+                        </div>
+                        
+                        <br><br>
+
                         <div class="checkout__input">
                             <p>Account Password<span>*</span></p>
                             <input  type="password" name="password" required autocomplete="new-password">
@@ -68,7 +95,7 @@
                             <p>Conform Account Password<span>*</span></p>
                             <input type="password" name="password_confirmation" required autocomplete="new-password">
                         </div>
-                        <button  class="btn btn-primary btn-lg" type="submit"> Register</button>
+                        <button  class="btn btn-primary btn-lg" type="submit" style="color: black;"> Register</button>
                     </div>
                   
                 </form>
@@ -91,7 +118,7 @@
                            
                             <div class="checkout__order__subtotal">Subtotal <span>Rs.{{$total}}.00</span></div>
                             <div class="checkout__order__total">Total <span>Rs.{{$total}}.00</span></div>
-                            <a href="{{url('/paymentMode',$item->id)}}" class="site-btn " style="background-color: blue;"> Cash on delivery</a><br><br>
+                            <a href="{{route('order.orderSave')}}" class="site-btn " style="background-color: blue;"> Cash on delivery</a><br><br>
                             @empty
                                 <h3 style="color: red">Oder is empty</h3>
                             @endforelse
