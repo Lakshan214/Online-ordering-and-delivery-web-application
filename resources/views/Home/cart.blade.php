@@ -33,37 +33,39 @@
                             
                             <tr>
                                 <?php $total=0; ?>
-                                @foreach ($carts as $item)
+                                @foreach ($getCartItems as $item)
 
                                
                                 <td class="shoping__cart__item">
-                                    <img style="width: 80px; height: 80px;" src="/product/{{$item->image}}" alt="">
-                                    <h5>{{$item->Name}}</h5>
+                                    <img style="width: 80px; height: 80px;" src="{{ asset('/product/'.$item['product']['image'])}}" alt="">
+                                    <h5>{{$item['product']['Name']}}</h5>
                                 </td>
                                 <td class="shoping__cart__price">
-                                    Rs.{{$item->Price}}.00
+                                    Rs.{{$item['product']['Price']}}.00
                                 </td>
-                                <form action="{{Route('cart.UpdateCart',$item->id)}} "method="POST">
+                                <form action="{{Route('cart.UpdateCart',$item['id'])}} "method="POST">
                                     @csrf
+                                   
                                 <td class="shoping__cart__quantity">
                                     <div class="quantity">
                                       
                                         <div class="pro-qty">
-                                           <input type="text" value=" {{$item->quntity}} "min="1" name="quntity">
+                                           <input type="text" value=" {{$item['quntity']}} "min="1" name="quntity">
                                         </div>
                                     </div>
                                      
                                 </td>
+                                
                                 <td class="shoping__cart__total">
-                                    Rs.{{$item->total}} 
+                                    Rs.{{$item['quntity']*$item['product']['Price']}}
                                 </td>
                                 <td class="shoping__cart__item__close">
-                                    <a href="{{Route('cart.deleteCart',$item->id)}}">  <span class="icon_close"></span></a>
+                                    <a href="{{Route('cart.deleteCart',$item['id'])}}">  <span class="icon_close"></span></a>
     
                                 </td>
                                 
                             </tr>
-                            <?php $total+= $item->total ?>
+                            <?php $total+= $item['quntity']*$item['product']['Price'] ?>
 
                             @endforeach 
                        
@@ -72,7 +74,7 @@
                         
                     </table>
                 
-                    {{$carts->links()}}
+                    {{-- {{$getCartItems->links()}} --}}
                 
                 </div>
             </div>
@@ -97,9 +99,9 @@
                    
                    
                 
-                        {{-- <a href="{{route('order.orderSave')}}"  class="primary-btn">PROCEED TO CHECKOUT</a> --}}
+                         {{-- <a href="{{route('order.orderSave')}}"  class="primary-btn">PROCEED TO CHECKOUT</a> 
                         
-                        <a href="{{ route('login') }}"  class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <a href="{{ route('login') }}"  class="primary-btn">PROCEED TO CHECKOUT</a> --}}
                     @else
                     <div class="col-lg-6">
                         <div class="shoping__checkout">
@@ -109,7 +111,7 @@
                             </ul>
                         
                     @endif
-                </div>
+                </div> -
             </div>
         </div>
     </div>
@@ -121,7 +123,33 @@
 <!-- Js Plugins -->
 
 @include('Home.js')
+<script>
+// Assuming you have a button or an event listener that triggers the update
+function updateProductQuantity(productId, quantity) {
+  // Create an object with the update data
+  var data = {
+    productId: productId,
+    quantity: quantity
+  };
 
+  // Send an AJAX request to the server
+  $.ajax({
+    url: '/cart/update-quantity', // Replace with your route
+    type: 'POST',
+    data: data,
+    success: function(response) {
+      // Handle the response from the server
+      // Update the necessary elements on the page
+      console.log(response);
+    },
+    error: function(error) {
+      // Handle the error, if any
+      console.log(error);
+    }
+  });
+}
+
+<script>    
 
 </body>
 

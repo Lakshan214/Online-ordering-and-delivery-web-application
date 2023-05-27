@@ -3,12 +3,29 @@
 namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
-
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class CartController extends Controller
 {
     public function AddToCart(Request $request,$id){
+
+      $sessionId = session()->get('sessionId');
+
+      if (empty($sessionId)) {
+          $sessionId = session()->getId();
+          session()->put('sessionId', $sessionId);
+      }
+
+      if(Auth::check()){
+          $use_id=Auth::user()->id;
+
+      }
+      else{
+        $use_id=0;
+      }
         $product=product::find($id);
         $product_exist_id=cart::where('ProductId','=',$id)->get('id')->first();
 
@@ -19,7 +36,7 @@ class CartController extends Controller
             // $cart->quntity=$Quantity;
             $cart->quntity=$Quantity+ $request->quntity;
  
-            $cart->total=$product->Price*$cart->quntity;
+           
            
  
             $cart->save();
@@ -29,12 +46,11 @@ class CartController extends Controller
         else{
         $cart=new cart;
 
-        $cart->Name=$product->Name;
+        $cart->userId=$use_id;
         $cart->ProductId=$product->id;
-        $cart->image=$product->image;
         $cart->quntity=$request->quntity;
-        $cart->Price=$product->Price;
-        $cart->total=$product->Price*$request->quntity;
+        $cart->sessionId= $sessionId;
+       
         $cart->save();
 
        
@@ -45,8 +61,9 @@ class CartController extends Controller
     
       public function showCart(){
 
-       $carts=Cart::paginate(5);
-        return View('Home.cart',compact('carts'));
+        $getCartItems=Cart::getCartItems();
+        
+        return View('Home.cart',compact('getCartItems'));
       }
       
       public function DeleteCart($id){
@@ -64,7 +81,6 @@ class CartController extends Controller
         $data=Cart::find($id);
         $data->quntity=$request->quntity;
     
-        $data->total=$product->Price*$request->quntity;
         $data->save();
       
         return redirect()->back();
