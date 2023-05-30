@@ -4,70 +4,86 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
-use Session;
+use Illuminate\Support\Facades\Log;
+
 use Stripe;
 class OredrtController extends Controller
 {
+
+
+    public function OrderSave(Request $request){
+     
     
 
-    public function OrderSave(){
-      if (Auth::check()) {
-        $user = Auth::user();
-        $userid = $user->id;
+      
+        $sessionId = Session::getId();
+           
+           // Retrieve the session ID
+           $cartItems = Cart::where('sessionId', $sessionId)->get();
+           $productIds = $cartItems->pluck('ProductId');
+           
+           // Retrieve the product details for the product IDs
+           $products = Product::whereIn('id', $productIds)->get();
+           
+              // Save cart items to the order table
+              $Order = new Order();
+              // $Order->user_Id = Auth::user()->id;
+              $Order->name = $request->name;
+              $Order->phone = $request->phone;
+              $Order->City = $request->City;
+              // $Order->email = $request->email;
+              $Order->Locatontype = $request->Ltype;
+              $Order->address = $request->address;
+              $Order->pmode = $request->payment;
+              $Order->status = "processing";
+              $Order->save();
+              
+              foreach ($cartItems as $cartItem) {
+                $product = $products->firstWhere('id', $cartItem->ProductId);
+                if ($product) {
+                    $orderItem = new OrderItem();
+                    $orderItem->orderId = $Order->id;
+                    $orderItem->quntity = $cartItem->quntity;
+                    $orderItem->ProductId = $cartItem->ProductId;
+                    $orderItem->name = $product->Name;
+                    $orderItem->img = $product->image;
+                    $orderItem->price = $product->Price;
+                    $orderItem->save();
+                }
+              
+              }
+              // Clear cart items (optional if you want to remove items from the cart table)
+              Cart::where('sessionId', $sessionId)->delete();
+      
+              return redirect()->back();
         
-        $data = Cart::all();
-        
-        foreach ($data as $cartItem) {
-            $Order = new Order();
-            $Order->ProductId = $cartItem->ProductId;
-            $Order->userId = $userid;
-            $Order->userName = $user->name;
-            $Order->phone = $user->phone;
-            $Order->City = $user->City;
-            $Order->Ltype = $user->Ltype;
-            $Order->address = $user->address;
-            $Order->quntity = $cartItem->quntity;
-            $Order->total = $cartItem->total;
-            $Order->Price = $cartItem->Price;
-            $Order->status = "processing";
-            $Order->save();
-            
-            $product = Product::find($cartItem->ProductId);
-            $quantity = $product->quantity;
-            $product->quantity = $quantity - $cartItem->quntity;
-            $product->save();
-        }
-        
-        // Remove all items from the cart table
-        Cart::truncate();
-        $cart = Cart::all(); // Get an updated list of cart items (which will be empty in this case)
-        
-        return View('auth.register', compact('cart'));
+      }
+      
     
-           }
-      
-          else
-          {
-      
-            return redirect('login');
-          }
-    }
 
+      
 
     
     public function Registerview(){
         
        
-        $cart=Cart::all();
-       return View('auth.register',compact('cart'));
+      $getCartItems=Cart::getCartItems();
+       return View('auth.register',compact('getCartItems'));
     }
-
+    
+    public function signin(){
+        
+       
+      
+       return View('Home.sigin');
+    }
 
 
 

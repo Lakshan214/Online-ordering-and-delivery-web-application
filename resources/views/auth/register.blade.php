@@ -20,7 +20,7 @@
       
         <div class="checkout__form">
             <h4>Billing Details</h4>
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('order.orderSave') }}">
                 @csrf
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
@@ -35,11 +35,7 @@
                         </div>
                        
                         
-                        <div class="checkout__input">
-                            <p>user type<span>*</span></p>
-                            <input  type="number" min="0" Max="3" name="userType" :value="old('userType')" autocomplete="userType">
-                         
-                        </div>
+                       
                        
                         <div class="row">
                             <div class="col-lg-6">
@@ -87,18 +83,11 @@
                         
                         <br><br>
 
-                        <div class="checkout__input">
-                            <p>Account Password<span>*</span></p>
-                            <input  type="password" name="password" required autocomplete="new-password">
-                        </div>
-                        <div class="checkout__input">
-                            <p>Conform Account Password<span>*</span></p>
-                            <input type="password" name="password_confirmation" required autocomplete="new-password">
-                        </div>
-                        <button  class="btn btn-primary btn-lg" type="submit" style="color: black;"> Register</button>
+             
+                        {{-- <button  class="btn btn-primary btn-lg" type="submit" style="color: black;"> Register</button> --}}
                     </div>
                   
-                </form>
+               
 
                     <div class="col-lg-4 col-md-6">
                  
@@ -106,29 +95,37 @@
                             <h4>Your Order</h4>
                             <div class="checkout__order__products">Products <span>Total</span></div>
                             <?php $total=0; ?>
-                            @forelse ($cart as $item)
+                            @if($getCartItems)
+                           @foreach ($getCartItems as $item)
                                 
                            
                             <ul>
-                                <li>{{$item->Name}} <span> Rs.{{$item->total}}.00</span></li>
+                                <li>{{$item['product']['Name']}} x <b>{{$item['quntity']}}</b><span> Rs.{{$item['quntity']*$item['product']['Price']}}</span></li>
                                 
                             </ul>
-                            <?php $total+= $item->total ?>
+                            @endforeach
+                            <?php $total += $item['quntity']*$item['product']['Price']  ?>
                            
                            
                             <div class="checkout__order__subtotal">Subtotal <span>Rs.{{$total}}.00</span></div>
+                           
                             <div class="checkout__order__total">Total <span>Rs.{{$total}}.00</span></div>
-                            <a href="{{route('order.orderSave')}}" class="site-btn " style="background-color: blue;"> Cash on delivery</a><br><br>
-                            @empty
+ 
+                            <input type="radio"  name="payment" value="cash">
+                              <label for="html">Cash on Delevery</label><br>
+                              <input type="radio"  name="payment" value="Card">
+                              <label for="css">Online Payment</label><br><br>
+                          
+                              @else
                                 <h3 style="color: red">Oder is empty</h3>
-                            @endforelse
-                            @if($total>0)
-                            <a href="{{route('order.stripView',$total)}}" class="site-btn">Online Payment</a>
+                              @endif
+
                             
-                            @else
+                            <button type="submit" class="site-btn">Online Payment</button>
+                            
+                        </form>
                              
-                            
-                            @endif
+                           
                         </div>
                        
                     </div>

@@ -24,6 +24,7 @@ Route::get('/index',[HomeController::class,'index2']);
 
 Route::get('/redirect',[HomeController::class,'redirect']);
 Route::get('/registerview',[OredrtController::class,'Registerview']);
+Route::get('/signin',[OredrtController::class,'signin']);
 
 Route::middleware([
     'auth:sanctum',
@@ -57,7 +58,7 @@ Route::prefix('/cart')->group (function(){
 });
 Route::prefix('/order')->group (function(){
 
-    Route::get('/orderSave',[OredrtController::class,'OrderSave'])->name('order.orderSave')->middleware('auth','verified');
+    Route::post('/orderSave',[OredrtController::class,'OrderSave'])->name('order.orderSave');
     Route::get('/stripView/{total}',[OredrtController::class,'stripView'])->name('order.stripView')->middleware('auth','verified');
     Route::post('/striPost',[OredrtController::class,'stripePost'])->name('order.striPost');
     Route::get('/View',[OredrtController::class,'View'])->name('order.View');

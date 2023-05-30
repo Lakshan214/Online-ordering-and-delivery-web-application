@@ -31,8 +31,7 @@ class HomeController extends Controller
        else
         {
 
-          $cart=Cart::all();
-          return View('auth.register',compact('cart'));
+          return redirect()->back();
           // $Brand=Brand::all();
           // $product=Product::all();
           // $catagory=Catagory::all();
@@ -56,7 +55,7 @@ class HomeController extends Controller
       $product2=Product::all();
       $product3=Product::latest()->get();
      
-      Cart::truncate();
+      
       
       return view('Home.index',compact('catagory2','catagory1','product','product1','product2','product3','Brands',));
      }
@@ -71,9 +70,9 @@ class HomeController extends Controller
       $product2=Product::all();
       $product3=Product::latest()->get();
      
+      $cartCount=Cart::all()->count();
       
-      
-      return view('Home.index',compact('catagory2','catagory1','product','product1','product2','product3','Brands',));
+      return view('Home.index',compact('catagory2','catagory1','product','product1','product2','product3','Brands', "cartCount"));
      }
   
      
@@ -105,7 +104,8 @@ class HomeController extends Controller
 
          else
          {
-          return redirect()->back();
+          $getCartItems=Cart::getCartItems();
+          return View('auth.register',compact('getCartItems'));
          }
 
        }

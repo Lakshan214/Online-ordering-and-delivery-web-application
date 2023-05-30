@@ -27,7 +27,9 @@ class CartController extends Controller
         $use_id=0;
       }
         $product=product::find($id);
-        $product_exist_id=cart::where('ProductId','=',$id)->get('id')->first();
+        $product_exist_id = cart::where('ProductId', $id)
+        ->where('sessionId', $sessionId)
+        ->first();
 
         if($product_exist_id!= null){
  
@@ -35,11 +37,7 @@ class CartController extends Controller
             $Quantity=$cart->quntity;
             // $cart->quntity=$Quantity;
             $cart->quntity=$Quantity+ $request->quntity;
- 
-           
-           
- 
-            $cart->save();
+             $cart->save();
  
             return redirect()->back();
         }

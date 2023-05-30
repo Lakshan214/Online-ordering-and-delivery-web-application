@@ -83,7 +83,7 @@ class ProductController extends Controller
  
         }
       
-        $product->save();
+       
         
     //   if ($request->hasFile('image1')){
          
@@ -102,10 +102,10 @@ class ProductController extends Controller
     //             ]
     //             );
 
-
+    //         }}
 
         
-
+            $product->save();
     
     return redirect()->back()->with ('message',' Added Sucessfully!!');
     }
