@@ -23,7 +23,7 @@ Route::get('/',[HomeController::class,'index']);
 Route::get('/index',[HomeController::class,'index2']); 
 
 Route::get('/redirect',[HomeController::class,'redirect']);
-Route::get('/registerview',[OredrtController::class,'Registerview']);
+Route::get('/registerview',[OredrtController::class,'Registerview'])->middleware('auth','verified');
 Route::get('/signin',[OredrtController::class,'signin']);
 
 Route::middleware([

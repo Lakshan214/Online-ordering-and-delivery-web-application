@@ -33,6 +33,7 @@
             <th scope="col">Name</th>
             <th scope="col">Date</th>
             <th scope="col">Status Msg</th>
+            <th scope="col">Payment method</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -42,23 +43,16 @@
        @endphp
       
       @foreach ($order as $item)
-          @php
-              $id = $item->userId;
-          @endphp
-      
-          @if ($id !== $previousUserId)
+         
               <tr>
                   <th scope="row">{{ $item->id }}</th>
-                  <td>{{ $item->userName }}</td>
+                  <td>{{ $item->name }}</td>
                   <td>{{ $item->created_at }}</td>
                   <td>{{ $item->status }}</td>
+                  <td>{{ $item->pmode }}</td>
                   <td><a class="btn btn-primary " >View</a></td>
               </tr>
-          @endif
-      
-          @php
-              $previousUserId = $id;
-          @endphp
+          
           @endforeach
       
         </tbody>

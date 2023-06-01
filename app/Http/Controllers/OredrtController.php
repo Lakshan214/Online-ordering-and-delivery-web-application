@@ -21,7 +21,7 @@ class OredrtController extends Controller
     public function OrderSave(Request $request){
      
     
-
+      if (Auth::check()){
       
         $sessionId = Session::getId();
            
@@ -34,11 +34,11 @@ class OredrtController extends Controller
            
               // Save cart items to the order table
               $Order = new Order();
-              // $Order->user_Id = Auth::user()->id;
-              $Order->name = $request->name;
-              $Order->phone = $request->phone;
+              $Order->user_Id = Auth::user()->id;
+              $Order->name = Auth::user()->name;
+              $Order->phone = Auth::user()->phone;
+              $Order->email = Auth::user()->email;
               $Order->City = $request->City;
-              // $Order->email = $request->email;
               $Order->Locatontype = $request->Ltype;
               $Order->address = $request->address;
               $Order->pmode = $request->payment;
@@ -56,14 +56,22 @@ class OredrtController extends Controller
                     $orderItem->img = $product->image;
                     $orderItem->price = $product->Price;
                     $orderItem->save();
+ 
+                    // ..............Quntty hadlaing................. 
+
+                    $productQ=Product::find( $productIds);
+                    $quntty= $productQ->quntity;
+                    $newquntty= $quntty-$cartItem->quntity;
+                    $productQ->quntity=$newquntty;
+                    $productQ->save();
                 }
               
-              }
+              }}
               // Clear cart items (optional if you want to remove items from the cart table)
               Cart::where('sessionId', $sessionId)->delete();
       
               return redirect()->back();
-        
+       
       }
       
     
@@ -73,9 +81,16 @@ class OredrtController extends Controller
     
     public function Registerview(){
         
-       
+      if (Auth::check()){
       $getCartItems=Cart::getCartItems();
+     
        return View('auth.register',compact('getCartItems'));
+      }
+      else
+      {
+  
+        return redirect('login');
+      }
     }
     
     public function signin(){
@@ -121,26 +136,18 @@ class OredrtController extends Controller
 
 public function View(){
   if (Auth::check()) {
-  $order= Order::where('userId',Auth::user()->id)->orderBy('created_at','desc')->get();
+    $order= Order::where('user_Id',Auth::user()->id)->orderBy('created_at','desc')->get();
   
-   return View('Home.oder',compact('order'));
-  }
-  else
-  {
+    return View('Home.oder',compact('order'));
 
+} else {
     return redirect('login');
-  }
+}
+
 }
 
 
 
-public function paymentMode(Request $request, $id){
-  dd($id);
-  // $Order=Order::find($id);
-  //  $Order->pmode="1";
-   
-  // $Order->save();
-  return View('Home.oder');
-}
+
 
 }
