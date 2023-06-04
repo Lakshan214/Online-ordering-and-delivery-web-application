@@ -50,7 +50,7 @@
                   <td>{{ $item->created_at }}</td>
                   <td>{{ $item->status }}</td>
                   <td>{{ $item->pmode }}</td>
-                  <td><a class="btn btn-primary " >View</a></td>
+                  <td><a href="{{route('order.orderDetails',$item->id)}}" class="btn btn-primary " >View</a></td>
               </tr>
           
           @endforeach

@@ -27,7 +27,7 @@
                         
                         <div class="checkout__input">
                             <p>Delivery Address<span>*</span></p>
-                            <input type="text" name="address" :value="old('address')" required autocomplete="address">
+                            <input type="text" name="address" :value="Auth::user()->address" required autocomplete="address">
                          
                         </div>
                         
@@ -83,19 +83,19 @@
                            
                             <div class="checkout__order__subtotal">Subtotal <span>Rs.{{$total}}.00</span></div>
                            
-                            <div class="checkout__order__total">Total <span>Rs.{{$total}}.00</span></div>
+                            <div   class="checkout__order__total">Total <span>Rs.{{$total}}.00</span></div>
  
-                            <input type="radio"  name="payment" value="cash">
+                            <input type="radio"  name="payment" value="cash_Payment">
                               <label for="html">Cash on Delevery</label><br>
-                              <input type="radio"  name="payment" value="Card">
+                              <input type="radio"  name="payment" value="Card_Payment">
                               <label for="css">Online Payment</label><br><br>
                           
                               @else
-                                <h3 style="color: red">Oder is empty</h3>
+                                <h3 style="color: red">Oder is empty</h3 >
                               @endif
 
                             
-                            <button type="submit" class="site-btn">Online Payment</button>
+                            <button type="submit" class="site-btn" style="color: rgb(243, 243, 245);background-color:#7fad39;"> CHECKOUT</button>
                             
                         </form>
                              

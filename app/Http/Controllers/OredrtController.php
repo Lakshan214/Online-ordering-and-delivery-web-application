@@ -21,58 +21,61 @@ class OredrtController extends Controller
     public function OrderSave(Request $request){
      
     
-      if (Auth::check()){
-      
-        $sessionId = Session::getId();
-           
-           // Retrieve the session ID
-           $cartItems = Cart::where('sessionId', $sessionId)->get();
-           $productIds = $cartItems->pluck('ProductId');
-           
-           // Retrieve the product details for the product IDs
-           $products = Product::whereIn('id', $productIds)->get();
-           
-              // Save cart items to the order table
-              $Order = new Order();
-              $Order->user_Id = Auth::user()->id;
-              $Order->name = Auth::user()->name;
-              $Order->phone = Auth::user()->phone;
-              $Order->email = Auth::user()->email;
-              $Order->City = $request->City;
-              $Order->Locatontype = $request->Ltype;
-              $Order->address = $request->address;
-              $Order->pmode = $request->payment;
-              $Order->status = "processing";
-              $Order->save();
-              
-              foreach ($cartItems as $cartItem) {
-                $product = $products->firstWhere('id', $cartItem->ProductId);
-                if ($product) {
-                    $orderItem = new OrderItem();
-                    $orderItem->orderId = $Order->id;
-                    $orderItem->quntity = $cartItem->quntity;
-                    $orderItem->ProductId = $cartItem->ProductId;
-                    $orderItem->name = $product->Name;
-                    $orderItem->img = $product->image;
-                    $orderItem->price = $product->Price;
-                    $orderItem->save();
- 
-                    // ..............Quntty hadlaing................. 
-
-                    $productQ=Product::find( $productIds);
-                    $quntty= $productQ->quntity;
-                    $newquntty= $quntty-$cartItem->quntity;
-                    $productQ->quntity=$newquntty;
-                    $productQ->save();
+      if (Auth::check()) {
+        // Retrieve the cart items for the user
+        $cartItems = Cart::where('userId', Auth::user()->id)->get();
+        $productIds = $cartItems->pluck('ProductId');
+    
+        // Retrieve the product details for the product IDs
+        $products = Product::whereIn('id', $productIds)->get();
+    
+        // Save cart items to the order table
+        $order = new Order();
+        $order->user_Id = Auth::user()->id;
+        $order->name = Auth::user()->name;
+        $order->phone = Auth::user()->phone;
+        // $order->email = Auth::user()->email;
+        $order->City = $request->City;
+        $order->Locatontype = $request->Ltype;
+        $order->address = $request->address;
+        $order->pmode = $request->payment;
+        $order->status = "processing";
+        $order->save();
+    
+        foreach ($cartItems as $cartItem) {
+            $product = $products->firstWhere('id', $cartItem->ProductId);
+            if ($product) {
+                $orderItem = new OrderItem();
+                $orderItem->orderId = $order->id;
+                $orderItem->quntity = $cartItem->quntity;
+                $orderItem->ProductId = $cartItem->ProductId;
+                $orderItem->name = $product->Name;
+                $orderItem->img = $product->image;
+                $orderItem->price = $product->Price;
+                $orderItem->save();
+    
+                // Quantity handling
+                $productQ = Product::find($cartItem->ProductId);
+                $quantity = $productQ->quntity;
+                if($quantity >0){
+                $newQuantity = $quantity - $cartItem->quntity;
+                $productQ->quantity = $newQuantity;
+                $productQ->save();
                 }
-              
-              }}
-              // Clear cart items (optional if you want to remove items from the cart table)
-              Cart::where('sessionId', $sessionId)->delete();
-      
-              return redirect()->back();
+            }
+        }
+    
+        // Delete cart items
+        $cartItems->each->delete();
+       if($order->pmode=='Card_Payment'){
        
-      }
+         return View('Home.strip',compact('total'));
+          
+       }
+    }
+    return redirect()->back();
+   
+  }
       
     
 
@@ -148,6 +151,22 @@ public function View(){
 
 
 
+public function orderDetails($id)
+{
+
+  $orderid=$id;
+  $orderItem= OrderItem::where('orderId',$orderid)->orderBy('created_at','desc')->get();
+
+  
+    $order= Order::where('id', $orderid)->orderBy('created_at','desc')->get();
+  
+   
+    return View('Home.orderDetails',compact('order','orderItem'));
+  
+   
 
 
+
+
+}
 }
