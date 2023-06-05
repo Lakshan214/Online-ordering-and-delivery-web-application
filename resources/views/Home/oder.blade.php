@@ -57,6 +57,7 @@
       
         </tbody>
       </table>
+      {{$order->links()}}
       <br><br>
 
     

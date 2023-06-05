@@ -34,7 +34,7 @@ class OredrtController extends Controller
         $order->user_Id = Auth::user()->id;
         $order->name = Auth::user()->name;
         $order->phone = Auth::user()->phone;
-        // $order->email = Auth::user()->email;
+        $order->email = Auth::user()->email;
         $order->City = $request->City;
         $order->Locatontype = $request->Ltype;
         $order->address = $request->address;
@@ -69,7 +69,7 @@ class OredrtController extends Controller
         $cartItems->each->delete();
        if($order->pmode=='Card_Payment'){
        
-         return View('Home.strip',compact('total'));
+         return View('Home.strip');
           
        }
     }
@@ -132,14 +132,14 @@ class OredrtController extends Controller
         "description" => "Thanks for payment"
     ]);
 
-    // Session::flash('success', 'Payment successful!');
+    Session::flash('success', 'Payment successful!');
 
 
 }
 
 public function View(){
   if (Auth::check()) {
-    $order= Order::where('user_Id',Auth::user()->id)->orderBy('created_at','desc')->get();
+    $order= Order::where('user_Id',Auth::user()->id)->orderBy('created_at','desc')->paginate(5);
   
     return View('Home.oder',compact('order'));
 

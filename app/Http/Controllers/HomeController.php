@@ -11,6 +11,7 @@ use App\Models\ProductImg;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class HomeController extends Controller 

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
+use Illuminate\Console\View\Components\Alert as ComponentsAlert;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class CartController extends Controller
@@ -38,7 +40,7 @@ class CartController extends Controller
             // $cart->quntity=$Quantity;
             $cart->quntity=$Quantity+ $request->quntity;
              $cart->save();
- 
+             Alert::class::success('product already exists' ,'changed the quantity');
             return redirect()->back();
         }
         else{
@@ -51,7 +53,7 @@ class CartController extends Controller
        
         $cart->save();
 
-       
+       Alert::class::success('product Added Successfuly','We have addeed product to the cart');
         return redirect()->back();
         }
        }
@@ -66,8 +68,11 @@ class CartController extends Controller
       
       public function DeleteCart($id){
 
+
+     
        $data=Cart::find($id);
        $data->delete();
+       Alert::class::success('product Added Successfuly','We have addeed product to the cart');
        return redirect()->back();
 
       }

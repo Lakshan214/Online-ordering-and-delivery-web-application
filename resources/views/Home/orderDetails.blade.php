@@ -80,6 +80,7 @@
                 
               </tr>
             </thead>
+            <?php $total=0; ?>
             @foreach ($orderItem as $key=> $item)
             <tbody>
               <tr>
@@ -89,13 +90,14 @@
                   <img style="width: 50px; height: 50px;" src="/product/{{$item->img}}">
                 </td>
                 <td>{{ $item->quntity}}</td>
-                <td>{{ $item->Price}}</td>
-                <td>{{ $item->Price* $item->quntity}}</td>
+                <td>Rs.{{ $item->Price}}</td>
+                <td>Rs.{{ $item->Price* $item->quntity}}</td>
               </tr>
-            
+              <?php $total+=$item->Price* $item->quntity; ?>
             </tbody>
             @endforeach
           </table>
+          <h3 style="text-align: center; font-size:30px; color:#8d2f2f;"><b>Total:Rs.{{$total}}.00</b></h3> 
           <br><br>
 
    

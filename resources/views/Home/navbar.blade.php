@@ -1,6 +1,6 @@
-<div id="preloder">
+{{-- <div id="preloder">
     <div class="loader"></div>
-</div>
+</div> --}}
 
 <!-- Humberger Begin -->
 <div class="humberger__menu__overlay"></div>
