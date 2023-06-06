@@ -63,7 +63,9 @@ Route::prefix('/order')->group (function(){
     Route::post('/striPost',[OredrtController::class,'stripePost'])->name('order.striPost');
     Route::get('/View',[OredrtController::class,'View'])->name('order.View');
     Route::get('/payment/{id}',[OredrtController::class,'paymentMode'])->name('order.payment');
+    Route::post('/usedetails',[OredrtController::class,'usedetailsSave'])->name('order.usedetails');
     Route::get('/orderDetails/{id}',[OredrtController::class,'orderDetails'])->name('order.orderDetails');
+    Route::get('/printPDF/{id}',[OredrtController::class,'printPDF'])->name('order.printPDF');
 
  
 

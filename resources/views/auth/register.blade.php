@@ -20,21 +20,25 @@
       
         <div class="checkout__form">
             <h4>Billing Details</h4>
-            <form method="POST" action="{{ route('order.orderSave') }}">
+            <form method="POST" action="{{ route('order.usedetails') }}">
                 @csrf
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
                         
                         <div class="checkout__input">
+                            <p>Phone<span>*</span></p>
+                            <input type="number" name="phone" value="{{$user->phone}}" required autocomplete="phone">
+                        </div>
+                        <div class="checkout__input">
                             <p>Delivery Address<span>*</span></p>
-                            <input type="text" name="address" :value="Auth::user()->address" required autocomplete="address">
+                            <input type="text" name="address" value="{{$user->address}}" required autocomplete="address">
                          
                         </div>
                         
                         <div class="checkout__input" >
                             <p> Delivery City<span>*</span></p>
                             {{-- <input type="text" name="City" :value="old('City')" required > --}}
-                            <select  type="text"  name="City"    >
+                            <select  type="text"  name="City" value= "{{$user->City}}"  >
                                     <option  value="Krunegla">Krunegla</option>
                                     <option value="Anuradhapura">Anuradhapura</option>
                                     <option value="Gmpaha">Gmpaha</option>
@@ -47,7 +51,7 @@
                         <div class="checkout__input">
                             <p> Location Type<span>*</span></p>
                             {{-- <input type="text" name="Ltype" :value="old('Ltype')"  > --}}
-                            <select name="Ltype"  >
+                            <select name="Ltype" value= "{{$user->Ltype}}"  >
                                 <option   value="House">House</option>
                                 <option value="Office">Office</option>
                                 <option value="Appatment">Appatment</option>

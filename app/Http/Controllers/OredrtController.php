@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-
+use PharIo\Manifest\Url;
 use Stripe;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 class OredrtController extends Controller
 {
 
@@ -35,9 +36,9 @@ class OredrtController extends Controller
         $order->name = Auth::user()->name;
         $order->phone = Auth::user()->phone;
         $order->email = Auth::user()->email;
-        $order->City = $request->City;
-        $order->Locatontype = $request->Ltype;
-        $order->address = $request->address;
+        $order->City = Auth::user()->City;
+        $order->Locatontype = Auth::user()->Ltype;
+        $order->address =Auth::user()->address;
         $order->pmode = $request->payment;
         $order->status = "processing";
         $order->save();
@@ -86,8 +87,8 @@ class OredrtController extends Controller
         
       if (Auth::check()){
       $getCartItems=Cart::getCartItems();
-     
-       return View('auth.register',compact('getCartItems'));
+      $user = User::find(Auth::user()->id);
+       return View('auth.register',compact('getCartItems','user'));
       }
       else
       {
@@ -132,6 +133,54 @@ class OredrtController extends Controller
         "description" => "Thanks for payment"
     ]);
 
+
+    if (Auth::check()) {
+      // Retrieve the cart items for the user
+      $cartItems = Cart::where('userId', Auth::user()->id)->get();
+      $productIds = $cartItems->pluck('ProductId');
+  
+      // Retrieve the product details for the product IDs
+      $products = Product::whereIn('id', $productIds)->get();
+  
+      // Save cart items to the order table
+      $order = new Order();
+      $order->user_Id = Auth::user()->id;
+      $order->name = Auth::user()->name;
+      $order->phone = Auth::user()->phone;
+      $order->email = Auth::user()->email;
+      $order->City = Auth::user()->City;
+      $order->Locatontype = Auth::user()->Ltype;
+      $order->address =Auth::user()->address;
+      $order->pmode = $request->payment;
+      $order->status = "processing";
+      $order->save();
+  
+      foreach ($cartItems as $cartItem) {
+          $product = $products->firstWhere('id', $cartItem->ProductId);
+          if ($product) {
+              $orderItem = new OrderItem();
+              $orderItem->orderId = $order->id;
+              $orderItem->quntity = $cartItem->quntity;
+              $orderItem->ProductId = $cartItem->ProductId;
+              $orderItem->name = $product->Name;
+              $orderItem->img = $product->image;
+              $orderItem->price = $product->Price;
+              $orderItem->save();
+  
+              // Quantity handling
+              $productQ = Product::find($cartItem->ProductId);
+              $quantity = $productQ->quntity;
+              if($quantity >0){
+              $newQuantity = $quantity - $cartItem->quntity;
+              $productQ->quantity = $newQuantity;
+              $productQ->save();
+              }
+              return redirect()->route('order.View');
+          }
+      }
+  
+      
+     }
     Session::flash('success', 'Payment successful!');
 
 
@@ -140,7 +189,7 @@ class OredrtController extends Controller
 public function View(){
   if (Auth::check()) {
     $order= Order::where('user_Id',Auth::user()->id)->orderBy('created_at','desc')->paginate(5);
-  
+   
     return View('Home.oder',compact('order'));
 
 } else {
@@ -161,12 +210,88 @@ public function orderDetails($id)
     $order= Order::where('id', $orderid)->orderBy('created_at','desc')->get();
   
    
-    return View('Home.orderDetails',compact('order','orderItem'));
+    return View('Home.orderDetails',compact('order','orderItem','orderid'));
   
-   
+  }
 
 
+  public function usedetailsSave(Request $request){
+    
 
+    $order = User::find(Auth::user()->id);
+    $order->City = $request->City;
+    $order->phone = $request->phone;
+    $order->Locatontype = $request->Ltype;
+    $order->address = $request->address;
+    $order->pmode = $request->payment;
+    $order->status = "processing";
+    $order->save();
+    if($order->pmode=='Card_Payment'){
+       
+      return View('Home.strip');
+       
+    }
+    else{
+      if (Auth::check()) {
+        // Retrieve the cart items for the user
+        $cartItems = Cart::where('userId', Auth::user()->id)->get();
+        $productIds = $cartItems->pluck('ProductId');
+    
+        // Retrieve the product details for the product IDs
+        $products = Product::whereIn('id', $productIds)->get();
+    
+        // Save cart items to the order table
+        $order = new Order();
+        $order->user_Id = Auth::user()->id;
+        $order->name = Auth::user()->name;
+        $order->phone = Auth::user()->phone;
+        $order->email = Auth::user()->email;
+        $order->City = Auth::user()->City;
+        $order->Locatontype = Auth::user()->Ltype;
+        $order->address =Auth::user()->address;
+        $order->pmode = $request->payment;
+        $order->status = "processing";
+        $order->save();
+    
+        foreach ($cartItems as $cartItem) {
+            $product = $products->firstWhere('id', $cartItem->ProductId);
+            if ($product) {
+                $orderItem = new OrderItem();
+                $orderItem->orderId = $order->id;
+                $orderItem->quntity = $cartItem->quntity;
+                $orderItem->ProductId = $cartItem->ProductId;
+                $orderItem->name = $product->Name;
+                $orderItem->img = $product->image;
+                $orderItem->price = $product->Price;
+                $orderItem->save();
+    
+                // Quantity handling
+                $productQ = Product::find($cartItem->ProductId);
+                $quantity = $productQ->quntity;
+                if($quantity >0){
+                $newQuantity = $quantity - $cartItem->quntity;
+                $productQ->quantity = $newQuantity;
+                $productQ->save();
+                }
+                return redirect()->route('order.View');   
+            }
+        }
+
+
+    }
+  }
+  }
+
+
+  public function printPDF($id){
+
+  $orderid=$id;
+  $orderItem= OrderItem::where('orderId',$orderid)->orderBy('created_at','desc')->get();
+  $order= Order::where('id', $orderid)->orderBy('created_at','desc')->get();
+  
+  $pdf = PDF::class::loadView('Home.invoice', compact('order','orderItem',));
+  return $pdf->download('Bill.pdf');
+  }
 
 }
-}
+

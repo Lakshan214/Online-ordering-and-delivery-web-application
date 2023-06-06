@@ -24,11 +24,12 @@
     <!-- Header Section Begin -->
     @include('Home.header')
     <!-- Header Section End -->
-        <h3 style="text-align: center; font-size:30px; color:#7fad39;"><b>My Order Details</b></h3> 
- 
-        
+        <h3 style="text-align:center; font-size:30px; color:#7fad39;"><b>My Order Details</b></h3> 
+       
           <div style="padding:40px;">
           <table class="table"  >
+            
+        <a href="{{route('order.printPDF',$orderid)}}" class="btn btn-success" style="float:right;" >Print Pdf</a><br><br>
             <thead class="thead-light">
               <tr>
                
@@ -99,7 +100,7 @@
           </table>
           <h3 style="text-align: center; font-size:30px; color:#8d2f2f;"><b>Total:Rs.{{$total}}.00</b></h3> 
           <br><br>
-
+        
    
     
 

@@ -41,14 +41,13 @@
                          
                         </div>
                        
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="checkout__input">
+                        
+                                {{-- <div class="checkout__input">
                                     <p>Phone<span>*</span></p>
                                     <input type="number" name="phone" :value="old('phone')" required autocomplete="phone">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
+                                </div> --}}
+                           
+                            
                                 <div class="checkout__input">
                                     <p>Email<span>*</span></p>
                                     <input  type="email" name="email" :value="old('email')" required autocomplete="username">
