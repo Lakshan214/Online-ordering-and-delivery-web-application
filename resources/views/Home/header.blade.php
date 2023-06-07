@@ -53,7 +53,7 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="{{ url('/index') }}"><img style="height: 70px; width:200px;" src="{{asset('img/logo.png')}}" alt=""></a>
+                    <a href="{{ url('/') }}"><img style="height: 70px; width:200px;" src="{{asset('img/logo.png')}}" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">

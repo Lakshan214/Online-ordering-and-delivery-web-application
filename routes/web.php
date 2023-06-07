@@ -6,6 +6,7 @@ use App\Http\Controllers\CatagoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OredrtController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +21,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[HomeController::class,'index']); 
-Route::get('/index',[HomeController::class,'index2']); 
-
 Route::get('/redirect',[HomeController::class,'redirect']);
 Route::get('/registerview',[OredrtController::class,'Registerview'])->middleware('auth','verified');
 Route::get('/signin',[OredrtController::class,'signin']);
@@ -66,6 +65,7 @@ Route::prefix('/order')->group (function(){
     Route::post('/usedetails',[OredrtController::class,'usedetailsSave'])->name('order.usedetails');
     Route::get('/orderDetails/{id}',[OredrtController::class,'orderDetails'])->name('order.orderDetails');
     Route::get('/printPDF/{id}',[OredrtController::class,'printPDF'])->name('order.printPDF');
+    Route::get('/mail/{id}',[OredrtController::class,'sendMail'])->name('order.mail');
 
  
 
@@ -75,5 +75,19 @@ Route::prefix('/order')->group (function(){
 });
 
 Route::resource('Products',ProductController ::class);
+Route::prefix('Product')->group(function(){
+    Route::get('/active/{id}', [ProductController::class, 'ProductActive'])->name('product.active');
+    Route::get('/inactive/{id}', [ProductController::class, 'ProductInactive'])->name('product.inactive');
+});
+
 Route::resource('Catagory',CatagoryController ::class);
 Route::resource('Brand',BrandController ::class);
+
+Route::prefix('slider')->group(function(){
+    Route::get('/view', [SliderController::class, 'SliderView'])->name('manage-slider');
+    Route::post('/store', [SliderController::class, 'SliderStore'])->name('slider.store');
+    Route::get('/delete/{id}', [SliderController::class, 'SliderDelete'])->name('slider.delete');
+    Route::get('/inactive/{id}', [SliderController::class, 'SliderInactive'])->name('slider.inactive');
+    Route::get('/active/{id}', [SliderController::class, 'SliderActive'])->name('slider.active');
+
+    });

@@ -17,7 +17,7 @@
                 <th> Catagory </th>
                 <th> Quantity</th>
                 <th> Price</th>
-                <th style="width:80%;"> Descrtiptton</th>
+                 <th>Status </th>
                 <th> Action</th>
               </tr>
             </thead>
@@ -38,8 +38,18 @@
                 @endif   
                 <td>{{$product->quantity}} </td>
                 <td>{{$product->Price}} </td>
-                <td ><textarea style="height: 70px;"  class="form-control" placeholder="{{$product->Descrtiptton}}"></textarea>
-                  </td>
+                <td>
+                  @if($product->status  == 1)
+                  <div class="font-size-20">
+                   <span class="badge bg-success">Active</span>
+                  </div>
+                  @else
+                  <div class="font-size-20">
+                      <span class="badge bg-danger">inActive</span>
+                  </div>
+                  @endif
+              </td>
+               
                 <td>
                   
                     <form action="{{ route('Products.destroy',$product->id) }}" method="post">
@@ -54,7 +64,12 @@
                    </button>
              
                   </form>
-                  
+                    @if($product->status == 1)
+                    <a href="{{ route('product.inactive',$product->id) }}" id="Inactive" class="btn btn-danger" title="Inactive Now"><i class="mdi mdi-arrow-left-bold-circle-outline"></i> </a>
+                    @else
+                    <a href="{{ route('product.active',$product->id) }}" id="Active" class="btn btn-success" title="Active Now"><i class="mdi mdi-arrow-right-bold-circle-outline"></i> </a>
+                    @endif
+                              
                 </td>
 
               </tr>

@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\User;
+
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -14,6 +15,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use PharIo\Manifest\Url;
 use Stripe;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\InoviceOrderMailble;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 class OredrtController extends Controller
 {
@@ -292,6 +295,21 @@ public function orderDetails($id)
   $pdf = PDF::class::loadView('Home.invoice', compact('order','orderItem',));
   return $pdf->download('Bill.pdf');
   }
+
+public function sendMail($id){
+ 
+  $order = Order::find($id);
+
+  if (!$order) {
+    // Handle the case when the order is not found
+    // You can throw an exception, log an error, or return a response
+    // based on your application's requirements.
+    return;
+  }
+
+  Mail::to($order->email)->send(new InoviceOrderMailble($order));
+
+}
 
 }
 

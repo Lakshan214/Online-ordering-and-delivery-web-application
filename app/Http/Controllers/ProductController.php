@@ -52,7 +52,7 @@ class ProductController extends Controller
         $product->Price=$request->Pprice;
         $product->Descrtiptton=$request->Pdescripton;
         $product->trending=$request->trending==true ? '1':'0';
-        $product->status=$request->status;
+        $product->status=1;
         $product->meta_Taitle=$request->meta_Taitle;
         $product->meta_keyword=$request->meta_keyword;
         
@@ -189,5 +189,16 @@ class ProductController extends Controller
 
         $data->delete();
        return redirect()->back();
+    }
+
+    public function ProductActive($id){
+        Product::findOrFail($id)->update(['status' => 1]);
+        return redirect()->back();
+
+    }
+
+    public function ProductInactive($id){
+        Product::findOrFail($id)->update(['status' => 0]);
+        return redirect()->back();
     }
 }

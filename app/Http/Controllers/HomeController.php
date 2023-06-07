@@ -8,6 +8,7 @@ use App\Models\Catagory;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Models\ProductImg;
+use App\Models\Slider;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -55,26 +56,14 @@ class HomeController extends Controller
       $product1=Product::all();
       $product2=Product::all();
       $product3=Product::latest()->get();
+      $slider=Slider::latest()->get();
      
       
       
-      return view('Home.index',compact('catagory2','catagory1','product','product1','product2','product3','Brands',));
+      return view('Home.index',compact('catagory2','catagory1','product','product1','product2','product3','Brands','slider'));
      }
 
-     public function index2()
-     {  
-      $Brands=Brand::paginate(8);
-      $product=Product::all();
-      $catagory2=Catagory::all();
-      $catagory1=Catagory::all();
-      $product1=Product::all();
-      $product2=Product::all();
-      $product3=Product::latest()->get();
-     
-      $cartCount=Cart::all()->count();
-      
-      return view('Home.index',compact('catagory2','catagory1','product','product1','product2','product3','Brands', "cartCount"));
-     }
+    
   
      
    

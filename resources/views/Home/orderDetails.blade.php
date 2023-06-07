@@ -29,7 +29,9 @@
           <div style="padding:40px;">
           <table class="table"  >
             
-        <a href="{{route('order.printPDF',$orderid)}}" class="btn btn-success" style="float:right;" >Print Pdf</a><br><br>
+        <a href="{{route('order.printPDF',$orderid)}}" class="btn btn-success"  >Print Pdf</a><span style="margin-right: 10px;"></span>
+        <a href="{{route('order.mail',$orderid)}}" class="btn btn-praymary"  >Send Email</a>
+        <br><br>
             <thead class="thead-light">
               <tr>
                

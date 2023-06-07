@@ -27,6 +27,7 @@
        
          <div class="row featured__filter">
             @forelse ($products as $product)
+            @if($product->status  == 1)
             <div class="col-lg-3 col-md-4 col-sm-6 mix oranges a">
                 
                 <div class="featured__item">
@@ -45,7 +46,8 @@
                 </div>
             </div>
                 
-            
+        
+        @endif
             @empty
            
             
