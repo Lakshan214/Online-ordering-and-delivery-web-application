@@ -38,9 +38,7 @@
           </tr>
         </thead>
         <tbody>
-        @php
-          $previousUserId = null;
-       @endphp
+       
       
       @foreach ($order as $item)
          

@@ -10,7 +10,7 @@
    @endif 
 
 
-    <button style="height: 40px; background-color: #0090e7; " type="button" class="btn btn-primary"   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><h1>Add Catagory<h1></button>
+    <button style="height: 40px; background-color: #0090e7; " type="button" class="btn btn-primary"   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><h1>Add catagory<h1></button>
                 
     
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

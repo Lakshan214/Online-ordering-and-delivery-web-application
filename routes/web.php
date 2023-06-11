@@ -7,6 +7,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OredrtController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[HomeController::class,'index']); 
+Route::get('/',[HomeController::class,'index'])->name('index');; 
 Route::get('/redirect',[HomeController::class,'redirect']);
 Route::get('/registerview',[OredrtController::class,'Registerview'])->middleware('auth','verified');
 Route::get('/signin',[OredrtController::class,'signin']);
@@ -66,6 +68,7 @@ Route::prefix('/order')->group (function(){
     Route::get('/orderDetails/{id}',[OredrtController::class,'orderDetails'])->name('order.orderDetails');
     Route::get('/printPDF/{id}',[OredrtController::class,'printPDF'])->name('order.printPDF');
     Route::get('/mail/{id}',[OredrtController::class,'sendMail'])->name('order.mail');
+    Route::get('/admin/{id}',[OredrtController::class,'adminOderView'])->name('order.admin');
 
  
 
@@ -91,3 +94,20 @@ Route::prefix('slider')->group(function(){
     Route::get('/active/{id}', [SliderController::class, 'SliderActive'])->name('slider.active');
 
     });
+
+    // Route::prefix('wishlist')->group (function(){
+    //       Route::post('/store/{id}',[WishlistController::class,'store'])->name('wishlist.store');
+    //     // Route::get('/deleteCart/{id}',[CartController::class,'DeleteCart'])->name('cart.deleteCart');
+    //     // Route::post('/UpdateCart/{id}',[CartController::class,'UpdateCart'])->name('cart.UpdateCart');
+    // });
+
+    // Route::post('/add-to-wishlist/{$id}', [WishlistController::class, 'store']);
+       
+    Route::prefix('user')->group(function(){
+        Route::get('/view', [UserController::class,'View'])->name('user.View');
+        Route::post('/store', [UserController::class,'UserStore'])->name('user.store');
+        Route::get('/delete/{id}', [UserController::class, 'Delete'])->name('user.delete');
+        // Route::get('/inactive/{id}', [SliderController::class, 'SliderInactive'])->name('slider.inactive');
+        // Route::get('/active/{id}', [SliderController::class, 'SliderActive'])->name('slider.active');
+    
+        });

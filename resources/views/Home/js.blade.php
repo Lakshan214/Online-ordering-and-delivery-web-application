@@ -20,3 +20,13 @@ var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     s0.parentNode.insertBefore(s1,s0);
     })();
 </script>
+
+<script>
+    let value=0;
+    function cartCounter(){
+    value++;
+    document.getElementById("count").innerHTML = value;
+    }
+
+</script>
+    

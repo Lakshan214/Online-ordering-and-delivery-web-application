@@ -55,15 +55,12 @@
                     <form action="{{ route('Products.destroy',$product->id) }}" method="post">
 
                     <a href="{{ route('Products.edit',$product->id) }}"  class="btn btn-success " ><i class="mdi mdi-checkbox-marked-outline" style=""></i></a><td>
-                      
-
                       @csrf
                       @method('DELETE')
                    <button type="submit" class="btn btn-danger" style="background-color:red"  class="col-sm-6 col-md-4 col-lg-3">
                     <i  class="mdi mdi-delete"></i> 
                    </button>
-             
-                  </form>
+             </form>
                     @if($product->status == 1)
                     <a href="{{ route('product.inactive',$product->id) }}" id="Inactive" class="btn btn-danger" title="Inactive Now"><i class="mdi mdi-arrow-left-bold-circle-outline"></i> </a>
                     @else

@@ -192,7 +192,7 @@ class OredrtController extends Controller
 public function View(){
   if (Auth::check()) {
     $order= Order::where('user_Id',Auth::user()->id)->orderBy('created_at','desc')->paginate(5);
-   
+  
     return View('Home.oder',compact('order'));
 
 } else {
@@ -309,6 +309,14 @@ public function sendMail($id){
 
   Mail::to($order->email)->send(new InoviceOrderMailble($order));
 
+}
+
+public function adminOderView($id){
+  $orderid=$id;
+  $orderItem= OrderItem::where('orderId',$orderid)->orderBy('created_at','desc')->get();
+  $order= Order::where('id', $orderid)->orderBy('created_at','desc')->get();
+
+  return view('admin.orderView',compact('order','orderItem','orderid'));
 }
 
 }

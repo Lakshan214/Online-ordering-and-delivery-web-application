@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Cart;
 use App\Models\Catagory;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Models\ProductImg;
 use App\Models\Slider;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -18,31 +20,32 @@ use RealRashid\SweetAlert\Facades\Alert;
 class HomeController extends Controller 
 
 {
-    public function redirect()
+    public function redirect(Request $request)
     {
       $userType=Auth::user()->userType;
 
-      if($userType=='1')
-        {
-             return view('admin.home');
-        }
+      if ($userType == '1') {
+        $order = Order::when($request->date != null, function($q) use ($request){
+                return $q->whereDate('created_at',Carbon::now()->format('y-m-d'));
+            })
+            ->when($request->status != null, function($q) use ($request){
+                return $q->where('status', $request->status);
+            })
+            ->paginate(5);
+            $user = User::where('userType', 2)->get();
+        return view('admin.home', compact('order','user'));
+    }
+    
        elseif ($userType=='2') 
         {
              return view('deliver.home');
         }
        else
         {
-
-          return redirect()->back();
-          // $Brand=Brand::all();
-          // $product=Product::all();
-          // $catagory=Catagory::all();
-          // $catagory1=Catagory::all();
-          // $product1=Product::all();
-          // $product2=Product::all();
-          // $product3=Product::all();
+          
+          
        
-          //   return view('auth.register',compact('catagory','catagory1','product','product1','product2','product3','Brand'));
+            return redirect()->route('index');;
         }
     } 
 
@@ -107,7 +110,7 @@ class HomeController extends Controller
           $brand=Brand::where('slug',$slug)->first();
           if($brand)
          {
-          $products=$brand->product()->paginate(1);
+          $products=$brand->product()->paginate(8);
 
          
 
