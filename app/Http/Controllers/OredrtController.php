@@ -155,7 +155,7 @@ class OredrtController extends Controller
       $order->Locatontype = Auth::user()->Ltype;
       $order->address =Auth::user()->address;
       $order->pmode = $request->payment;
-      $order->status = "processing";
+      $order->status = "pending";
       $order->save();
   
       foreach ($cartItems as $cartItem) {
@@ -253,7 +253,7 @@ public function orderDetails($id)
         $order->Locatontype = Auth::user()->Ltype;
         $order->address =Auth::user()->address;
         $order->pmode = $request->payment;
-        $order->status = "processing";
+        $order->status = "pending";
         $order->save();
     
         foreach ($cartItems as $cartItem) {
@@ -317,6 +317,62 @@ public function adminOderView($id){
   $order= Order::where('id', $orderid)->orderBy('created_at','desc')->get();
 
   return view('admin.orderView',compact('order','orderItem','orderid'));
+}
+
+public function SelectDelivery(Request $request,$id){
+
+  $order=Order::find($id);
+  $order->delveryId=$request->delivery_id;
+
+  $order->Save();
+  return redirect()->back();
+}
+
+public function viewDeliveryOrder($id){
+
+  $orderid=$id;
+  $orderItem= OrderItem::where('orderId',$orderid)->orderBy('created_at','desc')->get();
+  $order= Order::where('id', $orderid)->orderBy('created_at','desc')->get();
+
+  return view('deliver.orderItems',compact('order','orderItem','orderid'));
+}
+
+
+public function tracking($id){
+  $order= Order::find($id);
+  return view('Home.tracking',compact('order'));
+}
+
+
+public function prosesing($id){
+  $Order=Order::find($id);
+  $Order->status='Prosesing';
+  $Order->save();
+  return redirect()->back();
+}
+public function packing($id){
+  $Order=Order::find($id);
+  $Order->status='packing';
+  $Order->save();
+  return redirect()->back();
+}
+public function Delivering($id){
+  $Order=Order::find($id);
+  $Order->status='Delivering';
+  $Order->save();
+  return redirect()->back();
+}
+public function Delivered($id){
+  $Order=Order::find($id);
+  $Order->status='Delivered';
+  $Order->save();
+  return redirect()->back();
+}
+public function cancel($id){
+  $Order=Order::find($id);
+  $Order->status='cancel';
+  $Order->save();
+  return redirect()->back();
 }
 
 }

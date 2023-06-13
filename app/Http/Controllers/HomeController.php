@@ -25,20 +25,24 @@ class HomeController extends Controller
       $userType=Auth::user()->userType;
 
       if ($userType == '1') {
+        $today=Carbon::now()->format('y-m-d');
         $order = Order::when($request->date != null, function($q) use ($request){
-                return $q->whereDate('created_at',Carbon::now()->format('y-m-d'));
-            })
+                return $q->whereDate('created_at',$request->date);
+        },function ($q) use($today){
+          return $q->whereDate('created_at',$today);
+        })
             ->when($request->status != null, function($q) use ($request){
                 return $q->where('status', $request->status);
             })
-            ->paginate(5);
-            $user = User::where('userType', 2)->get();
-        return view('admin.home', compact('order','user'));
+            ->paginate(5); 
+           
+        return view('admin.home', compact('order'));
     }
     
        elseif ($userType=='2') 
-        {
-             return view('deliver.home');
+        {  $order  = Order::where('delveryId', Auth::user()->id)->paginate(5); ;
+
+             return view('deliver.home', compact('order'));
         }
        else
         {

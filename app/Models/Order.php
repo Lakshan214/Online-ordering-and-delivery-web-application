@@ -17,6 +17,7 @@ class Order extends Model
         'image',
         'quntity',
         'total',
+        'delveryId',
     ];
 
     public function user()
@@ -26,5 +27,9 @@ class Order extends Model
 public function order()
 {
     return $this->hasmany(Order::class,'orderId','id'); 
+}
+public function delivery()
+{
+    return $this->belongsTo(User::class,'delveryId','id'); 
 }
 }

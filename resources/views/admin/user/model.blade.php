@@ -24,7 +24,7 @@
             </button>
           </div>
           <div class="modal-body" >
-            <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 
                 <div class="form-group">
@@ -35,10 +35,10 @@
                     <label for="recipient-name" class="col-form-label">Email:</label>
                     <input type="email" name="email"style="background-color: #2A3038" value="" required=""  class="form-control" >
                   </div>
-                  <div class="form-group">
+                  {{-- <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Email:</label>
                     <input type="number" name="phone"style="background-color: #2A3038" value="" required=""  class="form-control" >
-                  </div>
+                  </div> --}}
                   <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Admin:</label>
                     <input type="checkbox" name="userType"style="background-color: #2A3038" value="1"  class="form-control" >
@@ -66,3 +66,57 @@
       </div>
     </div>
     </div> 
+
+
+    {{-- <div class="checkout__form">
+      <h4>Sign In</h4>
+      <form method="POST" action="{{ route('register') }}">
+          @csrf
+          <div class="row">
+              <div class="col-lg-8 col-md-6">
+                  <div class="row">
+                      <div class="col-lg-6">
+                          <div class="checkout__input">
+                              <p>Name<span>*</span></p>
+                              <input type="text" name="name" :value="old('name')" required autofocus autocomplete="name">
+                          </div>
+                      </div>
+                     
+                  </div>
+                 
+                  
+                  <div class="checkout__input">
+                      <p>user type<span>*</span></p>
+                      <input  type="number" min="0" Max="3" name="userType" :value="old('userType')" autocomplete="userType">
+                   
+                  </div>
+                 
+                  
+                          {{-- <div class="checkout__input">
+                              <p>Phone<span>*</span></p>
+                              <input type="number" name="phone" :value="old('phone')" required autocomplete="phone">
+                          </div> 
+                     
+                      
+                          <div class="checkout__input">
+                              <p>Email<span>*</span></p>
+                              <input  type="email" name="email" :value="old('email')" required autocomplete="username">
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div class="checkout__input">
+                      <p>Account Password<span>*</span></p>
+                      <input  type="password" name="password" required autocomplete="new-password">
+                  </div>
+                  <div class="checkout__input">
+                      <p>Conform Account Password<span>*</span></p>
+                      <input type="password" name="password_confirmation" required autocomplete="new-password">
+                  </div>
+                  <button  class="btn btn-primary btn-lg" type="submit" style="color: black;"> Register</button>
+              </div>
+            
+          </form>
+
+  </div>  
+</div>   --}}

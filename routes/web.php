@@ -69,9 +69,14 @@ Route::prefix('/order')->group (function(){
     Route::get('/printPDF/{id}',[OredrtController::class,'printPDF'])->name('order.printPDF');
     Route::get('/mail/{id}',[OredrtController::class,'sendMail'])->name('order.mail');
     Route::get('/admin/{id}',[OredrtController::class,'adminOderView'])->name('order.admin');
-
- 
-
+    Route::post('/SelectDelivery/{id}',[OredrtController::class,'SelectDelivery'])->name('order.SelectDelivery');
+    Route::get('/viewDelivery/{id}',[OredrtController::class,'viewDeliveryOrder'])->name('order.viewDelivery');
+    Route::get('/prosesing/{id}',[OredrtController::class,'prosesing'])->name('order.prosesing');
+    Route::get('/packing/{id}',[OredrtController::class,'packing'])->name('order.packing');
+    Route::get('/Delivering/{id}',[OredrtController::class,'Delivering'])->name('order.Delivering');
+    Route::get('/Delivered/{id}',[OredrtController::class,'Delivered'])->name('order.Delivered');
+    Route::get('/cancel/{id}',[OredrtController::class,'cancel'])->name('order.cancel');
+    Route::get('/tracking/{id}',[OredrtController::class,'tracking'])->name('order.tracking');
  
 
 
