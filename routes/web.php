@@ -100,11 +100,11 @@ Route::prefix('slider')->group(function(){
 
     });
 
-    // Route::prefix('wishlist')->group (function(){
-    //       Route::post('/store/{id}',[WishlistController::class,'store'])->name('wishlist.store');
-    //     // Route::get('/deleteCart/{id}',[CartController::class,'DeleteCart'])->name('cart.deleteCart');
-    //     // Route::post('/UpdateCart/{id}',[CartController::class,'UpdateCart'])->name('cart.UpdateCart');
-    // });
+    Route::prefix('wishlist')->group (function(){
+          Route::post('/store/{id}',[WishlistController::class,'store'])->name('wishlist.store');
+        // Route::get('/deleteCart/{id}',[CartController::class,'DeleteCart'])->name('cart.deleteCart');
+        // Route::post('/UpdateCart/{id}',[CartController::class,'UpdateCart'])->name('cart.UpdateCart');
+    });
 
     // Route::post('/add-to-wishlist/{$id}', [WishlistController::class, 'store']);
        
@@ -112,7 +112,6 @@ Route::prefix('slider')->group(function(){
         Route::get('/view', [UserController::class,'View'])->name('user.View');
         Route::post('/store', [UserController::class,'UserStore'])->name('user.store');
         Route::get('/delete/{id}', [UserController::class, 'Delete'])->name('user.delete');
-        // Route::get('/inactive/{id}', [SliderController::class, 'SliderInactive'])->name('slider.inactive');
-        // Route::get('/active/{id}', [SliderController::class, 'SliderActive'])->name('slider.active');
+
     
         });

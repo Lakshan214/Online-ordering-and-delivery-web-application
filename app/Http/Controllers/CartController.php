@@ -44,50 +44,46 @@ class CartController extends Controller
             return redirect()->back();
         }
         else{
-        $cart=new cart;
+            $cart=new cart;
 
-        $cart->userId=$use_id;
-        $cart->ProductId=$product->id;
-        $cart->quntity=$request->quntity;
-        $cart->sessionId= $sessionId;
-       
-        $cart->save();
+            $cart->userId=$use_id;
+            $cart->ProductId=$product->id;
+            $cart->quntity=$request->quntity;
+            $cart->sessionId= $sessionId;
+          
+            $cart->save();
 
-       Alert::class::success('product Added Successfuly','We have addeed product to the cart');
-        return redirect()->back();
-        }
+          Alert::class::success('product Added Successfuly','We have addeed product to the cart');
+            return redirect()->back();
+            }
        }
        
     
+
+
       public function showCart(){
 
         $getCartItems=Cart::getCartItems();
-        
         return View('Home.cart',compact('getCartItems'));
       }
       
       public function DeleteCart($id){
-
-
-     
-       $data=Cart::find($id);
-       $data->delete();
-       Alert::class::success('product Added Successfuly','We have addeed product to the cart');
-       return redirect()->back();
+          $data=Cart::find($id);
+          $data->delete();
+          Alert::class::success('product Added Successfuly','We have addeed product to the cart');
+          return redirect()->back();
 
       }
 
 
       public function UpdateCart(Request $request,$id){
         
-        $product=product::find($id);
-        $data=Cart::find($id);
-        $data->quntity=$request->quntity;
+            $product=product::find($id);
+            $data=Cart::find($id);
+            $data->quntity=$request->quntity;
+            $data->save();
+            return redirect()->back();
     
-        $data->save();
-      
-        return redirect()->back();
- 
        }
 
 

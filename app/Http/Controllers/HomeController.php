@@ -25,6 +25,8 @@ class HomeController extends Controller
       $userType=Auth::user()->userType;
 
       if ($userType == '1') {
+
+        // .................Serch Oder by date and status.................
         $today=Carbon::now()->format('y-m-d');
         $order = Order::when($request->date != null, function($q) use ($request){
                 return $q->whereDate('created_at',$request->date);
@@ -38,17 +40,18 @@ class HomeController extends Controller
            
         return view('admin.home', compact('order'));
     }
-    
-       elseif ($userType=='2') 
-        {  $order  = Order::where('delveryId', Auth::user()->id)->paginate(5); ;
+     // .................End Serch Oder by date and status.................
 
-             return view('deliver.home', compact('order'));
+
+       elseif ($userType=='2') 
+        {  
+        //   .....................pass order data by delvery id................ 
+          $order  = Order::where('delveryId', Auth::user()->id)->paginate(5); ;
+          return view('deliver.home', compact('order'));
         }
        else
         {
           
-          
-       
             return redirect()->route('index');;
         }
     } 
@@ -64,15 +67,11 @@ class HomeController extends Controller
       $product2=Product::all();
       $product3=Product::latest()->get();
       $slider=Slider::latest()->get();
-     
-      
-      
       return view('Home.index',compact('catagory2','catagory1','product','product1','product2','product3','Brands','slider'));
      }
 
     
-  
-     
+    // ................View product description ...............
    
      public function singlepage_view($id)
      {
@@ -81,22 +80,19 @@ class HomeController extends Controller
       
        return view('Home.singlepage',compact('product','img'));
      }
+ 
 
 
 
-
-    
+ // ................View catagory By Product...............
      public function catagoryByProduct($slug)
      {  
-
+        //  .......slug is using for  idintify  catagory.........
           $catagory=Catagory::where('slug',$slug)->first();
           if($catagory)
          {
           $products=$catagory->product()->paginate(8);
-
-         
-
-         return view('Home.product.product',compact('products','catagory'));
+           return view('Home.product.product',compact('products','catagory'));
          }
 
          else
@@ -107,18 +103,15 @@ class HomeController extends Controller
 
        }
        
-
+// ................View Brandy By Product...............
        public function brandByProduct($slug)
      {  
-
+          //  .......slug is using for  idintify  brand.........
           $brand=Brand::where('slug',$slug)->first();
           if($brand)
          {
           $products=$brand->product()->paginate(8);
-
-         
-
-         return view('Home.catagory.brandProduct',compact('products','brand'));
+          return view('Home.catagory.brandProduct',compact('products','brand'));
          }
 
          else
@@ -126,7 +119,7 @@ class HomeController extends Controller
           return redirect()->back();
          }
 
-       }
+      }
       
  
       
