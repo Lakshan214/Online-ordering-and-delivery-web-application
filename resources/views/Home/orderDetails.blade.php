@@ -17,6 +17,7 @@
 </head>
 
 <body>
+  @include('sweetalert::alert')
     <!-- Page Preloder -->
     @include('Home.navbar')
     <!-- Humberger End -->

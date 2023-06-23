@@ -26,6 +26,14 @@ class HomeController extends Controller
 
       if ($userType == '1') {
 
+
+
+        $total_product=product::all()->count();
+        $total_ordert=Order::all()->count();
+        $total_user=User::all()->count();
+        $Order=Order::all();
+        $total_delivered=Order::where('status','=','Delivered')->get()->count();
+        $total_processing=Order::where('status','=','prosseing')->get()->count();
         // .................Serch Oder by date and status.................
         $today=Carbon::now()->format('y-m-d');
         $order = Order::when($request->date != null, function($q) use ($request){
@@ -57,18 +65,6 @@ class HomeController extends Controller
     } 
 
 
-    public function index()
-     {  
-      $Brands=Brand::paginate(8);
-      $product=Product::all();
-      $catagory2=Catagory::all();
-      $catagory1=Catagory::all();
-      $product1=Product::all();
-      $product2=Product::all();
-      $product3=Product::latest()->get();
-      $slider=Slider::latest()->get();
-      return view('Home.index',compact('catagory2','catagory1','product','product1','product2','product3','Brands','slider'));
-     }
 
     
     // ................View product description ...............

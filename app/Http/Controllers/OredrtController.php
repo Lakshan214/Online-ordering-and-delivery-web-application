@@ -22,71 +22,7 @@ class OredrtController extends Controller
 {
 
 
-    public function OrderSave(Request $request){
-     
-    
-      if (Auth::check()) {
-        // Retrieve the cart items for the user
-        $cartItems = Cart::where('userId', Auth::user()->id)->get();
-        $productIds = $cartItems->pluck('ProductId');
-    
-        // Retrieve the product details for the product IDs
-        $products = Product::whereIn('id', $productIds)->get();
-    
-        // Save cart items to the order table
-        $order = new Order();
-        $order->user_Id = Auth::user()->id;
-        $order->name = Auth::user()->name;
-        $order->phone = Auth::user()->phone;
-        $order->email = Auth::user()->email;
-        $order->City = Auth::user()->City;
-        $order->Locatontype = Auth::user()->Ltype;
-        $order->address =Auth::user()->address;
-        $order->pmode = $request->payment;
-        $order->status = "processing";
-        $order->save();
-    
-        foreach ($cartItems as $cartItem) {
-            $product = $products->firstWhere('id', $cartItem->ProductId);
-            if ($product) {
-                $orderItem = new OrderItem();
-                $orderItem->orderId = $order->id;
-                $orderItem->quntity = $cartItem->quntity;
-                $orderItem->ProductId = $cartItem->ProductId;
-                $orderItem->name = $product->Name;
-                $orderItem->img = $product->image;
-                $orderItem->price = $product->Price;
-                $orderItem->save();
-    
-                // Quantity handling
-                $productQ = Product::find($cartItem->ProductId);
-                $quantity = $productQ->quntity;
-                if($quantity >0){
-                $newQuantity = $quantity - $cartItem->quntity;
-                $productQ->quantity = $newQuantity;
-                $productQ->save();
-                }
-            }
-        }
-    
-        // Delete cart items
-        $cartItems->each->delete();
-       if($order->pmode=='Card_Payment'){
-       
-         return View('Home.strip');
-          
-       }
-    }
-    return redirect()->back();
-   
-  }
-      
-    
-
-      
-
-    
-    public function Registerview(){
+   public function Registerview(){
         
       if (Auth::check()){
       $getCartItems=Cart::getCartItems();
@@ -107,32 +43,27 @@ class OredrtController extends Controller
 
 
 
-    // public function stripView($total){
-
-    //   if (Auth::check()){
-    //   return View('Home.strip',compact('total'));
-    //   }
-
-    //   else
-    //   {
-  
-    //     return redirect('login');
-    //   }
-    // }
+    
 
 
 
 
     public function stripePost(Request $request)
 {
+  {
     Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
-    Stripe\Charge::create([
-        "amount" => 100 * 100,
-        "currency" => "usd",
-        "source" => $request->stripeToken,
-        "description" => "Thanks for payment"
+    Stripe\Charge::create ([
+            "amount" => 100 * 100,
+            "currency" => "usd",
+            "source" => $request->stripeToken,
+            "description" => "Test payment from itsolutionstuff.com." 
     ]);
+  
+    Session::flash('success', 'Payment successful!');
+          
+    return back();
+}
 
 
     if (Auth::check()) {
@@ -179,7 +110,7 @@ class OredrtController extends Controller
               return redirect()->route('order.View');
           }
       }
-   
+      $cartItems->each->delete();
      }
     Session::flash('success', 'Payment successful!');
 }
@@ -245,7 +176,7 @@ public function orderDetails($id)
         $order->email = Auth::user()->email;
         $order->City = Auth::user()->City;
         $order->Locatontype = Auth::user()->Ltype;
-        $order->address =Auth::user()->address;
+        $order->address = Auth::user()->address;
         $order->pmode = $request->payment;
         $order->status = "pending";
         $order->save();
@@ -265,19 +196,33 @@ public function orderDetails($id)
                 // Quantity handling
                 $productQ = Product::find($cartItem->ProductId);
                 $quantity = $productQ->quntity;
-                if($quantity >0){
-                $newQuantity = $quantity - $cartItem->quntity;
-                $productQ->quantity = $newQuantity;
-                $productQ->save();
+                if ($quantity > 0) {
+                    $newQuantity = $quantity - $cartItem->quntity;
+                    $productQ->quantity = $newQuantity;
+                    $productQ->save();
                 }
-                return redirect()->route('order.View');   
             }
         }
-
-
+    
+        // Remove all cart items after saving them to the order table
+        $cartItems->each->delete();
     }
-  }
-  }
+    
+    
+    $data = [
+        'invoice_no' => Auth::user()->id,
+        'name' => Auth::user()->name,
+        'email' => Auth::user()->email,
+    ];
+
+
+    Mail::to($order->email)->send(new InoviceOrderMailble($data));
+    toast('You Email is Send Successfuly','success');
+
+    return redirect()->route('order.conformView');
+   
+      
+      }}
 
 //print pdf use
   public function printPDF($id){
@@ -287,25 +232,13 @@ public function orderDetails($id)
   $order= Order::where('id', $orderid)->orderBy('created_at','desc')->get();
   
   $pdf = PDF::class::loadView('Home.invoice', compact('order','orderItem',));
+  toast('PDF download Successfuly','success');
   return $pdf->download('Bill.pdf');
   }
 
 
 
-// public function sendMail($id){
- 
-//   $order = Order::find($id);
 
-//   if (!$order) {
-//     // Handle the case when the order is not found
-//     // You can throw an exception, log an error, or return a response
-//     // based on your application's requirements.
-//     return;
-//   }
-
-//   Mail::to($order->email)->send(new InoviceOrderMailble($order));
-
-// }
 
 
 // show order in admin panel
@@ -377,5 +310,10 @@ public function cancel($id){
   return redirect()->back();
 }
 
+public function conformView (){
+
+  return view('Home.odercnform');
+  
+} 
 }
 

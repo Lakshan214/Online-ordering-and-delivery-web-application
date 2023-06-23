@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
-                        <h3>{{$product->Name}}</h3>
+                        <h3 style=" font-size:30px; color:#7fad39;">{{$product->Name}}</h3>
                         <div class="product__details__rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>

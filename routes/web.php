@@ -49,7 +49,6 @@ Route::prefix('/link')->group (function(){
 });
 
 Route::prefix('/cart')->group (function(){
-
     Route::post('/addCart/{id}',[CartController::class,'AddToCart'])->name('cart.addCart');
     Route::get('/deleteCart/{id}',[CartController::class,'DeleteCart'])->name('cart.deleteCart');
     Route::post('/UpdateCart/{id}',[CartController::class,'UpdateCart'])->name('cart.UpdateCart');
@@ -60,7 +59,7 @@ Route::prefix('/cart')->group (function(){
 Route::prefix('/order')->group (function(){
 
     Route::post('/orderSave',[OredrtController::class,'OrderSave'])->name('order.orderSave');
-    Route::get('/stripView/{total}',[OredrtController::class,'stripView'])->name('order.stripView')->middleware('auth','verified');
+    // Route::get('/stripView/',[OredrtController::class,'stripView'])->name('order.stripView')->middleware('auth','verified');
     Route::post('/striPost',[OredrtController::class,'stripePost'])->name('order.striPost');
     Route::get('/View',[OredrtController::class,'View'])->name('order.View');
     Route::get('/payment/{id}',[OredrtController::class,'paymentMode'])->name('order.payment');
@@ -77,6 +76,7 @@ Route::prefix('/order')->group (function(){
     Route::get('/Delivered/{id}',[OredrtController::class,'Delivered'])->name('order.Delivered');
     Route::get('/cancel/{id}',[OredrtController::class,'cancel'])->name('order.cancel');
     Route::get('/tracking/{id}',[OredrtController::class,'tracking'])->name('order.tracking');
+    Route::get('/conformView', [OredrtController::class,'conformView'])->name('order.conformView');
  
 
 
@@ -101,12 +101,13 @@ Route::prefix('slider')->group(function(){
     });
 
     Route::prefix('wishlist')->group (function(){
-          Route::post('/store/{id}',[WishlistController::class,'store'])->name('wishlist.store');
-        // Route::get('/deleteCart/{id}',[CartController::class,'DeleteCart'])->name('cart.deleteCart');
-        // Route::post('/UpdateCart/{id}',[CartController::class,'UpdateCart'])->name('cart.UpdateCart');
+          Route::get('/store/{id}',[WishlistController::class,'store'])->name('wishlist.store');
+          Route::get('/view', [WishlistController::class, 'View'])->name('wishlist.view');
+          Route::get('/delete/{id}',[WishlistController::class,'Delete'])->name('wishlist.delete');
+          Route::get('/addCart/{id}',[WishlistController::class,'addCart'])->name('wishlist.addCart');
     });
 
-    // Route::post('/add-to-wishlist/{$id}', [WishlistController::class, 'store']);
+
        
     Route::prefix('user')->group(function(){
         Route::get('/view', [UserController::class,'View'])->name('user.View');
@@ -115,3 +116,5 @@ Route::prefix('slider')->group(function(){
 
     
         });
+
+       

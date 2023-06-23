@@ -13,25 +13,23 @@ class InoviceOrderMailble extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $order;
+    public $data;
     /**
      * 
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($order)
+    public function __construct($data)
     {
-        $this->order=$order;
+        $this->data=$data;
     }
 
     public function build()
     {
-        return $this->view('Home.invoice') // Replace 'emails.invoice' with your actual email template view
-                    ->subject('Invoice Order Mailable')
-                    ->with([
-                        'order' => $this->order,
-                    ]);
+        $order = $this->data;
+        return $this->from('beayutyhub@gmail.com.com')->view('Home.email',compact('order'))
+        ->subject('Email From Easy online Shop');
     }
     /**
      * Get the message envelope.

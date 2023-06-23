@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Catagory;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CatagoryController extends Controller
 {
@@ -100,6 +101,7 @@ class CatagoryController extends Controller
         $data=Catagory::find($id);
 
         $data->delete();
+        Alert::warning('product Deleted Successfuly', 'Pleace try anther product');
         return redirect()->route('Catagory.index');
     }
 }

@@ -59,7 +59,7 @@
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li class="active"><a href="{{ url('/index') }}">Home</a></li>
+                        <li class="active"><a href="{{ url('/') }}">Home</a></li>
                         <li class="active"><a href="{{ route('order.View') }}">My order</a></li>
                         {{-- <li><a href="./shop-grid.html">Shop</a></li>
                         <li><a href="#">Pages</a>
@@ -78,7 +78,7 @@
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
-                        <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                        <li><a href="{{route('wishlist.view')}}"><i class="fa fa-heart"></i> <span>1</span></a></li>
                         <li><a href="{{route('link.showCart')}}"><i class="fa fa-shopping-bag"></i> <span ></span></a></li>
                     </ul>
                     <div class="header__cart__price">item: <span>$150.00</span></div>

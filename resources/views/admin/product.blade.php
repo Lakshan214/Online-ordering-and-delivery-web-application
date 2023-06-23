@@ -6,6 +6,8 @@
     
   </head>
   <body>
+   
+
     <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->
       @include('admin.saidebar')
@@ -13,6 +15,7 @@
      
       @include('admin.navbar')
           <footer class="footer" style="width: 100%;">
+      
      
        @include('admin.productModal ')  
             

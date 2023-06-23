@@ -4,6 +4,7 @@
 
 <head>
     @include('Home.links')
+    
 </head>
 
 <body>
@@ -61,7 +62,7 @@
                                     Rs.{{$item['quntity']*$item['product']['Price']}}
                                 </td>
                                 <td class="shoping__cart__item__close">
-                                    <a href="{{Route('cart.deleteCart',$item['id'])}}">  <span class="icon_close"></span></a>
+                                    <a href="{{Route('cart.deleteCart',$item['id'])}}" id="#delete">  <span class="icon_close"></span></a>
     
                                 </td>
                                 
@@ -125,32 +126,67 @@
 
 @include('Home.js')
 <script>
-// Assuming you have a button or an event listener that triggers the update
-function updateProductQuantity(productId, quantity) {
-  // Create an object with the update data
-  var data = {
-    productId: productId,
-    quantity: quantity
-  };
+// // Assuming you have a button or an event listener that triggers the update
+// function updateProductQuantity(productId, quantity) {
+//   // Create an object with the update data
+//   var data = {
+//     productId: productId,
+//     quantity: quantity
+//   };
 
-  // Send an AJAX request to the server
-  $.ajax({
-    url: '/cart/update-quantity', // Replace with your route
-    type: 'POST',
-    data: data,
-    success: function(response) {
-      // Handle the response from the server
-      // Update the necessary elements on the page
-      console.log(response);
-    },
-    error: function(error) {
-      // Handle the error, if any
-      console.log(error);
-    }
-  });
-}
+//   // Send an AJAX request to the server
+//   $.ajax({
+//     url: '/cart/update-quantity', // Replace with your route
+//     type: 'POST',
+//     data: data,
+//     success: function(response) {
+//       // Handle the response from the server
+//       // Update the necessary elements on the page
+//       console.log(response);
+//     },
+//     error: function(error) {
+//       // Handle the error, if any
+//       console.log(error);
+//     }
+//   });
+// }
+
+
+
+$(function(){
+    $(document).on('click','#delete',function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+
+
+                  Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Delete This Data?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      window.location.href = link
+                      Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                      )
+                    }
+                  })
+
+
+    });
+
+  });
+
+
 
 <script>    
+     
 
 </body>
 

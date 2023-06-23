@@ -26,7 +26,7 @@ class UserController extends Controller
         $user->email=$request->email;
         $user->phone=$request->phone;
         $user->userType=$request->userType;
-        $user->password=$request->password;
+        $user->password=password_hash($request->password, PASSWORD_DEFAULT);
         $user->save();
     return redirect()->back();
 

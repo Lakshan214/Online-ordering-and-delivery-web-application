@@ -10,10 +10,12 @@
       <!-- partial -->
      
       @include('admin.navbar')
+
+     
           <footer class="footer" style="width: 100%;">
             
             <div style="margin-top: 100px ">
-            
+              @include('admin.info')
             </div>
               <div class="card">
                 <div class="card-body">

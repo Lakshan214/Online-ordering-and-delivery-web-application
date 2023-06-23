@@ -22,7 +22,7 @@
           <span class="menu-icon">
             <i class="mdi mdi-speedometer"></i>
           </span>
-          <span class="menu-title">Catagory</span>
+          <span class="menu-title">Manage Catagory</span>
         </a>
       </li>
       <li class="nav-item menu-items">
@@ -30,7 +30,7 @@
           <span class="menu-icon">
             <i class="mdi mdi-speedometer"></i>
           </span>
-          <span class="menu-title">Brand</span>
+          <span class="menu-title">Manage Brand</span>
         </a>
       </li>
       <li class="nav-item menu-items">
@@ -38,7 +38,7 @@
           <span class="menu-icon">
             <i class="mdi mdi-speedometer"></i>
           </span>
-          <span class="menu-title">Product</span>
+          <span class="menu-title">Manage Product</span>
         </a>
       </li>
       <li class="nav-item menu-items">

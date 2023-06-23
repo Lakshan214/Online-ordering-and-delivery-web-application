@@ -24,7 +24,7 @@
             </button>
           </div>
           <div class="modal-body" >
-            <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('user.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 
                 <div class="form-group">
@@ -57,7 +57,7 @@
           
 
           <div class="modal-footer">
-            <button type="submit" class="btn btn-success" style="background-color: green;border-color:white;height: 40px;"> Add slider</button>
+            <button type="submit" class="btn btn-success" style="background-color: green;border-color:white;height: 40px;"> Add User</button>
             <button type="button" class="btn btn-danger" style="background-color: red;border-color:white;height: 40px;"data-dismiss="modal">Close</button>
          
           </div>

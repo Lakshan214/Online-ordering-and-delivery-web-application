@@ -13,7 +13,7 @@
            
             <div class="col-lg-4 col-md-6">
                 <div class="latest-product__text">
-                    <h4>Latest Products</h4>
+                    <h4 font-size:30px;>Latest Products</h4>
                     
                         
                    

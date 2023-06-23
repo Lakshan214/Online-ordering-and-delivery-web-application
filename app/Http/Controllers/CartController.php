@@ -70,7 +70,7 @@ class CartController extends Controller
       public function DeleteCart($id){
           $data=Cart::find($id);
           $data->delete();
-          Alert::class::success('product Added Successfuly','We have addeed product to the cart');
+          Alert::warning('product Deleted Successfuly', 'Pleace try anther product');
           return redirect()->back();
 
       }
@@ -82,6 +82,10 @@ class CartController extends Controller
             $data=Cart::find($id);
             $data->quntity=$request->quntity;
             $data->save();
+
+            // Alert::class::success('quntity change Successfuly');
+            toast('quntity change Successfuly','success');
+            // alert('Title','Lorem Lorem Lorem', 'success');
             return redirect()->back();
     
        }

@@ -1,6 +1,6 @@
 <div  style="margin-top: 50px" class="col-lg-12 grid-margin stretch-card">
 
-
+  @include('sweetalert::alert')
 
     <div class="card">
       <div class="card-body">
