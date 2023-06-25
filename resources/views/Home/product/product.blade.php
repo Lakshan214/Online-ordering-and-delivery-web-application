@@ -16,7 +16,29 @@
     @include('Home.header')
     <!-- Header Section End -->
 
-
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                  
+                </div>
+                <div class="col-lg-9">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                            <form action="{{route('product.product-search')}}" method="GET" enctype="multipart/form-data">
+                              
+                                <input type="text" placeholder="What do yo u need?" name="search">
+                                <button type="submit" class="site-btn">SEARCH</button>
+                            </form>
+                        </div>
+                        
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+    
 
     <!-- Banner Begin -->
   
@@ -35,8 +57,8 @@
                      <div class="featured__item__pic set-bg" data-setbg="/product/{{$product->image}}"> 
                         <ul class="featured__item__pic__hover">
                             <li><a href="{{Url('/add-to-wishlist',$product->id)}}"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="{{route('link.singlepage',$product->id)}}"><i class="fa fa-retweet"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            <li><a href="{{route('link.singlepage',$product->id)}}"onclick="incrementProductCount()"><i class="fa fa-retweet"></i></a></li>
+                            <li><a href="{{route('link.singlepage',$product->id)}}"onclick="incrementProductCount()"><i class="fa fa-shopping-cart"></i></a></li>
                         </ul>
                     </div>
                     <div class="featured__item__text">

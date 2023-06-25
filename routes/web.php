@@ -6,6 +6,7 @@ use App\Http\Controllers\CatagoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OredrtController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
@@ -86,6 +87,7 @@ Route::resource('Products',ProductController ::class);
 Route::prefix('Product')->group(function(){
     Route::get('/active/{id}', [ProductController::class, 'ProductActive'])->name('product.active');
     Route::get('/inactive/{id}', [ProductController::class, 'ProductInactive'])->name('product.inactive');
+    Route::get('/product-search',[ProductController::class,'product_search'])->name('product.product-search');
 });
 
 Route::resource('Catagory',CatagoryController ::class);
@@ -116,5 +118,16 @@ Route::prefix('slider')->group(function(){
 
     
         });
+
+
+        Route::prefix('review')->group(function(){
+            Route::get('/view', [ReviewController::class, 'View'])->name('review.view');
+            Route::post('/store', [ReviewController::class, 'Store'])->name('review.store')->middleware('auth','verified');
+            Route::get('/view-admin',  [ReviewController::class, 'adminView'])->name('review.view-admin');
+            Route::get('/delete/{id}', [ReviewController::class, 'Delete'])->name('review.delete');
+            Route::get('/inactive/{id}', [ReviewController::class, 'Inactive'])->name('review.inactive');
+            Route::get('/active/{id}', [ReviewController::class, 'Active'])->name('review.active');
+        
+            });
 
        

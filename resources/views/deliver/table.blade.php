@@ -1,6 +1,6 @@
-<footer class="footer" style="width: 100%;">
+
             
-    <div style="margin-top: 100px ">
+    
     
     </div>
       <div class="card">
@@ -34,16 +34,6 @@
                     <td>{{ $item->created_at }}</td>
                     <td>
                       @switch($item->status )
-                      @case($item->status=="pending")
-                      <button type="button" class="btn btn-outline-success">{{ $item->status }}</button>
-                      {{-- <a  href="{{route('order.cancel',$item->id)}}"  class="btn btn-danger">cancel</a> --}}
-                          @break
-                      @case($item->status=="Prosesing")
-                      <button type="button" class="btn btn-outline-info">{{ $item->status }}</button>
-                          @break
-                     @case($item->status=="packing")
-                     <button type="button" class="btn btn-outline-primary">{{ $item->status }}</button>
-                         @break
                     @case($item->status=="Delivering")
                     <button type="button" class="btn btn-outline-secondary">{{ $item->status }}</button>
                
@@ -60,13 +50,6 @@
                     <td><a href="{{route('order.viewDelivery',$item->id)}}" class="btn btn-primary " >View</a></td>
                    <td>
                     @switch($item->status )
-                        @case($item->status=="pending")
-                        <a  href="{{route('order.prosesing',$item->id)}}"  class="btn btn-info">Take</a>
-                        <a  href="{{route('order.cancel',$item->id)}}"  class="btn btn-danger">cancel</a>
-                            @break
-                        @case($item->status=="Prosesing")
-                        <a  href="{{route('order.packing',$item->id)}}"   class="btn btn-success">packing</a>
-                            @break
                        @case($item->status=="packing")
                        <a  href="{{route('order.Delivering',$item->id)}}"   class="btn btn-secondary">Delivering</a>
                            @break

@@ -29,4 +29,46 @@ var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     }
 
 </script>
+
+
+  <script>
+  
+  // Retrieve the product count from localStorage or set it to 0 if not found
+  let productCount = parseInt(localStorage.getItem("productCount")) || 0;
+
+  // Function to increment the product count
+  function incrementProductCount() {
+    productCount++;
+    updateProductCountDisplay();
+    updateLocalStorage();
+  }
+
+  // Function to decrement the product count
+  function decrementProductCount() {
+    if (productCount > 0) {
+      productCount--;
+      updateProductCountDisplay();
+      updateLocalStorage();
+    }
+    function zeroo() {
     
+    productCount = 0;
+    updateProductCountDisplay();
+    updateLocalStorage();
+    }
+  }
+
+  // Function to update the product count display
+  function updateProductCountDisplay() {
+    document.getElementById("productCount").textContent = productCount;
+  }
+
+  // Function to update the product count in localStorage
+  function updateLocalStorage() {
+    localStorage.setItem("productCount", productCount);
+  }
+</script>
+    <script>
+        // Update the product count display when the page is loaded
+        window.addEventListener("DOMContentLoaded", updateProductCountDisplay);
+      </script>

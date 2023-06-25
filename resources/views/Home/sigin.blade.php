@@ -37,7 +37,7 @@
                         
                         <div class="checkout__input">
                             <p>user type<span>*</span></p>
-                            <input  type="number" min="0" Max="3" name="userType" :value="old('userType')" autocomplete="userType">
+                            <input  type="number" min="0" Max="3" name="userType" :value="0" autocomplete="userType" >
                          
                         </div>
                        
@@ -57,13 +57,13 @@
                         
                         <div class="checkout__input">
                             <p>Account Password<span>*</span></p>
-                            <input  type="password" name="password" required autocomplete="new-password">
+                            <input  type="password" name="password"   pattern=".{8,}" title="Password must be at least 8 characters long and contain at least one letter and one number"required autocomplete="new-password">
                         </div>
                         <div class="checkout__input">
                             <p>Conform Account Password<span>*</span></p>
-                            <input type="password" name="password_confirmation" required autocomplete="new-password">
+                            <input type="password" pattern=".{8,}" name="password_confirmation" required autocomplete="new-password">
                         </div>
-                        <button  class="btn btn-primary btn-lg" type="submit" style="color: black;"> Register</button>
+                        <button  class="btn btn-primary btn-lg" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" onclick="return validatePassword()" type="submit" style="color: black;"> Register</button>
                     </div>
                   
                 </form>
@@ -91,6 +91,18 @@
 
 
 
+<script>
+    function validatePassword() {
+        var password = document.getElementsByName("password")[0].value;
+        var confirmPassword = document.getElementsByName("password_confirmation")[0].value;
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+</script>
 
 
 

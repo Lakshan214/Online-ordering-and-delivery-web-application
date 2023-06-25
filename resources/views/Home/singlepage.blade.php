@@ -84,7 +84,7 @@
 
                         @if ($product->quantity>0)
                         
-                       <a class="primary-btn "> <button type="submit"  onclick="cartCounte"> ADD TO CARD</button></a>
+                       <a class="primary-btn "> <button type="submit"  onclick="incrementProductCount()"> ADD TO CARD</button></a>
                         @else
                        
                         <button type="submit" class="primary-btn "   disabled> ADD TO CARD</button>
@@ -131,7 +131,7 @@
 
     <!-- Related Product Section Begin -->
     
-
+   
 
    
     

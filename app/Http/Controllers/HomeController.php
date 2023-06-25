@@ -33,7 +33,9 @@ class HomeController extends Controller
         $total_user=User::all()->count();
         $Order=Order::all();
         $total_delivered=Order::where('status','=','Delivered')->get()->count();
-        $total_processing=Order::where('status','=','prosseing')->get()->count();
+        $total_processing=Order::where('status','=','pending')->get()->count();
+        $total_process=Order::where('status','=','Prosesing')->get()->count();
+
         // .................Serch Oder by date and status.................
         $today=Carbon::now()->format('y-m-d');
         $order = Order::when($request->date != null, function($q) use ($request){
@@ -46,7 +48,7 @@ class HomeController extends Controller
             })
             ->paginate(5); 
            
-        return view('admin.home', compact('order'));
+        return view('admin.home', compact('order','total_process','total_processing','total_delivered','total_user','total_ordert','total_product'));
     }
      // .................End Serch Oder by date and status.................
 
@@ -54,8 +56,14 @@ class HomeController extends Controller
        elseif ($userType=='2') 
         {  
         //   .....................pass order data by delvery id................ 
+          //  $total_delivered=Order::where('delveryId', Auth::user()->id &&'status','=','Delivered')->get()->count();
+           $total_processing=Order::where('status','=','packing')->where('delveryId', Auth::user()->id)->get()->count();
+           $total_process=Order::where('status','=','Delivering')->where('delveryId', Auth::user()->id)->get()->count();
+           $total_delivered = Order::where('delveryId', Auth::user()->id)
+                                      ->where('status', '=', 'Delivered')
+                                      ->count();
           $order  = Order::where('delveryId', Auth::user()->id)->paginate(5); ;
-          return view('deliver.home', compact('order'));
+          return view('deliver.home', compact('order','total_process','total_processing','total_delivered'));
         }
        else
         {
@@ -65,7 +73,22 @@ class HomeController extends Controller
     } 
 
 
+    
+    public function index()
+     {  
+      $Brands=Brand::paginate(8);
+      $product=Product::all();
+      $catagory2=Catagory::all();
+      $catagory1=Catagory::all();
+      $product1=Product::all();
+      $product2=Product::all();
+      $product3=Product::latest()->get();
+      $slider=Slider::latest()->get();
 
+
+
+      return view('Home.index',compact('catagory2','catagory1','product','product1','product2','product3','Brands','slider'));
+     }
     
     // ................View product description ...............
    

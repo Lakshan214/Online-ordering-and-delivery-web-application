@@ -50,20 +50,20 @@ class OredrtController extends Controller
 
     public function stripePost(Request $request)
 {
-  {
-    Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+//   {
+//     Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
-    Stripe\Charge::create ([
-            "amount" => 100 * 100,
-            "currency" => "usd",
-            "source" => $request->stripeToken,
-            "description" => "Test payment from itsolutionstuff.com." 
-    ]);
+//     Stripe\Charge::create ([
+//             "amount" => 100 * 100,
+//             "currency" => "usd",
+//             "source" => $request->stripeToken,
+//             "description" => "Test payment from itsolutionstuff.com." 
+//     ]);
   
-    Session::flash('success', 'Payment successful!');
+//     Session::flash('success', 'Payment successful!');
           
-    return back();
-}
+//     return back();
+// }
 
 
     if (Auth::check()) {
@@ -83,7 +83,7 @@ class OredrtController extends Controller
       $order->City = Auth::user()->City;
       $order->Locatontype = Auth::user()->Ltype;
       $order->address =Auth::user()->address;
-      $order->pmode = $request->payment;
+      $order->pmode = "Card_Payment";
       $order->status = "pending";
       $order->save();
   // Save cart  items to the order table
@@ -102,21 +102,36 @@ class OredrtController extends Controller
               // Quantity handling
               $productQ = Product::find($cartItem->ProductId);
               $quantity = $productQ->quntity;
-              if($quantity >0){
-              $newQuantity = $quantity - $cartItem->quntity;
-              $productQ->quantity = $newQuantity;
-              $productQ->save();
+              if ($quantity > 0) {
+                  $newQuantity = $quantity - $cartItem->quntity;
+                  $productQ->quantity = $newQuantity;
+                  $productQ->save();
               }
-              return redirect()->route('order.View');
-          }
-      }
+            
+      
+  
+      // Remove all cart items after saving them to the order table
       $cartItems->each->delete();
-     }
-    Session::flash('success', 'Payment successful!');
-}
+  }
+  
+  
+  $data = [
+      'invoice_no' => Auth::user()->id,
+      'name' => Auth::user()->name,
+      'email' => Auth::user()->email,
+  ];
 
 
+  Mail::to($order->email)->send(new InoviceOrderMailble($data));
+  toast('your order has been placed successfully','success');
 
+  return redirect()->route('order.conformView');
+ 
+    
+    }}
+
+
+  }
 //    show oder  custromer
 public function View(){
   if (Auth::check()) {
@@ -217,7 +232,7 @@ public function orderDetails($id)
 
 
     Mail::to($order->email)->send(new InoviceOrderMailble($data));
-    toast('You Email is Send Successfuly','success');
+    toast('your order has been placed successfully','success');
 
     return redirect()->route('order.conformView');
    
@@ -287,7 +302,7 @@ public function prosesing($id){
 }
 public function packing($id){
   $Order=Order::find($id);
-  $Order->status='packing';
+  $Order->status='packed';
   $Order->save();
   return redirect()->back();
 }

@@ -201,4 +201,24 @@ class ProductController extends Controller
         Product::findOrFail($id)->update(['status' => 0]);
         return redirect()->back();
     }
+
+    public function product_search(Request $request){
+
+        $catagory= Catagory::orderBy('CatagoryName' , 'ASC')->get();
+        $search_text=$request->search;
+        // $products=product::where('Name','LIKE',"%$serach_text%")->orwhere('Catagory','LIKE',"%$serach_text%")->get();
+        $products = Product::whereHas('catagory', function ($query) use ($search_text) {
+            $query->where('CatagoryName', 'LIKE', "%$search_text%");
+
+        }) ->orWhereHas('brand', function ($query) use ($search_text) {
+            $query->where('Name', 'LIKE', "%$search_text%");
+        })
+        ->orWhere('Name', 'LIKE', "%$search_text%")
+        ->orWhere('Price', 'LIKE', "%$search_text%")
+        ->get();
+        return view('home.search',compact('products','catagory'));
+        
+        
+        }  
+
 }

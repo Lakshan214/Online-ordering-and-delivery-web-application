@@ -90,16 +90,16 @@
                             <div   class="checkout__order__total">Total <span>Rs.{{$total}}.00</span></div>
  
                             <input type="radio"  name="payment" value="cash_Payment">
-                              <label for="html">Cash on Delevery</label><br>
+                              <label for="html">Cash </label><br>
                               <input type="radio"  name="payment" value="Card_Payment">
-                              <label for="css">Online Payment</label><br><br>
+                              <label for="css">Card</label><br><br>
                           
                               @else
                                 <h3 style="color: red">Oder is empty</h3 >
                               @endif
 
                             
-                            <button type="submit" class="site-btn" style="color: rgb(243, 243, 245);background-color:#7fad39;"> CHECKOUT</button>
+                            <button type="submit" onclick="zeroo()" class="site-btn" style="color: rgb(243, 243, 245);background-color:#7fad39;"> CHECKOUT</button>
                             
                         </form>
                              

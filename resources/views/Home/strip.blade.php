@@ -141,60 +141,49 @@
                         </div>
                     @endif
     
-                    <form action="{{ route('order.striPost') }}" 
-                            method="post" 
-                            class="require-validation"
-                           
-                           >
+                    <form  action="{{ route('order.striPost') }}" method="post" >
                         @csrf
-    
-                        <div class='form-row row'>
-                            <div class='col-xs-12 form-group required'>
-                                <label class='control-label'>Name on Card</label> <input
-                                    class='form-control' size='4' type='text'>
-                            </div>
+                      
+                        <div class="form-row row">
+                          <div class="col-xs-12 form-group required">
+                            <label class="control-label">Name on Card</label>
+                            <input class="form-control" size="4" type="text"  required>
+                          </div>
                         </div>
-    
-                        <div class='form-row row'>
-                            <div class='col-xs-12 form-group card required'>
-                                <label class='control-label'>Card Number</label> <input
-                                    autocomplete='off' class='form-control card-number' size='20'
-                                    type='text'>
-                            </div>
+                      
+                        <div class="form-row row">
+                          <div class="col-xs-12 form-group card required">
+                            <label class="control-label">Card Number</label>
+                            <input class="form-control card-number" size="20" type="text"  required>
+                          </div>
                         </div>
-    
-                        <div class='form-row row'>
-                            <div class='col-xs-12 col-md-4 form-group cvc required'>
-                                <label class='control-label'>CVC</label> <input autocomplete='off'
-                                    class='form-control card-cvc' placeholder='ex. 311' size='4'
-                                    type='text'>
-                            </div>
-                            <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                <label class='control-label'>Expiration Month</label> <input
-                                    class='form-control card-expiry-month' placeholder='MM' size='2'
-                                    type='text'>
-                            </div>
-                            <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                <label class='control-label'>Expiration Year</label> <input
-                                    class='form-control card-expiry-year' placeholder='YYYY' size='4'
-                                    type='text'>
-                            </div>
+                      
+                        <div class="form-row row">
+                          <div class="col-xs-12 col-md-4 form-group cvc required">
+                            <label class="control-label">CVC</label>
+                            <input class="form-control card-cvc" placeholder="ex. 311" size="4" type="text" id="card-cvc" required>
+                          </div>
+                          <div class="col-xs-12 col-md-4 form-group expiration required">
+                            <label class="control-label">Expiration Month</label>
+                            <input class="form-control card-expiry-month" placeholder="MM" size="2" min="1"  max="12" type="text" id="card-expiry-month" required>
+                          </div>
+                          <div class="col-xs-12 col-md-4 form-group expiration required">
+                            <label class="control-label">Expiration Year</label>
+                            <input class="form-control card-expiry-year" placeholder="YYYY" size="4" type="text" id="card-expiry-year" required>
+                          </div>
                         </div>
-    
-                        <div class='form-row row'>
-                            <div class='col-md-12 error form-group hide'>
-                                <div class='alert-danger alert'>Please correct the errors and try
-                                    again.</div>
-                            </div>
-                        </div>
-    
+                      
                         <div class="row">
-                            <div class="col-xs-12">
-                                <button class="btn btn-primary btn-lg btn-block" style="color: black;" type="submit">Pay Now </button>
-                            </div>
+                          <div class="col-xs-12">
+                            <button class="btn btn-primary btn-lg btn-block" style="color: black;" type="submit" onclick="isFormValid()" >Pay Now</button>
+                          </div>
                         </div>
-                            
-                    </form>
+                      
+                      </form>
+                      
+                      
+                      
+                      
                 </div>
             </div>        
         </div>
@@ -211,7 +200,7 @@
     
 </body>
     
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+{{-- <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     
 <script type="text/javascript">
   
@@ -260,7 +249,53 @@ $(function() {
             $form.get(0).submit();
         }
     }
-     
+    
 });
-</script>
+</script> --}}
+
+<script>
+    // Form validation
+    document.getElementById('payment-form').addEventListener('submit', function(event) {
+      // Check if all required fields are filled
+      if (!isFormValid()) {
+        event.preventDefault(); // Prevent form submission if validation fails
+      }
+    });
+  
+    function isFormValid() {
+      var cardName = document.getElementById('card-name').value;
+      var cardNumber = document.getElementById('card-number').value;
+      var cardCVC = document.getElementById('card-cvc').value;
+      var cardExpiryMonth = document.getElementById('card-expiry-month').value;
+      var cardExpiryYear = document.getElementById('card-expiry-year').value;
+  
+      // Perform validation on each field
+      if (cardName.trim() === 'test') {
+        alert('Please enter the name on the card.');
+        return false;
+      }
+  
+      if (cardNumber.trim() === '4242424242424242') {
+        alert('Please enter the card number.');
+        return false;
+      }
+  
+      if (cardCVC.trim() === '') {
+        alert('Please enter the CVC.');
+        return false;
+      }
+  
+      if (cardExpiryMonth.trim() === '') {
+        alert('Please enter the expiration month.');
+        return false;
+      }
+  
+      if (cardExpiryYear.trim() >= '2023') {
+        alert('Please enter the expiration year.');
+        return false;
+      }
+  
+      return true; // Form is valid
+    }
+    <script>
 </html>

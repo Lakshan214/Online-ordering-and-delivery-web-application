@@ -60,17 +60,54 @@
                             <th scope="row">{{ $item->id }}</th>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->created_at }}</td>
-                            <td><button type="button" class="btn btn-outline-success">{{ $item->status }}</button></td>
+                            <td> @switch($item->status )
+                              @case($item->status=="pending")
+                              <button type="button" class="btn btn-outline-success">{{ $item->status }}</button>
+                              {{-- <a  href="{{route('order.cancel',$item->id)}}"  class="btn btn-danger">cancel</a> --}}
+                                  @break
+                              @case($item->status=="Prosesing")
+                              <button type="button" class="btn btn-outline-info">{{ $item->status }}</button>
+                                  @break
+                             @case($item->status=="packed")
+                             <button type="button" class="btn btn-outline-primary">{{ $item->status }}</button>
+                                 @break
+                            @case($item->status=="Delivering")
+                            <button type="button" class="btn btn-outline-secondary">{{ $item->status }}</button>
+                       
+                                 @break
+                             @case($item->status=="Delivered")
+                            <button type="button" class="btn btn-outline-warning">{{ $item->status }}</button>
+                            
+                                      @break
+                              @default
+                              <button type="button" class="btn btn-outline-danger">{{ $item->status }}</button>
+                          @endswitch</td>
                             <td>{{ $item->pmode }}</td>
                             <td><a href="{{route('order.admin',$item->id)}}" class="btn btn-primary " >View</a></td>
                             <td>
+
+                              @switch($item->status )
+                              @case($item->status=="pending")
+                              <a  href="{{route('order.prosesing',$item->id)}}"  class="btn btn-info">conform</a>
+                              <a  href="{{route('order.cancel',$item->id)}}"  class="btn btn-danger">cancel</a>
+                                  @break
+                              @case($item->status=="Prosesing")
+                              <a  href="{{route('order.packing',$item->id)}}"   class="btn btn-success">packed</a>
+                                  @break
+                             @case($item->status=="packed")
                               @if($item->delveryId)
                               @if($item->delivery)
                               <td>{{$item['delivery']['name']}}</td> 
                               @else
+                           
+                              @endif
+                              
+                              
+                              @else
+                              
                               <form action="{{ route('order.SelectDelivery', $item->id) }}" method="POST">
-                                @csrf
-                                <select class="form-control" required="" style="background-color: #2A3038" name="delivery_id">
+                                  @csrf
+                                  <select class="form-control" required="" style="background-color: #2A3038" name="delivery_id">
                                     <?php
                                     $users = App\Models\User::where('userType', 2)->get();
                                     ?>
@@ -80,24 +117,15 @@
                                    </select>
                                <Td> <button type="submit" class="btn btn-outline-warning">Add </button></Td>
                             </form>
-                              @endif
-                              
-                              
-                              @else
-                              
-                              <form action="{{ route('order.SelectDelivery', $item->id) }}" method="POST">
-                                  @csrf
-                                  <select class="form-control" required="" style="background-color: #2A3038" name="delivery_id">
-                                      <?php
-                                      $users = App\Models\User::where('userType', 2)->get();
-                                      ?>
-                                      @foreach ($users as $user)
-                                          <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                      @endforeach
-                                     </select>
-                                 <Td> <button type="submit" class="btn btn-outline-warning">Add </button></Td>
-                              </form>
-                              @endif
+                            @endif
+                                 @break
+                        
+                       
+                                 @break
+                              @default
+                                  
+                          @endswitch
+                             
                           </td>
                     @endforeach
                 

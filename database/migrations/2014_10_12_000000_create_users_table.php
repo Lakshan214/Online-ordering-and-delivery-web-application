@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('email')->unique()->nullable();
-            $table->string('userType')->default(0)->nullable();
+            $table->string('userType')->default(0);
             $table->string('phone')->nullable();
             $table->string('City')->nullable();
             $table->string('Locatontype')->nullable();

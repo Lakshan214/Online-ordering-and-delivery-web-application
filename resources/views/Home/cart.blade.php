@@ -62,7 +62,7 @@
                                     Rs.{{$item['quntity']*$item['product']['Price']}}
                                 </td>
                                 <td class="shoping__cart__item__close">
-                                    <a href="{{Route('cart.deleteCart',$item['id'])}}" id="#delete">  <span class="icon_close"></span></a>
+                                    <a href="{{Route('cart.deleteCart',$item['id'])}}" id="#delete" onclick="decrementProductCount()">  <span class="icon_close"></span></a>
     
                                 </td>
                                 
