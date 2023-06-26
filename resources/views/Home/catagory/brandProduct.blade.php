@@ -15,8 +15,29 @@
     <!-- Header Section Begin -->
     @include('Home.header')
     <!-- Header Section End -->
-
-
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                  
+                </div>
+                <div class="col-lg-9">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                            <form action="{{route('product.product-search')}}" method="GET" enctype="multipart/form-data">
+                              
+                                <input type="text" placeholder="What do yo u need?" name="search">
+                                <button type="submit" class="site-btn">SEARCH</button>
+                            </form>
+                        </div>
+                        
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+  
 
     <!-- Banner Begin -->
   

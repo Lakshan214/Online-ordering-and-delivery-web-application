@@ -31,7 +31,7 @@ class SliderController extends Controller
          
                 }
                 $slider->save();
-    
+            Alert::class::success('add Sucessfully!!' ,'');
             return redirect()->back();
     
         } 
@@ -40,6 +40,7 @@ class SliderController extends Controller
         public function SliderDelete($id){
            
             Slider::findOrFail($id)->delete();
+            toast('Deleted Sucessfully!!','error');
             return redirect()->back();
     
         } 
@@ -47,6 +48,7 @@ class SliderController extends Controller
     
         public function SliderInactive($id){
             Slider::findOrFail($id)->update(['status' => 0]);
+            toast('Inactive Sucessfully!!','error');
             return redirect()->back();
     
         } 
@@ -54,25 +56,25 @@ class SliderController extends Controller
     
     
         public function SliderActive($id){
+            toast('Product Active( Sucessfully!!','success');
             Slider::findOrFail($id)->update(['status' => 1]);
             return redirect()->back();
     
         }
 
-        public function store($id){
+        // public function store($id){
 
-            dd($id);
-            if(Auth::check()){
-            $use_id=Auth::user()->id;
-            $product=product::find($id);
+        //     dd($id);
+        //     if(Auth::check()){
+        //     $use_id=Auth::user()->id;
+        //     $product=product::find($id);
     
-            $Wishlist=new Wishlist();
-            $Wishlist->userId=$use_id;
-            $Wishlist->ProductId=$product->id;
-            $Wishlist->save();
-            }
-           else{
-            return redirect('login');
-           }
-}
+        //     $Wishlist=new Wishlist();
+        //     $Wishlist->userId=$use_id;
+        //     $Wishlist->ProductId=$product->id;
+        //     $Wishlist->save();
+        //     }
+        //    else{
+        //     return redirect('login');
+        //    }
 }

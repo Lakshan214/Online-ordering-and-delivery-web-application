@@ -28,12 +28,14 @@ class UserController extends Controller
         $user->userType=$request->userType;
         $user->password=password_hash($request->password, PASSWORD_DEFAULT);
         $user->save();
+        Alert::class::success('add Sucessfully!!' ,'');
     return redirect()->back();
 
    } 
 
     public function Delete($id){
         User::findOrFail($id)->delete();
+        toast('Deleted Sucessfully!!','error');
         return redirect()->back();
     
 

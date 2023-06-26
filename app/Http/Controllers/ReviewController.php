@@ -46,6 +46,7 @@ class ReviewController extends Controller
     public function Delete($id){
            
         Review::findOrFail($id)->delete();
+        toast('Delete Sucessfully!!','warning');
         return redirect()->back();
 
     } 
@@ -55,6 +56,7 @@ class ReviewController extends Controller
         $status = Review::find($id);
         $status->status=0;
         $status->save();
+        toast('Inactive Sucessfully!!','error');
         return redirect()->back();
 
     } 
@@ -66,7 +68,7 @@ class ReviewController extends Controller
         $status = Review::find($id);
         $status->status=1;
         $status->save();
-        
+        toast('Product Active( Sucessfully!!','success');
         return redirect()->back();
 
     }

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     @include('admin.links')
-
+    @include('sweetalert::alert')
     
   </head>
   <body>

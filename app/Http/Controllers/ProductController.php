@@ -106,8 +106,8 @@ class ProductController extends Controller
 
         
             $product->save();
-    
-    return redirect()->back()->with ('message',' Added Sucessfully!!');
+            toast('Added Sucessfully!!','success');
+          return redirect()->back();
     }
 
     /**
@@ -131,6 +131,7 @@ class ProductController extends Controller
     {   
         $catagory=Catagory::all();
         $product=product::find($id);
+        toast('Edied Sucessfully!!','success');
         return view('admin.editeProduct',compact('product'),compact('catagory'));
     }
 
@@ -174,6 +175,7 @@ class ProductController extends Controller
         $product->image2=$image2;
        }
         $product->save();
+        toast('update Sucessfully!!','success');
         return redirect()->back();
     }
 
@@ -188,17 +190,20 @@ class ProductController extends Controller
         $data=Product::find($id);
 
         $data->delete();
+        toast('Delete Sucessfully!!','warning');
        return redirect()->back();
     }
 
     public function ProductActive($id){
         Product::findOrFail($id)->update(['status' => 1]);
+        toast('Product Active( Sucessfully!!','success');
         return redirect()->back();
 
     }
 
     public function ProductInactive($id){
         Product::findOrFail($id)->update(['status' => 0]);
+        toast('Inactive Sucessfully!!','error');
         return redirect()->back();
     }
 

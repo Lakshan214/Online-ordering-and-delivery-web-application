@@ -9,6 +9,59 @@
     <title>BeautyHub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #f1f1f1;
+}
+
+.payment-form {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+</style>
 </head>
 <body>
       <!-- Page Preloder -->
@@ -122,84 +175,82 @@
       <!-- Header Section Begin -->
    
       <!-- Header Section End -->
-<div class="container">
-    
-    <h1 style="text-align: center;"><b>Proceed To Payment</b></h1><br>
-    
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-default credit-card-box">
-                <div class="panel-heading display-table" >
-                        <h3 class="panel-title" >Payment Details</h3>
-                </div>
-                <div class="panel-body">
-    
-                    @if (Session::has('success'))
-                        <div class="alert alert-success text-center">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                            <p>{{ Session::get('success') }}</p>
-                        </div>
-                    @endif
-    
-                    <form  action="{{ route('order.striPost') }}" method="post" >
-                        @csrf
-                      
-                        <div class="form-row row">
-                          <div class="col-xs-12 form-group required">
-                            <label class="control-label">Name on Card</label>
-                            <input class="form-control" size="4" type="text"  required>
-                          </div>
-                        </div>
-                      
-                        <div class="form-row row">
-                          <div class="col-xs-12 form-group card required">
-                            <label class="control-label">Card Number</label>
-                            <input class="form-control card-number" size="20" type="text"  required>
-                          </div>
-                        </div>
-                      
-                        <div class="form-row row">
-                          <div class="col-xs-12 col-md-4 form-group cvc required">
-                            <label class="control-label">CVC</label>
-                            <input class="form-control card-cvc" placeholder="ex. 311" size="4" type="text" id="card-cvc" required>
-                          </div>
-                          <div class="col-xs-12 col-md-4 form-group expiration required">
-                            <label class="control-label">Expiration Month</label>
-                            <input class="form-control card-expiry-month" placeholder="MM" size="2" min="1"  max="12" type="text" id="card-expiry-month" required>
-                          </div>
-                          <div class="col-xs-12 col-md-4 form-group expiration required">
-                            <label class="control-label">Expiration Year</label>
-                            <input class="form-control card-expiry-year" placeholder="YYYY" size="4" type="text" id="card-expiry-year" required>
-                          </div>
-                        </div>
-                      
-                        <div class="row">
-                          <div class="col-xs-12">
-                            <button class="btn btn-primary btn-lg btn-block" style="color: black;" type="submit" onclick="isFormValid()" >Pay Now</button>
-                          </div>
-                        </div>
-                      
-                      </form>
-                      
-                      
-                      
-                      
-                </div>
-            </div>        
+     
+        <div class="payment-form">
+          <h2>Payment Gateway</h2>
+          <form action="{{route('order.striPost')}}"  method="POST" onsubmit="return validateForm()">
+            @csrf
+            <div class="form-group">
+              <label for="card-number">Card Number</label>
+              <input type="text" id="card-number" placeholder="Enter your card number">
+            </div>
+            <div class="form-group">
+              <label for="expiry-date">Expiry Date</label>
+              <input type="text" id="expiry-date" placeholder="MM/YY">
+            </div>
+            <div class="form-group">
+              <label for="cvv">CVV</label>
+              <input type="text" id="cvv" placeholder="Enter CVV">
+            </div>
+            <div class="form-group">
+              <label for="name">Cardholder Name</label>
+              <input type="text" id="name" placeholder="Enter cardholder name">
+            </div>
+            <button type="submit">Pay Now</button>
+          </form>
         </div>
-    </div>
-        
-</div>
-
+      <br><br>
+      
 @include('Home.footer')
 <!-- Footer Section End -->
 
 <!-- Js Plugins -->
 
 @include('Home.js')
+<script> function validateForm() {
+    var cardNumber = document.getElementById("card-number").value;
+    var expiryDate = document.getElementById("expiry-date").value;
+    var cvv = document.getElementById("cvv").value;
+    var cardholderName = document.getElementById("name").value;
+  
+    if (cardNumber === "" || expiryDate === "" || cvv === "" || cardholderName === "") {
+      alert("Please fill in all the fields.");
+      return false;
+    }
+  
+    if (!/^\d{16}$/.test(cardNumber)) {
+      alert("Invalid card number. Please enter a 16-digit number.");
+      return false;
+    }
+  
+    var currentYear = new Date().getFullYear().toString().slice(-2);
+var currentMonth = new Date().getMonth() + 1;
+
+if (!/^(0[1-9]|1[0-2])\/(2[3-9]|[3-9]\d|\d{3,})$/.test(expiryDate)) {
+  alert("Invalid expiry date. ");
+  return false;
+}
+
+var inputYear = expiryDate.split('/')[1];
+var inputMonth = expiryDate.split('/')[0];
+
+if (inputYear === currentYear && inputMonth < currentMonth) {
+  alert("Invalid expiry date. The entered expiry date has already passed.");
+  return false;
+}
+
+  
+    if (!/^\d{3}$/.test(cvv)) {
+      alert("Invalid CVV. Please enter a 3-digit number.");
+      return false;
+    }
+  
+    return true;
+  }
+  </script>
     
 </body>
-    
+</html>
 {{-- <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     
 <script type="text/javascript">
@@ -253,49 +304,4 @@ $(function() {
 });
 </script> --}}
 
-<script>
-    // Form validation
-    document.getElementById('payment-form').addEventListener('submit', function(event) {
-      // Check if all required fields are filled
-      if (!isFormValid()) {
-        event.preventDefault(); // Prevent form submission if validation fails
-      }
-    });
-  
-    function isFormValid() {
-      var cardName = document.getElementById('card-name').value;
-      var cardNumber = document.getElementById('card-number').value;
-      var cardCVC = document.getElementById('card-cvc').value;
-      var cardExpiryMonth = document.getElementById('card-expiry-month').value;
-      var cardExpiryYear = document.getElementById('card-expiry-year').value;
-  
-      // Perform validation on each field
-      if (cardName.trim() === 'test') {
-        alert('Please enter the name on the card.');
-        return false;
-      }
-  
-      if (cardNumber.trim() === '4242424242424242') {
-        alert('Please enter the card number.');
-        return false;
-      }
-  
-      if (cardCVC.trim() === '') {
-        alert('Please enter the CVC.');
-        return false;
-      }
-  
-      if (cardExpiryMonth.trim() === '') {
-        alert('Please enter the expiration month.');
-        return false;
-      }
-  
-      if (cardExpiryYear.trim() >= '2023') {
-        alert('Please enter the expiration year.');
-        return false;
-      }
-  
-      return true; // Form is valid
-    }
-    <script>
-</html>
+

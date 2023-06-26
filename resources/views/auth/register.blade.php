@@ -99,7 +99,7 @@
                               @endif
 
                             
-                            <button type="submit" onclick="zeroo()" class="site-btn" style="color: rgb(243, 243, 245);background-color:#7fad39;"> CHECKOUT</button>
+                            <button type="submit" onclick="resetProductCount() " class="site-btn" style="color: rgb(243, 243, 245);background-color:#7fad39;"> CHECKOUT</button>
                             
                         </form>
                              

@@ -50,20 +50,38 @@ class OredrtController extends Controller
 
     public function stripePost(Request $request)
 {
-//   {
-//     Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+  // \Stripe\Stripe::setApiKey('sk_test_51NB6blF26Y4qwjWzC1VbHQQXgniAUEoIRMRho1evJ09IFrg1h3DmlxXEXKad514hAG0CsPCn7hNeeDazlm7uMSlU00r8eBf7oD');
 
-//     Stripe\Charge::create ([
-//             "amount" => 100 * 100,
-//             "currency" => "usd",
-//             "source" => $request->stripeToken,
-//             "description" => "Test payment from itsolutionstuff.com." 
-//     ]);
-  
-//     Session::flash('success', 'Payment successful!');
-          
-//     return back();
-// }
+    
+  //   try {
+  //       $customer = \Stripe\Customer::create([
+  //           'source' => $request->input('stripeToken'), // Use the 'stripeToken' from the request
+  //           // Add any additional customer information if needed
+  //       ]);
+
+  //       // Retrieve the customer's default payment source
+  //       $defaultSource = \Stripe\Customer::retrieve($customer->id)->default_source;
+
+  //       // Create a charge using the customer and the default payment source
+  //       \Stripe\Charge::create([
+  //           'amount' => 100 * 100,
+  //           'currency' => 'usd',
+  //           'customer' => $customer->id,
+  //           'source' => $defaultSource,
+  //           // 'description' => 'Test payment from LaravelTus.com.',
+  //       ]);
+
+  //       // Charge created successfully, process any additional logic here
+
+  //       return response()->json(['success' => true]);
+  //   } catch (\Stripe\Exception\ApiErrorException $e) {
+  //       // Handle any Stripe API errors
+  //       return response()->json(['error' => $e->getMessage()], 400);
+  //   }
+
+
+
+
 
 
     if (Auth::check()) {
@@ -167,7 +185,7 @@ public function orderDetails($id)
     $order->Locatontype = $request->Ltype;
     $order->address = $request->address;
     $order->pmode = $request->payment;
-    $order->status = "processing";
+    $order->status = "pending";
     $order->save();
     if($order->pmode=='Card_Payment'){
        
@@ -298,11 +316,13 @@ public function prosesing($id){
   $Order=Order::find($id);
   $Order->status='Prosesing';
   $Order->save();
+  toast('change status Sucessfully!!','success');
   return redirect()->back();
 }
 public function packing($id){
   $Order=Order::find($id);
   $Order->status='packed';
+  toast('change status Sucessfully!!','success');
   $Order->save();
   return redirect()->back();
 }
@@ -310,10 +330,12 @@ public function Delivering($id){
   $Order=Order::find($id);
   $Order->status='Delivering';
   $Order->save();
+  toast('change status Sucessfully!!','success');
   return redirect()->back();
 }
 public function Delivered($id){
   $Order=Order::find($id);
+  toast('change status Sucessfully!!','success');
   $Order->status='Delivered';
   $Order->save();
   return redirect()->back();
@@ -322,11 +344,12 @@ public function cancel($id){
   $Order=Order::find($id);
   $Order->status='cancel';
   $Order->save();
+  toast('change status Sucessfully!!','success');
   return redirect()->back();
 }
 
 public function conformView (){
-
+  
   return view('Home.odercnform');
   
 } 

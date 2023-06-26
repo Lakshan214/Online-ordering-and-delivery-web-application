@@ -61,7 +61,7 @@
               </div>
 
               <div class="form-group">
-                <label  class="col-form-label">Product Catagory::</label>
+                <label  class="col-form-label">Product brand::</label>
                 {{-- <input type="text"name="Pcatagory"style="background-color: #2A3038" required="" class="form-control" > --}}
                 <select class="form-control" required="" style="background-color: #2A3038" name="Pbrand">
                   @foreach ($brand as $brand )
@@ -90,18 +90,18 @@
                 <input type="checkbox" name="trending"style="background-color: #2A3038" value=""   class="form-control" >
               </div>
              
-              <div class="form-group">
+              {{-- <div class="form-group">
                 <label for="recipient-name" class="col-form-label">meta titel:</label>
                 <input type="text" name="meta titel"style="background-color: #2A3038"   class="form-control" >
               </div>
               <div class="form-group">
                 <label for="message-text" class="col-form-label">meta_keyword:</label>
                 <textarea rows="2"  class="form-control" name="meta_keyword"></textarea>
-              </div>
+              </div> --}}
               
               <div class="form-group">
                 <label for="message-text" class="col-form-label">description:</label>
-                <textarea rows="4" class="form-control" name="Pdescripton"></textarea>
+                <textarea rows="4" class="form-control" name="Pdescripton" required></textarea>
               </div>
            
           </div>

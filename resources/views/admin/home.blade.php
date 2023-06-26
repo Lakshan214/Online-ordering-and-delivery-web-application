@@ -5,6 +5,7 @@
   </head>
   <body>
     <div class="container-scroller">
+      @include('sweetalert::alert')
       <!-- partial:partials/_sidebar.html -->
       @include('admin.saidebar')
       <!-- partial -->

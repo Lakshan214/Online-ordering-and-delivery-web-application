@@ -72,3 +72,5 @@ var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
         // Update the product count display when the page is loaded
         window.addEventListener("DOMContentLoaded", updateProductCountDisplay);
       </script>
+
+

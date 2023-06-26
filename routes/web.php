@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[HomeController::class,'index'])->name('index');; 
-Route::get('/redirect',[HomeController::class,'redirect']);
+Route::get('/redirect',[HomeController::class,'redirect'])->middleware('auth','verified');
 Route::get('/registerview',[OredrtController::class,'Registerview'])->middleware('auth','verified');
 Route::get('/signin',[OredrtController::class,'signin']);
 
@@ -130,4 +130,6 @@ Route::prefix('slider')->group(function(){
         
             });
 
-       
+            Route::controller(OredrtController::class)->group(function(){
+                Route::post('stripe', 'stripePost')->name('stripe.post');
+            });

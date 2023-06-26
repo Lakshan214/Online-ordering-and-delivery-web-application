@@ -52,7 +52,7 @@ class CatagoryController extends Controller
         $product->image=$imagename;
         
         $product->save(); 
-       
+        toast(' Added Sucessfully!!','success');
         return redirect()->route('Catagory.index');
     }
 
@@ -101,7 +101,7 @@ class CatagoryController extends Controller
         $data=Catagory::find($id);
 
         $data->delete();
-        Alert::warning('product Deleted Successfuly', 'Pleace try anther product');
+        Alert::warning(' Deleted Successfuly', 'Pleace try anther product');
         return redirect()->route('Catagory.index');
     }
 }

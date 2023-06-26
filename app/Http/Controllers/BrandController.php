@@ -49,6 +49,7 @@ class BrandController extends Controller
         $product->img=$imagename;
         
         $product->save();
+        toast('add Sucessfully!!','success');
         return redirect()->route('Brand.index');
     }
 
@@ -95,7 +96,7 @@ class BrandController extends Controller
     public function destroy($id)
     {
         $data=Brand::find($id);
-
+        toast('Deleted Sucessfully!!','error');
         $data->delete();
         return redirect()->route('Brand.index');
     }
