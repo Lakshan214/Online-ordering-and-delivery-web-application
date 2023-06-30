@@ -50,8 +50,8 @@
                     <td><a href="{{route('order.viewDelivery',$item->id)}}" class="btn btn-primary " >View</a></td>
                    <td>
                     @switch($item->status )
-                       @case($item->status=="packing")
-                       <a  href="{{route('order.Delivering',$item->id)}}"   class="btn btn-secondary">Delivering</a>
+                       @case($item->status=="packed")
+                       <a  href="{{route('order.Delivering',$item->id)}}"   class="btn btn-secondary">Conform</a>
                            @break
                       @case($item->status=="Delivering")
                       <a  href="{{route('order.Delivered',$item->id)}}"   class="btn btn-warning">Delivered</a>

@@ -79,8 +79,8 @@
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
-                        <li><a href="{{route('wishlist.view')}}"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="{{route('link.showCart')}}"><i class="fa fa-shopping-bag"></i> <span id="productCount">0</span></a></li>
+                        <li><a href="{{route('wishlist.view')}}"><i class="fa fa-heart"></i> </a></li>
+                        <li><a href="{{route('link.showCart')}}"><i class="fa fa-shopping-bag"></i> <span id="productCount"></span></a></li>
                     </ul>
                     {{-- <div class="header__cart__price">item: <span id="productCount">0</span></div> --}}
                 </div>

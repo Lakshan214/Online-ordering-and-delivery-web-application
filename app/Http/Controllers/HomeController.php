@@ -57,7 +57,7 @@ class HomeController extends Controller
         {  
         //   .....................pass order data by delvery id................ 
           //  $total_delivered=Order::where('delveryId', Auth::user()->id &&'status','=','Delivered')->get()->count();
-           $total_processing=Order::where('status','=','packing')->where('delveryId', Auth::user()->id)->get()->count();
+           $total_processing=Order::where('status','=','packed')->where('delveryId', Auth::user()->id)->get()->count();
            $total_process=Order::where('status','=','Delivering')->where('delveryId', Auth::user()->id)->get()->count();
            $total_delivered = Order::where('delveryId', Auth::user()->id)
                                       ->where('status', '=', 'Delivered')
@@ -86,8 +86,11 @@ class HomeController extends Controller
       $slider=Slider::latest()->get();
 
 
+      $sessionId = session()->get('sessionId');
+      $cartCount = Cart::where('sessionId', $sessionId)->sum('userId');
 
-      return view('Home.index',compact('catagory2','catagory1','product','product1','product2','product3','Brands','slider'));
+
+      return view('Home.index',compact('catagory2','catagory1','product','product1','product2','product3','Brands','slider','cartCount'));
      }
     
     // ................View product description ...............
@@ -95,9 +98,9 @@ class HomeController extends Controller
      public function singlepage_view($id)
      {
       $product=product::find($id);
-      $img=ProductImg::all();
+      // $img=ProductImg::all();
       
-       return view('Home.singlepage',compact('product','img'));
+       return view('Home.singlepage',compact('product'));
      }
  
 

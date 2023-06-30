@@ -5,6 +5,7 @@ use App\Models\Product;
 use App\Models\Slider;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 use Image;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,8 @@ class SliderController extends Controller
          
                 }
                 $slider->save();
-            Alert::class::success('add Sucessfully!!' ,'');
+           
+            toast('Ddd Sucessfully!!','success');
             return redirect()->back();
     
         } 

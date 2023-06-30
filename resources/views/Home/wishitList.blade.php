@@ -36,7 +36,7 @@
                                    
                                     @foreach ($wishitList as $item)
     
-                                   
+                                   @if($item->product)
                                     <td class="shoping__cart__item">
                                         <img style="width: 80px; height: 80px;" src="{{ asset('/product/'.$item['product']['image'])}}" alt="">
                                         <h5>{{$item['product']['Name']}}</h5>
@@ -56,6 +56,8 @@
                                     
                                 </tr>
                               
+                              
+                              @endif
     
                                 @endforeach 
                            

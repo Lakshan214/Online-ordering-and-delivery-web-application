@@ -9,68 +9,56 @@
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
    
+<!--Start of Tawk.to Script-->
+<!--Start of Tawk.to Script-->
 <script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/645fca2f74285f0ec46b47fd/1h0b2rjia';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-</script>
-
-<script>
-    let value=0;
-    function cartCounter(){
-    value++;
-    document.getElementById("count").innerHTML = value;
-    }
-
-</script>
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/649a5a6b94cf5d49dc60068c/1h3tf2e1d';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+  <!--End of Tawk.to Script-->
 
 
   <script>
+    let productCount = parseInt(localStorage.getItem("productCount")) || 0;
   
-  // Retrieve the product count from localStorage or set it to 0 if not found
-  let productCount = parseInt(localStorage.getItem("productCount")) || 0;
-
-  // Function to increment the product count
-  function incrementProductCount() {
-    productCount++;
-    updateProductCountDisplay();
-    updateLocalStorage();
-  }
-
-  // Function to decrement the product count
-  function decrementProductCount() {
-    if (productCount > 0) {
-      productCount--;
-      updateProductCountDisplay();
+    function incrementProductCount() {
+      productCount++;
+      
       updateLocalStorage();
     }
-    function zeroo() {
-    
-    productCount = 0;
-    updateProductCountDisplay();
-    updateLocalStorage();
+  
+    function decrementProductCount() {
+      if (productCount > 0) {
+        productCount--;
+        updateLocalStorage();
+      }
     }
-  }
+  
+    function zeroProductCount() {
+      if (productCount > 0) {
+        productCount = 0;
+        updateLocalStorage();
+      }
+    }
+  
+    function updateProductCountDisplay() {
+      document.getElementById("productCount").textContent = productCount;
+    }
+  
+    function updateLocalStorage() {
+      localStorage.setItem("productCount", productCount);
+    }
+    updateProductCountDisplay();
+  </script>
+  
 
-  // Function to update the product count display
-  function updateProductCountDisplay() {
-    document.getElementById("productCount").textContent = productCount;
-  }
-
-  // Function to update the product count in localStorage
-  function updateLocalStorage() {
-    localStorage.setItem("productCount", productCount);
-  }
-</script>
-    <script>
-        // Update the product count display when the page is loaded
-        window.addEventListener("DOMContentLoaded", updateProductCountDisplay);
-      </script>
+    
 
 

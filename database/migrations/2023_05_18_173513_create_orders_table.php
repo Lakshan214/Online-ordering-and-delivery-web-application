@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('Trakcode')->nullable();
             $table->string('quntity')->nullable();
             $table->string('pmode')->nullable();
+            $table->string('delveryId')->nullable();
             $table->string('status')->nullable();
             $table->string('total')->nullable();
             $table->timestamps();

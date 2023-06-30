@@ -52,10 +52,13 @@ class CartController extends Controller
             $cart->sessionId= $sessionId;
           
             $cart->save();
-
+           
           Alert::class::success('product Added Successfuly','We have addeed product to the cart');
             return redirect()->back();
             }
+            $product = Product::find($id);
+            $product->increment('counter');
+           
        }
        
     

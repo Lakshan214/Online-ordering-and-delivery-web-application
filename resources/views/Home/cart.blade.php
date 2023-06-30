@@ -103,7 +103,7 @@
                 
                          {{-- <a href="{{route('order.orderSave')}}"  class="primary-btn">PROCEED TO CHECKOUT</a> 
                          --}}
-                        <a href="{{ url('/registerview') }}"  class="primary-btn">PROCEED TO CHECKOUT</a> 
+                        <a href="{{ url('/registerview') }}"  onclick="rzeroProductCount()"  class="primary-btn">PROCEED TO CHECKOUT</a> 
                     @else
                     <div class="col-lg-6">
                         <div class="shoping__checkout">

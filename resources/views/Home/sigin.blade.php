@@ -35,11 +35,11 @@
                         </div>
                        
                         
-                        <div class="checkout__input">
-                            <p>user type<span>*</span></p>
-                            <input  type="number" min="0" Max="3" name="userType" :value="0" autocomplete="userType"  hidden >
+                        {{-- <div class="checkout__input">
+                            {{-- <p>user type<span>*</span></p> 
+                            <input  type="number" min="0" Max="3" name="userType" :value="0" autocomplete="userType"   >
                          
-                        </div>
+                        </div> --}}
                        
                         
                                 {{-- <div class="checkout__input">
