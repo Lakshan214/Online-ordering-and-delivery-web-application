@@ -44,7 +44,7 @@
                         <span>BeautyHub</span>
                         <h2 style="color: azure">We Are BeautyHub</h2>
                         <p style="color:rgb(217, 255, 0)">Happy Shoping...</p>
-                        <a href="#" class="primary-btn">SHOP NOW</a>
+                        <a href="{{('/')}}" class="primary-btn">SHOP NOW</a>
                     </div>
                 </div>
             </div>

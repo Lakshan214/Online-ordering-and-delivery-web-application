@@ -38,7 +38,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
-
+// ....................................Cantrol user home Action...............................................
 
 Route::prefix('/link')->group (function(){
     Route::get('/brand/{slug}',[HomeController::class,'brandByProduct'])->name('link.brand');
@@ -49,6 +49,8 @@ Route::prefix('/link')->group (function(){
 
 });
 
+// ....................................Cantrol user home Cart Action...............................................
+
 Route::prefix('/cart')->group (function(){
     Route::post('/addCart/{id}',[CartController::class,'AddToCart'])->name('cart.addCart');
     Route::get('/deleteCart/{id}',[CartController::class,'DeleteCart'])->name('cart.deleteCart');
@@ -57,20 +59,36 @@ Route::prefix('/cart')->group (function(){
  
 
 });
-Route::prefix('/order')->group (function(){
 
+// ....................................Cantrol user home Action...............................................
+
+Route::prefix('/order')->group (function(){
     Route::post('/orderSave',[OredrtController::class,'OrderSave'])->name('order.orderSave');
     // Route::get('/stripView/',[OredrtController::class,'stripView'])->name('order.stripView')->middleware('auth','verified');
     Route::post('/striPost',[OredrtController::class,'stripePost'])->name('order.striPost');
+    Route::get('/admin/{id}',[OredrtController::class,'adminOderView'])->name('order.admin');
     Route::get('/View',[OredrtController::class,'View'])->name('order.View');
     Route::get('/payment/{id}',[OredrtController::class,'paymentMode'])->name('order.payment');
     Route::post('/usedetails',[OredrtController::class,'usedetailsSave'])->name('order.usedetails');
     Route::get('/orderDetails/{id}',[OredrtController::class,'orderDetails'])->name('order.orderDetails');
+    Route::get('/order.orderdelete/{id}',[OredrtController::class,'orderdelete'])->name('order.orderdelete');
+
+    // ....................................Cantrol Printpdf Action ...............................................
+
     Route::get('/printPDF/{id}',[OredrtController::class,'printPDF'])->name('order.printPDF');
+
+// ....................................Cantrol Send Email Action ...............................................
+
     Route::get('/mail/{id}',[OredrtController::class,'sendMail'])->name('order.mail');
-    Route::get('/admin/{id}',[OredrtController::class,'adminOderView'])->name('order.admin');
+
+
+    // ....................................Cantrol Delivery Action ...............................................
+
     Route::post('/SelectDelivery/{id}',[OredrtController::class,'SelectDelivery'])->name('order.SelectDelivery');
     Route::get('/viewDelivery/{id}',[OredrtController::class,'viewDeliveryOrder'])->name('order.viewDelivery');
+
+    // ....................................Cantrol order status Action ...............................................
+
     Route::get('/prosesing/{id}',[OredrtController::class,'prosesing'])->name('order.prosesing');
     Route::get('/packing/{id}',[OredrtController::class,'packing'])->name('order.packing');
     Route::get('/Delivering/{id}',[OredrtController::class,'Delivering'])->name('order.Delivering');
@@ -83,6 +101,8 @@ Route::prefix('/order')->group (function(){
 
 });
 
+// ....................................Cantrol product crud Action...............................................
+
 Route::resource('Products',ProductController ::class);
 Route::prefix('Product')->group(function(){
     Route::get('/active/{id}', [ProductController::class, 'ProductActive'])->name('product.active');
@@ -90,9 +110,13 @@ Route::prefix('Product')->group(function(){
     Route::get('/product-search',[ProductController::class,'product_search'])->name('product.product-search');
 });
 
+// ....................................Cantrol Catagory Action using recouser controler ...............................................
 Route::resource('Catagory',CatagoryController ::class);
+
+// ....................................Cantrol Brand Action using recouser controler  ...............................................
 Route::resource('Brand',BrandController ::class);
 
+// ....................................Cantrol Slider Action  ...............................................
 Route::prefix('slider')->group(function(){
     Route::get('/view', [SliderController::class, 'SliderView'])->name('manage-slider');
     Route::post('/store', [SliderController::class, 'SliderStore'])->name('slider.store');
@@ -102,15 +126,19 @@ Route::prefix('slider')->group(function(){
 
     });
 
-    Route::prefix('wishlist')->group (function(){
+    
+// ....................................Cantrol wishlist Action ...............................................
+
+  Route::prefix('wishlist')->group (function(){
           Route::get('/store/{id}',[WishlistController::class,'store'])->name('wishlist.store');
           Route::get('/view', [WishlistController::class, 'View'])->name('wishlist.view');
           Route::get('/delete/{id}',[WishlistController::class,'Delete'])->name('wishlist.delete');
           Route::get('/addCart/{id}',[WishlistController::class,'addCart'])->name('wishlist.addCart');
     });
 
+// ....................................Cantrol User Action ...............................................
 
-       
+          
     Route::prefix('user')->group(function(){
         Route::get('/view', [UserController::class,'View'])->name('user.View');
         Route::post('/store', [UserController::class,'UserStore'])->name('user.store');
@@ -118,7 +146,8 @@ Route::prefix('slider')->group(function(){
 
     
         });
-
+        
+// ....................................Cantrol review Action ...............................................        
 
         Route::prefix('review')->group(function(){
             Route::get('/view', [ReviewController::class, 'View'])->name('review.view');

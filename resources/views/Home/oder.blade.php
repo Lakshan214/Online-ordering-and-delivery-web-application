@@ -48,7 +48,13 @@
                   <td>{{ $item->created_at }}</td>
                   <td>{{ $item->status }}</td>
                   <td>{{ $item->pmode }}</td>
-                  <td><a href="{{route('order.orderDetails',$item->id)}}" class="btn btn-primary " >View</a></td>
+                  <td><a href="{{route('order.orderDetails',$item->id)}}" class="btn btn-primary " >View</a>
+                    @if($item->status=='pending')
+                    <a href="{{route('order.orderdelete',$item->id)}}" class="btn btn-danger" >cansel</a>
+                    
+                  </td>
+                  @endif
+
               </tr>
           
           @endforeach

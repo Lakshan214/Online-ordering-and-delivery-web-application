@@ -52,7 +52,7 @@
                
                 <td>
                   
-                    <form action="{{ route('Products.destroy',$product->id) }}" method="post">
+                    <form action="{{ route('Products.destroy',$product->id) }}" onsubmit="deleteProduct(event)"  method="post">
 
                     <a href="{{ route('Products.edit',$product->id) }}"  class="btn btn-success " ><i class="mdi mdi-checkbox-marked-outline" style=""></i></a><td>
                       @csrf
@@ -79,3 +79,47 @@
       </div>
     </div>
   </div>
+
+
+  <script>
+    function deleteProduct(event) {
+      event.preventDefault();
+    
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      });
+    
+      swalWithBootstrapButtons
+        .fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, delete it!',
+          cancelButtonText: 'No, cancel!',
+          reverseButtons: true
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            swalWithBootstrapButtons.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            );
+            // Perform the form submission here
+            event.target.submit();
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+            swalWithBootstrapButtons.fire(
+              'Cancelled',
+              'Your imaginary file is safe :)',
+              'error'
+            );
+          }
+        });
+    }
+    </script>
+    

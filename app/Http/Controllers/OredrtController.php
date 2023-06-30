@@ -41,7 +41,15 @@ class OredrtController extends Controller
       return View('Home.sigin');
     }
 
+   public function orderdelete($id)
+   {
+    $data=Order::find($id);
 
+    $data->delete();
+    toast('Delete Sucessfully!!','warning');
+   return redirect()->back();
+
+   }
 
     
 
@@ -228,7 +236,7 @@ public function orderDetails($id)
     
                 // Quantity handling
                 $productQ = Product::find($cartItem->ProductId);
-                $quantity = $productQ->quntity;
+                $quantity = $productQ->quantity;
                 if ($quantity > 0) {
                     $newQuantity = $quantity - $cartItem->quntity;
                     $productQ->quantity = $newQuantity;
@@ -241,7 +249,7 @@ public function orderDetails($id)
         $cartItems->each->delete();
     }
     
-    
+    // .............................send Email................................
     $data = [
         'invoice_no' => Auth::user()->id,
         'name' => Auth::user()->name,
@@ -256,6 +264,8 @@ public function orderDetails($id)
    
       
       }}
+
+
 
 //print pdf use
   public function printPDF($id){

@@ -76,15 +76,17 @@
                             @if($getCartItems)
                            @foreach ($getCartItems as $item)
                                 
-                           
+                           @if(isset($item['product']))
                             <ul>
                                 <li>{{$item['product']['Name']}} x <b>{{$item['quntity']}}</b><span> Rs.{{$item['quntity']*$item['product']['Price']}}</span></li>
                                 
                             </ul>
-                            @endforeach
                             <?php $total += $item['quntity']*$item['product']['Price']  ?>
+                            @endif
+                            @endforeach
                            
                            
+                            
                             <div class="checkout__order__subtotal">Subtotal <span>Rs.{{$total}}.00</span></div>
                            
                             <div   class="checkout__order__total">Total <span>Rs.{{$total}}.00</span></div>

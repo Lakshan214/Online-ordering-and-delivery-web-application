@@ -50,6 +50,7 @@
   
     function updateProductCountDisplay() {
       document.getElementById("productCount").textContent = productCount;
+      
     }
   
     function updateLocalStorage() {
@@ -57,7 +58,35 @@
     }
     updateProductCountDisplay();
   </script>
+
+  <script>
+    let productCount = parseInt(localStorage.getItem("productCount")) || 0;
   
+    function increment() {
+      productCount++;
+      
+      updateLocalStorage();
+    }
+  
+    function decrement() {
+      if (productCount > 0) {
+        productCount--;
+        updateLocalStorage();
+      }
+    }
+  
+   
+  
+    function Display() {
+      document.getElementById("Count").textContent = productCount;
+      
+    }
+  
+    function updateLocalStorage() {
+      localStorage.setItem("productCount", productCount);
+    }
+    Display();
+  </script>
 
     
 

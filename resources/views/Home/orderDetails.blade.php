@@ -14,6 +14,7 @@
 
 <head>
     @include('Home.links')
+    
 </head>
 
 <body>
@@ -46,17 +47,17 @@
               <tr>
                 
               
-                <td  style="font-size:20px;" ><h2>1. Name:<b>{{ $item->name }}</b></h2>
-                    <h3>2. Email:<b>{{ $item->email }}</b></h3>
-                    <h3>3. Phone:<b>{{ $item->phone }}</b></h3>
-                    <h3>4. Address:<b>{{ $item->address }},</b></h3>
-                   <h3>   <b>{{ $item->City }},{{ $item->Locatontype }}</b></h3>
+                <td  ><h2 style="font-size: 20px;">1. Name:<b>{{ $item->name }}</b></h2>
+                    <h3 style="font-size: 20px;">2. Email:<b>{{ $item->email }}</b></h3>
+                    <h3 style="font-size: 20px;">3. Phone:<b>{{ $item->phone }}</b></h3>
+                    <h3 style="font-size: 20px;">4. Address:<b>{{ $item->address }},</b></h3>
+                   <h3 style="font-size: 20px;">   <b>{{ $item->City }},{{ $item->Locatontype }}</b></h3>
                 </td>
-                <td style="font-size:20px;">
-                    <h3>1. Order Id:<b>{{ $item->id }}</b></h3>
-                    <h3>2. Order Created date:<b> {{ $item->created_at }}</b></h3>
-                    <h3>3. Payment Mode: <b>{{ $item->pmode }}</b></h3>
-                    <h3>4. Status:<b> {{ $item->status }}</b></h3>
+                <td style="font-size:5px;">
+                    <h3 style="font-size: 20px;">1. Order Id:<b>{{ $item->id }}</b></h3>
+                    <h3 style="font-size: 20px;">2. Order Created date:<b> {{ $item->created_at }}</b></h3>
+                    <h3 style="font-size: 20px;">3. Payment Mode: <b>{{ $item->pmode }}</b></h3>
+                    <h3 style="font-size: 20px;">4. Status:<b> {{ $item->status }}</b></h3>
 
                 </td>
                 @endforeach

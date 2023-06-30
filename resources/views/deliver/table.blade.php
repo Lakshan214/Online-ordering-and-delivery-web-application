@@ -54,7 +54,7 @@
                        <a  href="{{route('order.Delivering',$item->id)}}"   class="btn btn-secondary">Conform</a>
                            @break
                       @case($item->status=="Delivering")
-                      <a  href="{{route('order.Delivered',$item->id)}}"   class="btn btn-warning">Delivered</a>
+                      <a  href="{{route('order.Delivered',$item->id)}}"   class="btn btn-warning">HandOver</a>
                  
                            @break
                         @default

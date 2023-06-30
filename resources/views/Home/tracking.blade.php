@@ -165,7 +165,7 @@
                     <li class="step0"></li>
                     <li class="step0"></li>
                         @break
-                   @case($order->status=="packing")
+                   @case($order->status=="packed")
 
                    <li class="active step0"></li>
                    <li class="active step0"></li>
